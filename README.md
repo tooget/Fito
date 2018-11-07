@@ -11,8 +11,11 @@
  
 ## Team Meeting
  
+#### 2018-11-07, 3rd
+- [웹사이트 구성, 기획 확장안](https://github.com/ZHyoKim/Fito/blob/master/%EC%84%A4%EA%B3%84.pdf)
 #### 2018-11-06, 2nd
   - 프로젝트 아이템 확정, 관련 서비스 및 유관기관 리서시
   - [제안자 아이디어 세부내용 공유](https://github.com/ZHyoKim/Fito/blob/master/%EA%B8%B0%EB%B3%B8%20%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4(%EC%95%88).md)
 #### 2018-11-05, 1st
   - 팀 빌딩, 팀 명(안), 프로젝트 아이템(안) 브레인스토밍
+ 
