@@ -20,7 +20,12 @@
       - Core : [go-ethereum](https://github.com/ethereum/go-ethereum)
  
 ## Team Meeting
- 
+
+#### 2018-11-08, 4th
+  - 프로토타입 외형 설계 및 배포
+  - 서비스 구조 설계 및 Solidity 스터디(계속)
+  - 멘토링 & 피드백 반영
+  - [중간발표 준비 및 문서화 진행](https://docs.google.com/document/d/1EdmWTQI7Lh6pV84EyPcoDZrYv4G9eQUT37-lelq-Ho0/edit?usp=sharing)
 #### 2018-11-07, 3rd
   - 프로젝트 구현 대상 구체화
   - 프로젝트 사이트 on AWS : [https://fito.ga](https://fito.ga)
