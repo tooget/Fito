@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.2.3/milligram.min.css">
+  <meta charset="UTF-8">
+  
+
+</head>
+
+<body class="container" style="padding-top: 3%;" onload="getListInfo();">
+  <h2> 주주 명부 </h2>
+  <h4>(주) TK</h4>
+
+  
+  <hr />
+
+  <div class="row">
+    <div class="column">
+      <label>총 토큰 수</label>
+      <p id="total_TK">300</p><!-- 우선은 상수로 설정했지만 불러서 넣어야합니다. -->
+    </div>
+    <div class="column">
+      <br />
+      <button id="searchList" onClick="getList();">조회</button>
+      <!-- <button type="button" onClick="getTransaction();">Get Transaction Info</button> -->
+    </div>
+  </div>
+
+  <hr />
+   
+
+
+  <br />
+ <div class="row">
+    <div class="column">
+      <label>조회 날짜/시간</label>
+    </div>
+    <div class="column">
+      <span id="">2018.3.2.12:29</span><!-- 이 부분도 후에는 조회를 누르면 나오는 시간으로 하겠습니다.  -->
+      <!-- <button type="button" onClick="getTransaction();">Get Transaction Info</button> -->
+    </div>
+  </div>
+
+  <hr />
+
+  <div id="listSearch" >
+<!-- 우선은 상수로 설정했지만 불러서 넣어야합니다. -->
+  <div class="row">
+    <div class="column">
+      <label>주주</label>
+      <span id="shareholder">0x365b070c8cbac9</span>
+    </div>
+    <div class="column">
+      <label>주식 수</label>
+      <span id="num_TK">100</span>
+    </div>
+  </div>
+   <div class="row">
+    <div class="column">
+      <span id="shareholder">0x847b070c8cbac9</span>
+    </div>
+    <div class="column">
+      <span id="num_TK">200</span>
+    </div>
+  </div>
+ 
+  <hr />
+  </div>
+<!--   <div id="response" style="padding: 20px; border: 1px solid #F1F1F1;"></div> 이부분이 뭔지 몰라서 완전히 지우지는 않음.
+ --></body>
+
+</html>
