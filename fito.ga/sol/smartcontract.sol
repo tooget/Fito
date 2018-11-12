@@ -20,17 +20,17 @@ contract GeneralMeeting{
   }
 
   stockData[] public stockDatas;
-  
+
   //stockData 추가 ==> 거래 =
-  function addStocks(address _walletAddrTo, uint _numTk, uint _tradingPrice, bool isCompany) payable public { //token 연동
+  function addStocks(address _walletAddrTo, uint _numTk) payable public { //token 연동
     if(addressTotalToken[msg.sender] != 0){
-      stockDatas.push(stockData(stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
+      stockDatas.push(stockData(stockData.length(), _numTk, msg.sender, _walletAddrTo, msg.value, wnow));
       addressTotalToken[msg.sender] -= numTk;
       addressTotalToken[_walletAddrTo] += numTk;
-      
+
       balance = msg.value;
       msg.sender.transfer(balance);//양도자 즉 주식을 파는 사람의 eth가 늘어야 함. 즉 msg.sender
-      _walletAddrTo.balance -=msg.value;
+      _walletAddrTo.balance -= msg.value;
       totalTrades++;
     }
     else console.log("From 측의 Token 값이 0입니다.")
