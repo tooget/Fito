@@ -24,7 +24,7 @@ contract GeneralMeeting{
   //stockData 추가 ==> 거래 =
   function addStocks(address _walletAddrTo, uint _numTk) payable public { //token 연동
     if(addressTotalToken[msg.sender] != 0){
-      stockDatas.push(stockData(stockData.length(), _numTk, msg.sender, _walletAddrTo, msg.value, wnow));
+      stockDatas.push(stockData(_numTk, msg.sender, _walletAddrTo, msg.value, wnow));
       addressTotalToken[msg.sender] -= numTk;
       addressTotalToken[_walletAddrTo] += numTk;
 
