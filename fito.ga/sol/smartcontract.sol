@@ -29,7 +29,8 @@ contract GeneralMeeting{
       addressTotalToken[_walletAddrTo] += numTk;
       
       balance = msg.value;
-      msg.receiver.transfer(balance);
+      msg.sender.transfer(balance);//양도자 즉 주식을 파는 사람의 eth가 늘어야 함. 즉 msg.sender
+      _walletAddrTo.balance -=msg.value;
       totalTrades++;
     }
     else console.log("From 측의 Token 값이 0입니다.")
