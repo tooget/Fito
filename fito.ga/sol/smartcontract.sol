@@ -40,7 +40,7 @@ contract GeneralMeeting{
       msg.receiver.transfer(balance);
       totalTrades++;
     }
-    else() console.log("From 측의 Token 값이 0입니다.")
+    else console.log("From 측의 Token 값이 0입니다.")
   }
 
   //거래 내역 리턴
