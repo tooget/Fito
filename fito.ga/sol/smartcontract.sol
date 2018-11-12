@@ -45,7 +45,7 @@ contract GeneralMeeting{
       companyToken -= tradingToken;
     }
     balance = msg.value;
-    msg.receiver.transfer(balance);
+    receiver.transfer(balance);
     totalTrades++;
   }
 
