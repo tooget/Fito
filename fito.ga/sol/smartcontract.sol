@@ -38,10 +38,10 @@ contract GeneralMeeting{
     //false = 주주-주주 true = 회사-주주
     if(isCompany == false) {
       //if() //만약 from 에 해당하는 주주가 가진 주식이 0이 아니라면
-      stockData.push(stockData(stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
+      stockData.push(stockData(false, stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
     }
     else{
-      stockData.push(stockData(stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
+      stockData.push(stockData(false, stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
       companyToken -= tradingToken;
     }
     balance = msg.value;
