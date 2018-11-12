@@ -42,5 +42,7 @@ contract GeneralMeeting{
     }
   }
 
-  function 
+  function getTotalStuck(address _walletAddr) public view returns (uint){
+    return addressTotalToken[_walletAddr];
+  }
 }
