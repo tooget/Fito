@@ -5,11 +5,11 @@ pragma solidity ^0.4.25;
 contract GeneralMeeting{
   uint companyToken = 10000; //회사-주주
   address companyAddr = 0;
-  /* uint totalTrades; //거래횟수
+  /*
   uint totalShareholder//주주수 */
   //address contractCaller; //거래호출;
   address[] totalIndex; //index 조회방법
-  
+
   struct total{
     address shareholder;
     uint totalToken;
@@ -17,6 +17,7 @@ contract GeneralMeeting{
 
   struct stockData{
     /* uint idx; */
+    bool isDone;
     uint token; //from 주주 개개인의 거래한 주식수
     address walletAddrFrom; //주주
     address walletAddrTo; //주주
@@ -33,17 +34,18 @@ contract GeneralMeeting{
   }
 
   //stockData 추가 ==> 거래 =
-  function addStocks(address _walletAddrTo, uint _tradingPrice bool isCompany){ //token 연동
+  function addStocks(address _walletAddrTo, uint _numTk, uint _tradingPrice, bool isCompany) payable public { //token 연동
     //false = 주주-주주 true = 회사-주주
     if(isCompany == false) {
       //if() //만약 from 에 해당하는 주주가 가진 주식이 0이 아니라면
-      stockData.push(stockData(totalTrades, tradingToken, msg.sender, _walletAddrTo, _tradingPrice, wnow));
-      msg.sender.transfer(_walletAddrTo, msg.value);
+      stockData.push(stockData(stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
     }
     else{
-      stockData.push(stockData(totalTrades, tradingToken, msg.sender, _walletAddrTo, _tradingPrice, wnow));
+      stockData.push(stockData(stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
       companyToken -= tradingToken;
     }
+    balance = msg.value;
+    msg.sender.transfer(balance);
     totalTrades++;
   }
 
