@@ -3,6 +3,10 @@
  - Reference : https://steemit.com/etherum/@dongshik/ethereum-pet-shop-and-truffle
 
 ## Sequences
+```
+You should have KALEIDO App Credentials to preceed.
+
+```
  1. CMD : `truffle unbox pet-shop`
  2. Create contracts/Adoption.sol
  3. Create migrations/2_deploy_contracts.js
@@ -24,6 +28,9 @@
  12. CMD : `npm run dev`
 
 ## Access to KALEIDO private network via Metamask
+```
+New EOA created when metamask connected.
+```
   - https://kaleido.io/kaleido-meets-metamask/
   - _Configure for your network_, https://console.kaleido.io/docs/docs/truffle/
 
@@ -41,3 +48,17 @@ EXPOSE 3000
  - CMD : `docker build -t <dockerId/images:tag> .`
  - CMD : `docker run -p 80:3000 <dockerId/images:tag>`
  
+## KALEIDO API
+```
+There might be no ways to access the KALEIDO node directly.
+You should use KALEIDO API via curl/jq command cm to control geth or environments.
+```
+Reference : https://console.kaleido.io/docs/docs/api/
+ - Check Region : `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/regions" | jq`
+ - Check Consortia : `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia" | jq`
+ - Check All Environments(# of nodes, concensus algorithm etc.,) of a Consortia : `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments" | jq`
+ - Check a network environment of a Consortia : `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}" | jq`
+ - Check App credentials : `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}/appcreds" | jq`
+ - Check all deployed Smart Contracts of a Consortia/network : `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/ledger/{consortia_id}/{environment_id}/contracts" | jq`
+ - Check all EOA of a Consortia/network : `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/ledger/{consortia_id}/{environment_id}/addresses/{account_address}" | jq`
+ - Add pre-fund ETH to a EOA of a Consortia/network : `curl -X POST -d '{"account":"0x51D91D3128252728a37131713c8d98724BDF744E", "amount":"1000000"}' -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}/eth/fundaccount" | jq`
