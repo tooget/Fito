@@ -1,0 +1,81 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="../js/web3.min.js"></script>
+<script src="../../build/contracts/GeneralMeeting.js"></script>
+<script type="text/javascript">
+
+    console.log('starting...');
+    //connect web3 and check if web3 is connected correctly
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        // set the provider you want from Web3.providers
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+    }
+
+    if (web3.isConnected()) {
+        console.log("connected");
+    } else {
+        console.log("not connected")
+    }
+
+    var abi = GeneralMeeting_build.abi;
+    var contractAddress = "0xa8a4665904d6909b3ca5d43238d59ef3cba6e17d";
+    web3.eth.defaultAccount = web3.eth.accounts[0];
+
+    console.log('abi', abi);
+    var vc = web3.eth.contract(abi).at(contractAddress);
+    console.log('vc', vc);
+    
+    function initShares() {
+        try {
+            console.log("to web3.eth.accounts[9]", web3.eth.accounts[9]);
+            console.log(typeof(web3.eth.accounts[9]));
+            var rtn = vc.initShares(web3.eth.accounts[9])
+            document.getElementById("initShares").innerText = 'web3.eth.accounts[0] :' + rtn;
+        } catch (err) {
+            document.getElementById("initShares").innerText = err;
+        }
+    }
+
+    function addTradingData() {
+        try {
+            console.log("buyer web3.eth.accounts[0]", web3.eth.accounts[0]);
+            console.log("seller web3.eth.accounts[9]", web3.eth.accounts[9]);
+
+            var idx = vc.addTradingData(web3.eth.accounts[9], 100, {value: web3.toWei(7, "ether"), from:web3.eth.accounts[0], to:web3.eth.accounts[9], gas:300000});
+            document.getElementById("addTradingData").innerText = idx;
+        } catch (err) {
+            document.getElementById("addTradingData").innerText = err;
+        }
+    }
+
+    function getOwnedShares() {
+        try {
+            console.log("buyer web3.eth.accounts[9]", web3.eth.accounts[9]);
+            console.log("seller web3.eth.accounts[1]", web3.eth.accounts[0]);
+            var stock9 = vc.getOwnedShares(web3.eth.accounts[9]);
+            var stock0 = vc.getOwnedShares(web3.eth.accounts[0]);
+            document.getElementById("getOwnedShares").innerText = "9 :" + stock9 + " / " + "0 :" + stock0;
+        } catch (err) {
+            document.getElementById("getOwnedShares").innerText = err;
+        }
+    }
+
+
+</script>
+
+</head>
+
+<body>
+    <h1>KISA Corp.</h1>
+    <p>
+        <span id="getTotalNumberOfIssues">Loading...</span>
+    </p>
+    <p><button type="button" onClick="initShares();">initShares :</button><div id="initShares"></div></p><br />
+    <p><button type="button" onClick="addTradingData();">addTradingData :</button><div id="addTradingData"></div></p><br />
+    <p><button type="button" onClick="getOwnedShares();">getOwnedShares :</button><div id="getOwnedShares"></div></p><br />
+</body>
+</html>
