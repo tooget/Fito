@@ -23,30 +23,17 @@
 
     var abi = GeneralMeeting_build.abi;
     var contractAddress = "0xa8a4665904d6909b3ca5d43238d59ef3cba6e17d";
+    web3.eth.defaultAccount = web3.eth.accounts[0];
 
     console.log('abi', abi);
     var vc = web3.eth.contract(abi).at(contractAddress);
     console.log('vc', vc);
-
-    function getBalance() {
-            var address, wei, balance
-            address = web3.eth.accounts[ 0 ];
-            try {
-                web3.eth.getBalance(address, function (error, wei) {
-                    if (!error) {
-                        var balance = web3.fromWei(wei, 'ether');
-                        document.getElementById("getBalance").innerHTML = balance + " ETH ," + wei + " wei";
-                    }
-                });
-            } catch (err) {
-                document.getElementById("getBalance").innerHTML = err;
-            }
-      }
     
     function initShares() {
         try {
-            console.log("to web3.eth.accounts[0]", web3.eth.accounts[0]);
-            var rtn = vc.initShares(web3.eth.accounts[0])
+            console.log("to web3.eth.accounts[9]", web3.eth.accounts[9]);
+            console.log(typeof(web3.eth.accounts[9]));
+            var rtn = vc.initShares(web3.eth.accounts[9])
             document.getElementById("initShares").innerText = 'web3.eth.accounts[0] :' + rtn;
         } catch (err) {
             document.getElementById("initShares").innerText = err;
@@ -55,25 +42,25 @@
 
     function addTradingData() {
         try {
-            console.log("buyer web3.eth.accounts[1]", web3.eth.accounts[1]);
-            console.log("seller web3.eth.accounts[0]", web3.eth.accounts[0]);
+            console.log("buyer web3.eth.accounts[0]", web3.eth.accounts[0]);
+            console.log("seller web3.eth.accounts[9]", web3.eth.accounts[9]);
 
-            var idx = vc.addTradingData(web3.eth.accounts[0], 100, {value: web3.toWei(7, "ether"), from:web3.eth.accounts[1], gas:100000});
+            var idx = vc.addTradingData(web3.eth.accounts[9], 100, {value: web3.toWei(7, "ether"), from:web3.eth.accounts[0], to:web3.eth.accounts[9], gas:300000});
             document.getElementById("addTradingData").innerText = idx;
         } catch (err) {
             document.getElementById("addTradingData").innerText = err;
         }
     }
 
-    function getTotalStuck() {
+    function getOwnedShares() {
         try {
-            console.log("buyer web3.eth.accounts[1]", web3.eth.accounts[1]);
-            console.log("seller web3.eth.accounts[0]", web3.eth.accounts[0]);
-            var stock1 = vc.getTotalStuck(web3.eth.accounts[1]);
-            var stock0 = vc.getTotalStuck(web3.eth.accounts[0]);
-            document.getElementById("getTotalStuck").innerText = "1 :" + stock1 + " / " + "0 :" + stock0;
+            console.log("buyer web3.eth.accounts[9]", web3.eth.accounts[9]);
+            console.log("seller web3.eth.accounts[1]", web3.eth.accounts[0]);
+            var stock9 = vc.getOwnedShares(web3.eth.accounts[9]);
+            var stock0 = vc.getOwnedShares(web3.eth.accounts[0]);
+            document.getElementById("getOwnedShares").innerText = "9 :" + stock9 + " / " + "0 :" + stock0;
         } catch (err) {
-            document.getElementById("getTotalStuck").innerText = err;
+            document.getElementById("getOwnedShares").innerText = err;
         }
     }
 
@@ -89,6 +76,6 @@
     </p>
     <p><button type="button" onClick="initShares();">initShares :</button><div id="initShares"></div></p><br />
     <p><button type="button" onClick="addTradingData();">addTradingData :</button><div id="addTradingData"></div></p><br />
-    <p><button type="button" onClick="getTotalStuck();">getTotalStuck :</button><div id="getTotalStuck"></div></p><br />
+    <p><button type="button" onClick="getOwnedShares();">getOwnedShares :</button><div id="getOwnedShares"></div></p><br />
 </body>
 </html>
