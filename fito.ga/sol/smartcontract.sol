@@ -39,7 +39,7 @@ contract GeneralMeeting{
   //거래 내역 리턴
   function getProductStruct(uint _idx, address _walletAddr) public view returns (address, uint){
     if(stockDatas[_idx].walletAddr == _walletAddr){
-      return(stockDatas[_idx].walletAddr, stockData[_idx].timestamp);
+      return(stockDatas[_idx].walletAddr, stockDatas[_idx].timestamp);
     }
   }
 
