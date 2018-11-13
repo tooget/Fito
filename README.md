@@ -25,11 +25,14 @@
  
 ## Team Meeting
 
+#### 2018-11-13, 7th
+  - Prototype 기능 SmartContract 구현
+  - Ganache 테스트 환경에서 주요 기능 테스트 성공
 #### 2018-11-12, 6th
   - SmartContract Draft 작성
   - Web3-SmartContract 상호작용 테스트
 #### 2018-11-09, 5th
-  - 중간발표 & 피드백
+  - [중간발표](https://github.com/ZHyoKim/Fito/blob/master/docs/20181109_FITO%20%ED%8C%80%20%EC%A0%9C%EC%95%88%EC%84%9C%20demo%ED%8C%8C%EC%9D%BC.pdf) & 피드백
   - KALEIDO-Truffle 연동 완료, Ganache-Truffle 환경 공유
   - Solidity 스터디(계속)
   - Idea development/issue : 생태계 내에서의 Token의 정의와 ICO에 대한 오인 가능성
