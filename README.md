@@ -11,8 +11,11 @@
       - [Prototype] 비상장 주식회사 주주명부 조회
       - [Prototype] 비상장 주식회사 투자자간 주식거래
       - [Prototype] 비상장 주식회사 투자자별 주식거래내역 조회
+ 3. Prototype 구현
+    - 구현일정 : 2018-11-05~2018-11-16
     - 구현형태 : 웹 서비스(브라우저 접근)
     - 주요 리소스 및 아키텍쳐
+      ![](https://github.com/ZHyoKim/Fito/blob/master/docs/20181113_prototype_architecture.png)
       - FE : Web3.js, AWS
       - BE : [KALEIDO](https://kaleido.io)
     - 블록체인 네트워크 구성
