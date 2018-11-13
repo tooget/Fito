@@ -1,0 +1,93 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="../js/web3.min.js"></script>
+<script src="../../build/contracts/TestContract.js"></script>
+<script type="text/javascript">
+
+    console.log('starting...');
+    //connect web3 and check if web3 is connected correctly
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        // set the provider you want from Web3.providers
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+    }
+
+    if (web3.isConnected()) {
+        console.log("connected");
+    } else {
+        console.log("not connected")
+    }
+
+    var abi = TestContract_build.abi;
+    console.log('abi', abi);
+    var contractAddress = "0xa8a4665904d6909b3ca5d43238d59ef3cba6e17d";
+    var vc = web3.eth.contract(abi).at(contractAddress);
+    console.log('vc', vc);
+
+    function getBalance() {
+            var address, wei, balance
+            address = web3.eth.accounts[ 0 ];
+            try {
+                web3.eth.getBalance(address, function (error, wei) {
+                    if (!error) {
+                        var balance = web3.fromWei(wei, 'ether');
+                        document.getElementById("getBalance").innerHTML = balance + " ETH ," + wei + " wei";
+                    }
+                });
+            } catch (err) {
+                document.getElementById("getBalance").innerHTML = err;
+            }
+      }
+    
+    function getTotalNumberOfIssues() {
+        try {
+            var totalNumberOfIssues = vc.getTotalNumberOfIssues();
+            console.log('getTotalNumberOfIssues', totalNumberOfIssues);
+            document.getElementById("getTotalNumberOfIssues").innerText = '총 발행 주식수 :' + totalNumberOfIssues;
+        } catch (err) {
+            document.getElementById("getTotalNumberOfIssues").innerText = err;
+        }
+    }
+
+    function getEntireAccounts() {
+        try {
+            var addressesOfAccounts = web3.eth.accounts;
+            console.log("addressesOfAccounts", addressesOfAccounts);
+            console.log("typeof(addressesOfAccounts)", typeof(addressesOfAccounts));
+            console.log("length(addressesOfAccounts)", addressesOfAccounts.length);
+
+            var table = document.getElementById("entireAccounts");
+            var length = addressesOfAccounts.length;
+            for (var i = 0; i < length; i ++) {
+                var row = table.insertRow();
+                var cell = row.insertCell(i);
+				cell.innerHTML = addressesOfAccounts[i];
+            }
+            
+        } catch (err) {
+            document.getElementById("entireAccounts").innerText = err;
+        }
+    }
+
+</script>
+
+</head>
+
+<body onload="getTotalNumberOfIssues()">
+    <h1>KISA Corp.</h1>
+    <p>
+        <span id="getTotalNumberOfIssues">Loading...</span>
+    </p>
+
+    <p>
+        <button type="button" onClick="getBalance();">Get Balance :</button><div id="getBalance"></div><br />
+    </p>
+
+    <p>
+        <button type="button" onClick="getEntireAccounts();">Get Entire Accounts :</button><table id="entireAccounts"></table><br />
+    </p>
+</body>
+</html>
