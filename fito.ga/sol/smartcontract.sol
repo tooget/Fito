@@ -5,54 +5,45 @@ pragma solidity ^0.4.25;
 contract GeneralMeeting{
   uint companyToken = 10000; //회사-주주
   address companyAddr = 0;
-  /*
-  uint totalShareholder//주주수 */
   //address contractCaller; //거래호출;
-  address[] totalIndex; //index 조회방법
+  address[] stockDataIndex;
 
-  struct total{
-    address shareholder;
-    uint totalToken;
-  } //주주가 가진 최종 누적 주식수
+  mapping (address => uint) addressTotalToken;
 
   struct stockData{
-    /* uint idx; */
-    bool isDone;
     uint token; //from 주주 개개인의 거래한 주식수
     address walletAddrFrom; //주주
     address walletAddrTo; //주주
-    /* uint transactionHash; */   //tx.hash
+    // uint transactionHash;   //tx.hash
     uint tradingPrice;
     uint timestamp;
   }
 
-  total[] public trades;
-  stockData[] public trades;
-
-  constructor() public{
-    //contractCaller = msg.sender; //송신자(함수 주체)
-  }
+  stockData[] public stockDatas;
 
   //stockData 추가 ==> 거래 =
-  function addStocks(address _walletAddrTo, uint _numTk, uint _tradingPrice, bool isCompany) payable public { //token 연동
-    //false = 주주-주주 true = 회사-주주
-    if(isCompany == false) {
-      //if() //만약 from 에 해당하는 주주가 가진 주식이 0이 아니라면
-      stockData.push(stockData(false, stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
+  function addStocks(address _walletAddrTo, uint _numTk) payable public { //token 연동
+    if(addressTotalToken[msg.sender] != 0){
+      stockDatas.push(stockData(_numTk, msg.sender, _walletAddrTo, msg.value, wnow));
+      addressTotalToken[msg.sender] -= numTk;
+      addressTotalToken[_walletAddrTo] += numTk;
+
+      balance = msg.value;
+      msg.sender.transfer(balance);//양도자 즉 주식을 파는 사람의 eth가 늘어야 함. 즉 msg.sender
+      _walletAddrTo.balance -= msg.value;
+      totalTrades++;
     }
-    else{
-      stockData.push(stockData(false, stockData.length(), _numTk, msg.sender, _walletAddrTo, _tradingPrice, wnow));
-      companyToken -= tradingToken;
-    }
-    balance = msg.value;
-    receiver.transfer(balance);
-    totalTrades++;
+    else console.log("From 측의 Token 값이 0입니다.")
   }
 
   //거래 내역 리턴
   function getProductStruct(uint _idx, address _walletAddr) public view returns (address, uint){
-    if(stockData[_idx].walletAddr == _walletAddr){
-      return(stockData[_idx].walletAddr, stockData[_idx].timestamp);
+    if(stockDatas[_idx].walletAddr == _walletAddr){
+      return(stockDatas[_idx].walletAddr, stockData[_idx].timestamp);
     }
+  }
+
+  function getTotalStuck(address _walletAddr) public view returns (uint){
+    return addressTotalToken[_walletAddr];
   }
 }
