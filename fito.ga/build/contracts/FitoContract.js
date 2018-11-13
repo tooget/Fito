@@ -1,5 +1,5 @@
-var GeneralMeeting_build = {
-  "contractName": "GeneralMeeting",
+var FitoContract_build = {
+  "contractName": "FitoContract",
   "abi": [
     {
       "constant": true,
@@ -16,20 +16,20 @@ var GeneralMeeting_build = {
           "type": "uint256"
         },
         {
-          "name": "sellerAddr",
-          "type": "address"
-        },
-        {
-          "name": "buyerAddr",
-          "type": "address"
-        },
-        {
           "name": "tradingPrice",
           "type": "uint256"
         },
         {
           "name": "timestamp",
           "type": "uint256"
+        },
+        {
+          "name": "sellerAddr",
+          "type": "address"
+        },
+        {
+          "name": "buyerAddr",
+          "type": "address"
         },
         {
           "name": "isTradingComplete",
@@ -45,12 +45,12 @@ var GeneralMeeting_build = {
       "inputs": [
         {
           "indexed": false,
-          "name": "_value",
+          "name": "value",
           "type": "uint256"
         },
         {
           "indexed": false,
-          "name": "_balance",
+          "name": "balance",
           "type": "uint256"
         }
       ],
@@ -69,15 +69,6 @@ var GeneralMeeting_build = {
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "sending",
-      "outputs": [],
-      "payable": true,
-      "stateMutability": "payable",
       "type": "function"
     },
     {
@@ -114,6 +105,20 @@ var GeneralMeeting_build = {
     },
     {
       "constant": true,
+      "inputs": [],
+      "name": "getLengthOftradingDatas",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
       "inputs": [
         {
           "name": "_ownerAddr",
@@ -134,7 +139,7 @@ var GeneralMeeting_build = {
     {
       "constant": true,
       "inputs": [],
-      "name": "getShareOfCompany",
+      "name": "getUnissuedShareOfCompany",
       "outputs": [
         {
           "name": "",
@@ -144,31 +149,22 @@ var GeneralMeeting_build = {
       "payable": false,
       "stateMutability": "view",
       "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "sendEth",
-      "outputs": [],
-      "payable": true,
-      "stateMutability": "payable",
-      "type": "function"
     }
   ],
-  "bytecode": "0x608060405261271060005534801561001657600080fd5b50610817806100266000396000f30060806040526004361061008e576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806306e99fef1461009357806308e6eabc1461009d5780631290a838146100a7578063433c381e146100fb578063610495ef146101525780638a4068dd146101955780639839b4ba1461019f578063c3e53c51146101ca575b600080fd5b61009b61028a565b005b6100a561028c565b005b6100e5600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506102d6565b6040518082815260200191505060405180910390f35b34801561010757600080fd5b5061013c600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610597565b6040518082815260200191505060405180910390f35b34801561015e57600080fd5b50610193600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105e0565b005b61019d610636565b005b3480156101ab57600080fd5b506101b46106a1565b6040518082815260200191505060405180910390f35b3480156101d657600080fd5b506101f5600480360381019080803590602001909291905050506106aa565b604051808781526020018673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200184815260200183815260200182151515158152602001965050505050505060405180910390f35b565b346002819055507f8af68a55d4ee2bb2549f41a62e9a9ff1288d3a581c8960e3ecf22e9fa4b4691634600254604051808381526020018281526020019250505060405180910390a1565b60006102e0610786565b600083600360008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205410158015610332575060008414155b151561033d57600080fd5b60c0604051908101604052808581526020018673ffffffffffffffffffffffffffffffffffffffff1681526020013373ffffffffffffffffffffffffffffffffffffffff168152602001348152602001428152602001600015158152509150600482908060018154018082558091505090600182039060005260206000209060060201600090919290919091506000820151816000015560208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060408201518160020160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550606082015181600301556080820151816004015560a08201518160050160006101000a81548160ff021916908315150217905550505090506104a385610742565b6104ab61028c565b83600360008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254039250508190555083600360003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254019250508190555061054d610636565b600160046001830381548110151561056157fe5b906000526020600020906006020160050160006101000a81548160ff021916908315150217905550600181039250505092915050565b6000600360008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6000819050600054600360008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002081905550600080819055505050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561069e573d6000803e3d6000fd5b50565b60008054905090565b6004818154811015156106b957fe5b90600052602060002090600602016000915090508060000154908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060030154908060040154908060050160009054906101000a900460ff16905086565b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b60c06040519081016040528060008152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001600081526020016000815260200160001515815250905600a165627a7a72305820f43bb06c4b8e472a398155c901be9452772081a6e7e7b0dec3aa36815aa9595e0029",
-  "deployedBytecode": "0x60806040526004361061008e576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806306e99fef1461009357806308e6eabc1461009d5780631290a838146100a7578063433c381e146100fb578063610495ef146101525780638a4068dd146101955780639839b4ba1461019f578063c3e53c51146101ca575b600080fd5b61009b61028a565b005b6100a561028c565b005b6100e5600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506102d6565b6040518082815260200191505060405180910390f35b34801561010757600080fd5b5061013c600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610597565b6040518082815260200191505060405180910390f35b34801561015e57600080fd5b50610193600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105e0565b005b61019d610636565b005b3480156101ab57600080fd5b506101b46106a1565b6040518082815260200191505060405180910390f35b3480156101d657600080fd5b506101f5600480360381019080803590602001909291905050506106aa565b604051808781526020018673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200184815260200183815260200182151515158152602001965050505050505060405180910390f35b565b346002819055507f8af68a55d4ee2bb2549f41a62e9a9ff1288d3a581c8960e3ecf22e9fa4b4691634600254604051808381526020018281526020019250505060405180910390a1565b60006102e0610786565b600083600360008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205410158015610332575060008414155b151561033d57600080fd5b60c0604051908101604052808581526020018673ffffffffffffffffffffffffffffffffffffffff1681526020013373ffffffffffffffffffffffffffffffffffffffff168152602001348152602001428152602001600015158152509150600482908060018154018082558091505090600182039060005260206000209060060201600090919290919091506000820151816000015560208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060408201518160020160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550606082015181600301556080820151816004015560a08201518160050160006101000a81548160ff021916908315150217905550505090506104a385610742565b6104ab61028c565b83600360008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254039250508190555083600360003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254019250508190555061054d610636565b600160046001830381548110151561056157fe5b906000526020600020906006020160050160006101000a81548160ff021916908315150217905550600181039250505092915050565b6000600360008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6000819050600054600360008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002081905550600080819055505050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f1935050505015801561069e573d6000803e3d6000fd5b50565b60008054905090565b6004818154811015156106b957fe5b90600052602060002090600602016000915090508060000154908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060020160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060030154908060040154908060050160009054906101000a900460ff16905086565b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b60c06040519081016040528060008152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001600081526020016000815260200160001515815250905600a165627a7a72305820f43bb06c4b8e472a398155c901be9452772081a6e7e7b0dec3aa36815aa9595e0029",
-  "sourceMap": "60:2452:0:-;;;221:5;199:27;;60:2452;8:9:-1;5:2;;;30:1;27;20:12;5:2;60:2452:0;;;;;;;",
-  "deployedSourceMap": "60:2452:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2474:36;;;;;;965:111;;;;;;1298:634;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2252:117;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2252:117:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;656:167;;8:9:-1;5:2;;;30:1;27;20:12;5:2;656:167:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;1158:80;;;;;;2375:93;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2375:93:0;;;;;;;;;;;;;;;;;;;;;;;616:33;;8:9:-1;5:2;;;30:1;27;20:12;5:2;616:33:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2474:36;:::o;965:111::-;1019:9;1009:7;:19;;;;1043:26;1050:9;1061:7;;1043:26;;;;;;;;;;;;;;;;;;;;;;;;965:111::o;1298:634::-;1387:4;1487:33;;:::i;:::-;1608:15;1439:14;1411:11;:24;1423:11;1411:24;;;;;;;;;;;;;;;;:42;;:65;;;;;1475:1;1457:14;:19;;1411:65;1403:74;;;;;;;;1523:75;;;;;;;;;1535:14;1523:75;;;;1551:11;1523:75;;;;;;1564:10;1523:75;;;;;;1576:9;1523:75;;;;1587:3;1523:75;;;;1592:5;1523:75;;;;;1487:111;;1626:12;1644:14;1626:33;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;1626:33:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1608:51;;1669:24;1681:11;1669;:24::i;:::-;1703:9;:7;:9::i;:::-;1750:14;1722:11;:24;1734:11;1722:24;;;;;;;;;;;;;;;;:42;;;;;;;;;;;1801:14;1774:11;:23;1786:10;1774:23;;;;;;;;;;;;;;;;:41;;;;;;;;;;;1825:10;:8;:10::i;:::-;1892:4;1845:12;1869:1;1858:10;:12;1845:26;;;;;;;;;;;;;;;;;;;;:44;;;:51;;;;;;;;;;;;;;;;;;1924:1;1913:10;:12;1906:19;;1298:634;;;;;;:::o;2252:117::-;2317:4;2339:11;:23;2351:10;2339:23;;;;;;;;;;;;;;;;2332:30;;2252:117;;;:::o;656:167::-;712:16;731:9;712:28;;774:14;;750:11;:21;762:8;750:21;;;;;;;;;;;;;;;:38;;;;815:1;798:14;:18;;;;656:167;;:::o;1158:80::-;1203:8;;;;;;;;;;;:17;;:28;1221:9;1203:28;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1203:28:0;1158:80::o;2375:93::-;2424:4;2447:14;;2440:21;;2375:93;:::o;616:33::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;829:85::-;898:9;887:8;;:20;;;;;;;;;;;;;;;;;;829:85;:::o;60:2452::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "pragma solidity ^0.4.24;\n\n//token 초기값 이슈 아직X\n\ncontract GeneralMeeting {\n\n    //로깅을 위한 이벤트\n    event Sended(\n        uint256 _value,\n        uint256 _balance\n    );\n\n    uint shareOfCompany = 10000; //회사-주주\n    address ethTaker;\n    uint balance;\n\n    mapping (address => uint) ownedShares;\n\n    struct tradingData {\n        uint tradingShares; //from 주주 개개인의 거래한 주식수\n        address sellerAddr; //주식 양도자\n        address buyerAddr; //주식 양수자\n        uint tradingPrice;\n        uint timestamp;\n        bool isTradingComplete;\n    }\n\n    tradingData[] public tradingDatas;\n\n    function initShares(address _corpAddr) public {\n        address corpAddr = _corpAddr;\n        ownedShares[corpAddr] = shareOfCompany;\n        shareOfCompany = 0;\n    }\n\n    function setEthTaker(address _ethTaker) private {\n        ethTaker = _ethTaker;\n    }\n\n    //호출자가 CA에게 이더를 전송\n    function sending() payable public {\n        balance = msg.value;\n        emit Sended(msg.value, balance);\n    }\n\n    //set함수를 통해 저장한 주소에 이더를 전송하는 함수\n    function transfer() payable public {\n        ethTaker.transfer(msg.value);\n    }\n\n    //stockData 추가 ==> 양수자가 거래 요청\n    function addTradingData(address _sellerAddr, uint _tradingShares) payable public returns(uint) {\n        require(ownedShares[_sellerAddr] >= _tradingShares && _tradingShares != 0);\n        tradingData memory newTradingData = tradingData(_tradingShares, _sellerAddr, msg.sender, msg.value, now, false);\n        uint tradingIdx = tradingDatas.push(newTradingData);\n        setEthTaker(_sellerAddr);\n        sending();\n        ownedShares[_sellerAddr] -= _tradingShares;\n        ownedShares[msg.sender] += _tradingShares;\n        transfer();\n        tradingDatas[tradingIdx-1].isTradingComplete = true;\n        return tradingIdx-1;\n    }\n\n    //총 거래 내역 수 리턴\n    // function getLengthOftradingDatas() public view returns (uint) {\n    //     return tradingDatas.length();\n    // }\n\n    //거래 내역 리턴\n    // function getProductStruct(uint _idx) public view returns (tradingData[]) {\n    //     return tradingDatas[_idx];\n    // }\n\n    function getOwnedShares(address _ownerAddr) public view returns (uint){\n        return ownedShares[_ownerAddr];\n    }\n\n    function getShareOfCompany() public view returns(uint) {\n        return shareOfCompany;\n    }\n\n    function sendEth() public payable {}\n}\n",
-  "sourcePath": "/Users/hyun/dev/Fito/fito.ga/contracts/GeneralMeeting.sol",
+  "bytecode": "0x6080604052620f424060005534801561001757600080fd5b5061083a806100276000396000f300608060405260043610610083576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631290a8381461008857806323420cdc146100dc578063433c381e14610107578063610495ef1461015e5780638a4068dd146101a15780638fe00b21146101ab578063c3e53c51146101d6575b600080fd5b6100c6600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610296565b6040518082815260200191505060405180910390f35b3480156100e857600080fd5b506100f1610557565b6040518082815260200191505060405180910390f35b34801561011357600080fd5b50610148600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610564565b6040518082815260200191505060405180910390f35b34801561016a57600080fd5b5061019f600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105ad565b005b6101a961060f565b005b3480156101b757600080fd5b506101c061067a565b6040518082815260200191505060405180910390f35b3480156101e257600080fd5b5061020160048036038101908080359060200190929190505050610683565b604051808781526020018681526020018581526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182151515158152602001965050505050505060405180910390f35b60006102a06107a9565b600083600360008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054101580156102f2575060008414155b15156102fd57600080fd5b60c0604051908101604052808581526020013481526020014281526020018673ffffffffffffffffffffffffffffffffffffffff1681526020013373ffffffffffffffffffffffffffffffffffffffff1681526020016000151581525091506004829080600181540180825580915050906001820390600052602060002090600502016000909192909190915060008201518160000155602082015181600101556040820151816002015560608201518160030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060808201518160040160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060a08201518160040160146101000a81548160ff021916908315150217905550505090506104638561071b565b61046b61075f565b83600360008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254039250508190555083600360003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254019250508190555061050d61060f565b600160046001830381548110151561052157fe5b906000526020600020906005020160040160146101000a81548160ff021916908315150217905550600181039250505092915050565b6000600480549050905090565b6000600360008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6000819050620186a0600360008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002081905550620186a060008082825403925050819055505050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f19350505050158015610677573d6000803e3d6000fd5b50565b60008054905090565b60048181548110151561069257fe5b90600052602060002090600502016000915090508060000154908060010154908060020154908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060040160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060040160149054906101000a900460ff16905086565b80600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b346001819055507f8af68a55d4ee2bb2549f41a62e9a9ff1288d3a581c8960e3ecf22e9fa4b4691634600154604051808381526020018281526020019250505060405180910390a1565b60c060405190810160405280600081526020016000815260200160008152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001600073ffffffffffffffffffffffffffffffffffffffff16815260200160001515815250905600a165627a7a72305820acc52dba8fea27b373f04ae01aa7a6f9763b0643ac0917bce348d07265b77e250029",
+  "deployedBytecode": "0x608060405260043610610083576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631290a8381461008857806323420cdc146100dc578063433c381e14610107578063610495ef1461015e5780638a4068dd146101a15780638fe00b21146101ab578063c3e53c51146101d6575b600080fd5b6100c6600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610296565b6040518082815260200191505060405180910390f35b3480156100e857600080fd5b506100f1610557565b6040518082815260200191505060405180910390f35b34801561011357600080fd5b50610148600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610564565b6040518082815260200191505060405180910390f35b34801561016a57600080fd5b5061019f600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105ad565b005b6101a961060f565b005b3480156101b757600080fd5b506101c061067a565b6040518082815260200191505060405180910390f35b3480156101e257600080fd5b5061020160048036038101908080359060200190929190505050610683565b604051808781526020018681526020018581526020018473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182151515158152602001965050505050505060405180910390f35b60006102a06107a9565b600083600360008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054101580156102f2575060008414155b15156102fd57600080fd5b60c0604051908101604052808581526020013481526020014281526020018673ffffffffffffffffffffffffffffffffffffffff1681526020013373ffffffffffffffffffffffffffffffffffffffff1681526020016000151581525091506004829080600181540180825580915050906001820390600052602060002090600502016000909192909190915060008201518160000155602082015181600101556040820151816002015560608201518160030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060808201518160040160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060a08201518160040160146101000a81548160ff021916908315150217905550505090506104638561071b565b61046b61075f565b83600360008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254039250508190555083600360003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254019250508190555061050d61060f565b600160046001830381548110151561052157fe5b906000526020600020906005020160040160146101000a81548160ff021916908315150217905550600181039250505092915050565b6000600480549050905090565b6000600360008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6000819050620186a0600360008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002081905550620186a060008082825403925050819055505050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f19350505050158015610677573d6000803e3d6000fd5b50565b60008054905090565b60048181548110151561069257fe5b90600052602060002090600502016000915090508060000154908060010154908060020154908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060040160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060040160149054906101000a900460ff16905086565b80600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b346001819055507f8af68a55d4ee2bb2549f41a62e9a9ff1288d3a581c8960e3ecf22e9fa4b4691634600154604051808381526020018281526020019250505060405180910390a1565b60c060405190810160405280600081526020016000815260200160008152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001600073ffffffffffffffffffffffffffffffffffffffff16815260200160001515815250905600a165627a7a72305820acc52dba8fea27b373f04ae01aa7a6f9763b0643ac0917bce348d07265b77e250029",
+  "sourceMap": "26:3480:0:-;;;85:7;55:37;;26:3480;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:3480:0;;;;;;;",
+  "deployedSourceMap": "26:3480:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2007:634;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2683:105;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2683:105:0;;;;;;;;;;;;;;;;;;;;;;;3011:117;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3011:117:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;862:222;;8:9:-1;5:2;;;30:1;27;20:12;5:2;862:222:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;1727:80;;;;;;3167:109;;8:9:-1;5:2;;;30:1;27;20:12;5:2;3167:109:0;;;;;;;;;;;;;;;;;;;;;;;749:33;;8:9:-1;5:2;;;30:1;27;20:12;5:2;749:33:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2007:634;2096:4;2196:33;;:::i;:::-;2317:15;2148:14;2120:11;:24;2132:11;2120:24;;;;;;;;;;;;;;;;:42;;:65;;;;;2184:1;2166:14;:19;;2120:65;2112:74;;;;;;;;2232:75;;;;;;;;;2244:14;2232:75;;;;2260:9;2232:75;;;;2271:3;2232:75;;;;2276:11;2232:75;;;;;;2289:10;2232:75;;;;;;2301:5;2232:75;;;;;2196:111;;2335:12;2353:14;2335:33;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;2335:33:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2317:51;;2378:24;2390:11;2378;:24::i;:::-;2412:9;:7;:9::i;:::-;2459:14;2431:11;:24;2443:11;2431:24;;;;;;;;;;;;;;;;:42;;;;;;;;;;;2510:14;2483:11;:23;2495:10;2483:23;;;;;;;;;;;;;;;;:41;;;;;;;;;;;2534:10;:8;:10::i;:::-;2601:4;2554:12;2578:1;2567:10;:12;2554:26;;;;;;;;;;;;;;;;;;;;:44;;;:51;;;;;;;;;;;;;;;;;;2633:1;2622:10;:12;2615:19;;2007:634;;;;;;:::o;2683:105::-;2739:4;2762:12;:19;;;;2755:26;;2683:105;:::o;3011:117::-;3076:4;3098:11;:23;3110:10;3098:23;;;;;;;;;;;;;;;;3091:30;;3011:117;;;:::o;862:222::-;918:16;937:9;918:28;;980:6;956:11;:21;968:8;956:21;;;;;;;;;;;;;;;:30;;;;1071:6;1045:22;;:32;;;;;;;;;;;862:222;;:::o;1727:80::-;1772:8;;;;;;;;;;;:17;;:28;1790:9;1772:28;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1772:28:0;1727:80::o;3167:109::-;3224:4;3247:22;;3240:29;;3167:109;:::o;749:33::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;1409:85::-;1478:9;1467:8;;:20;;;;;;;;;;;;;;;;;;1409:85;:::o;1554:104::-;1601:9;1591:7;:19;;;;1625:26;1632:9;1643:7;;1625:26;;;;;;;;;;;;;;;;;;;;;;;;1554:104::o;26:3480::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.24;\n\ncontract FitoContract {\n\n    uint unissuedShareOfCompany = 1000000;  //총 발행가능 주식수\n    uint balance;                   //ETH transfer 전송할 이더 수량 저장을 위한 임시 변수\n    address ethTaker;               //Eth transfer 수령자 저장을 위한 임시 변수\n\n    mapping (address => uint) ownedShares;\n\n    struct tradingData {\n        uint tradingShares;         //거래할 주식수\n        uint tradingPrice;          //거래할 총액(ETH)\n        uint timestamp;             //거래시간\n        address sellerAddr;         //주식 양도자\n        address buyerAddr;          //주식 양수자\n        bool isTradingComplete;     //거래 및 ETH 송금 완료\n    }\n\n    tradingData[] public tradingDatas;\n\n    //최초 회사 유통발행주식의 매개자 설정 및 초기화\n    function initShares(address _corpAddr) public {\n        address corpAddr = _corpAddr;\n        ownedShares[corpAddr] = 100000;  //총 발행가능 주식수 100% 발행 가정\n        unissuedShareOfCompany -= 100000;\n    }\n\n    // -----------------------------------------------------------\n    // EOA-CA-EOA ETH transfer를 위한 function\n    // -----------------------------------------------------------\n\n    //로깅을 위한 이벤트\n    event Sended (\n        uint256 value,\n        uint256 balance\n    );\n\n    //Eth 수령자 저장\n    function setEthTaker(address _ethTaker) private {\n        ethTaker = _ethTaker;\n    }\n\n    //호출자가 보낼 Eth 수량을 임시 저장\n    function sending() private {\n        balance = msg.value;\n        emit Sended(msg.value, balance);\n    }\n\n    //set함수를 통해 저장한 주소에 이더를 전송\n    function transfer() payable public {\n        ethTaker.transfer(msg.value);\n    }\n    // -----------------------------------------------------------\n\n    //양수자가 거래를 요청하고 이더를 전송하는 함수\n    //차후 요청-승인 구조로 분화해야 함.\n    function addTradingData(address _sellerAddr, uint _tradingShares) payable public returns(uint) {\n        require(ownedShares[_sellerAddr] >= _tradingShares && _tradingShares != 0);\n        tradingData memory newTradingData = tradingData(_tradingShares, msg.value, now, _sellerAddr, msg.sender, false);\n        uint tradingIdx = tradingDatas.push(newTradingData);\n        setEthTaker(_sellerAddr);\n        sending();\n        ownedShares[_sellerAddr] -= _tradingShares;\n        ownedShares[msg.sender] += _tradingShares;\n        transfer();\n        tradingDatas[tradingIdx-1].isTradingComplete = true;\n        return tradingIdx-1;\n    }\n\n    // 총 거래 내역 수 리턴\n    function getLengthOftradingDatas() public view returns (uint) {\n        return tradingDatas.length;\n    }\n\n    // 거래 내역 리턴\n    // function getProductStruct(uint _idx) public view returns (tradingData) {\n    //     return tradingDatas[_idx];\n    //     작성중\n    // }\n\n    //주주가 가진 주식수 리턴\n    function getOwnedShares(address _ownerAddr) public view returns (uint){\n        return ownedShares[_ownerAddr];\n    }\n\n    //회사 미발행 주식수\n    function getUnissuedShareOfCompany() public view returns(uint) {\n        return unissuedShareOfCompany;\n    }\n\n    //회사 유통 주식수\n    // function getIssuedShares() public view returns(uint) {\n    //     // 작성중\n    // }\n\n    //CA에 Eth를 transfer하기 위한 함수(백업) \n    // function sendEth() public payable {}\n}\n",
+  "sourcePath": "/Users/hyun/dev/Fito/fito.ga/contracts/FitoContract.sol",
   "ast": {
-    "absolutePath": "/Users/hyun/dev/Fito/fito.ga/contracts/GeneralMeeting.sol",
+    "absolutePath": "/Users/hyun/dev/Fito/fito.ga/contracts/FitoContract.sol",
     "exportedSymbols": {
-      "GeneralMeeting": [
-        193
+      "FitoContract": [
+        198
       ]
     },
-    "id": 194,
+    "id": 199,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -188,89 +184,20 @@ var GeneralMeeting_build = {
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 193,
+        "id": 198,
         "linearizedBaseContracts": [
-          193
+          198
         ],
-        "name": "GeneralMeeting",
+        "name": "FitoContract",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "anonymous": false,
-            "documentation": null,
-            "id": 7,
-            "name": "Sended",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 6,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 3,
-                  "indexed": false,
-                  "name": "_value",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 7,
-                  "src": "146:14:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "146:7:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 5,
-                  "indexed": false,
-                  "name": "_balance",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 7,
-                  "src": "170:16:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "170:7:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "136:56:0"
-            },
-            "src": "124:69:0"
-          },
-          {
             "constant": false,
-            "id": 10,
-            "name": "shareOfCompany",
+            "id": 4,
+            "name": "unissuedShareOfCompany",
             "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "199:27:0",
+            "scope": 198,
+            "src": "55:37:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -278,10 +205,10 @@ var GeneralMeeting_build = {
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 8,
+              "id": 2,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "199:4:0",
+              "src": "55:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -289,31 +216,57 @@ var GeneralMeeting_build = {
             },
             "value": {
               "argumentTypes": null,
-              "hexValue": "3130303030",
-              "id": 9,
+              "hexValue": "31303030303030",
+              "id": 3,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "221:5:0",
+              "src": "85:7:0",
               "subdenomination": null,
               "typeDescriptions": {
-                "typeIdentifier": "t_rational_10000_by_1",
-                "typeString": "int_const 10000"
+                "typeIdentifier": "t_rational_1000000_by_1",
+                "typeString": "int_const 1000000"
               },
-              "value": "10000"
+              "value": "1000000"
             },
             "visibility": "internal"
           },
           {
             "constant": false,
-            "id": 12,
+            "id": 6,
+            "name": "balance",
+            "nodeType": "VariableDeclaration",
+            "scope": 198,
+            "src": "128:12:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 5,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "128:4:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 8,
             "name": "ethTaker",
             "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "248:16:0",
+            "scope": 198,
+            "src": "234:16:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -321,10 +274,10 @@ var GeneralMeeting_build = {
               "typeString": "address"
             },
             "typeName": {
-              "id": 11,
+              "id": 7,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "248:7:0",
+              "src": "234:7:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
@@ -335,37 +288,11 @@ var GeneralMeeting_build = {
           },
           {
             "constant": false,
-            "id": 14,
-            "name": "balance",
-            "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "270:12:0",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_uint256",
-              "typeString": "uint256"
-            },
-            "typeName": {
-              "id": 13,
-              "name": "uint",
-              "nodeType": "ElementaryTypeName",
-              "src": "270:4:0",
-              "typeDescriptions": {
-                "typeIdentifier": "t_uint256",
-                "typeString": "uint256"
-              }
-            },
-            "value": null,
-            "visibility": "internal"
-          },
-          {
-            "constant": false,
-            "id": 18,
+            "id": 12,
             "name": "ownedShares",
             "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "289:37:0",
+            "scope": 198,
+            "src": "327:37:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -373,28 +300,28 @@ var GeneralMeeting_build = {
               "typeString": "mapping(address => uint256)"
             },
             "typeName": {
-              "id": 17,
+              "id": 11,
               "keyType": {
-                "id": 15,
+                "id": 9,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "298:7:0",
+                "src": "336:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "289:25:0",
+              "src": "327:25:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                 "typeString": "mapping(address => uint256)"
               },
               "valueType": {
-                "id": 16,
+                "id": 10,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "309:4:0",
+                "src": "347:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -405,16 +332,16 @@ var GeneralMeeting_build = {
             "visibility": "internal"
           },
           {
-            "canonicalName": "GeneralMeeting.tradingData",
-            "id": 31,
+            "canonicalName": "FitoContract.tradingData",
+            "id": 25,
             "members": [
               {
                 "constant": false,
-                "id": 20,
+                "id": 14,
                 "name": "tradingShares",
                 "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "362:18:0",
+                "scope": 25,
+                "src": "400:18:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -422,10 +349,10 @@ var GeneralMeeting_build = {
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 19,
+                  "id": 13,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "362:4:0",
+                  "src": "400:4:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -436,11 +363,89 @@ var GeneralMeeting_build = {
               },
               {
                 "constant": false,
-                "id": 22,
+                "id": 16,
+                "name": "tradingPrice",
+                "nodeType": "VariableDeclaration",
+                "scope": 25,
+                "src": "458:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 15,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "458:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 18,
+                "name": "timestamp",
+                "nodeType": "VariableDeclaration",
+                "scope": 25,
+                "src": "518:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 17,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "518:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 20,
                 "name": "sellerAddr",
                 "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "437:18:0",
+                "scope": 25,
+                "src": "569:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 19,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "569:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 22,
+                "name": "buyerAddr",
+                "nodeType": "VariableDeclaration",
+                "scope": 25,
+                "src": "624:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -451,7 +456,7 @@ var GeneralMeeting_build = {
                   "id": 21,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "437:7:0",
+                  "src": "624:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
@@ -463,88 +468,10 @@ var GeneralMeeting_build = {
               {
                 "constant": false,
                 "id": 24,
-                "name": "buyerAddr",
-                "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "484:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 23,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "484:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 26,
-                "name": "tradingPrice",
-                "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "530:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 25,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "530:4:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 28,
-                "name": "timestamp",
-                "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "557:14:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 27,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "557:4:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 30,
                 "name": "isTradingComplete",
                 "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "581:22:0",
+                "scope": 25,
+                "src": "679:22:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -552,10 +479,10 @@ var GeneralMeeting_build = {
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 29,
+                  "id": 23,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "581:4:0",
+                  "src": "679:4:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -567,43 +494,43 @@ var GeneralMeeting_build = {
             ],
             "name": "tradingData",
             "nodeType": "StructDefinition",
-            "scope": 193,
-            "src": "333:277:0",
+            "scope": 198,
+            "src": "371:372:0",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 34,
+            "id": 28,
             "name": "tradingDatas",
             "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "616:33:0",
+            "scope": 198,
+            "src": "749:33:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_tradingData_$31_storage_$dyn_storage",
-              "typeString": "struct GeneralMeeting.tradingData[]"
+              "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage",
+              "typeString": "struct FitoContract.tradingData[]"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
-                "id": 32,
+                "id": 26,
                 "name": "tradingData",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 31,
-                "src": "616:11:0",
+                "referencedDeclaration": 25,
+                "src": "749:11:0",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_tradingData_$31_storage_ptr",
-                  "typeString": "struct GeneralMeeting.tradingData"
+                  "typeIdentifier": "t_struct$_tradingData_$25_storage_ptr",
+                  "typeString": "struct FitoContract.tradingData"
                 }
               },
-              "id": 33,
+              "id": 27,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "616:13:0",
+              "src": "749:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_tradingData_$31_storage_$dyn_storage_ptr",
-                "typeString": "struct GeneralMeeting.tradingData[]"
+                "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage_ptr",
+                "typeString": "struct FitoContract.tradingData[]"
               }
             },
             "value": null,
@@ -611,22 +538,22 @@ var GeneralMeeting_build = {
           },
           {
             "body": {
-              "id": 53,
+              "id": 47,
               "nodeType": "Block",
-              "src": "702:121:0",
+              "src": "908:176:0",
               "statements": [
                 {
                   "assignments": [
-                    40
+                    34
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 40,
+                      "id": 34,
                       "name": "corpAddr",
                       "nodeType": "VariableDeclaration",
-                      "scope": 54,
-                      "src": "712:16:0",
+                      "scope": 48,
+                      "src": "918:16:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -634,10 +561,10 @@ var GeneralMeeting_build = {
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 39,
+                        "id": 33,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
-                        "src": "712:7:0",
+                        "src": "918:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -647,27 +574,27 @@ var GeneralMeeting_build = {
                       "visibility": "internal"
                     }
                   ],
-                  "id": 42,
+                  "id": 36,
                   "initialValue": {
                     "argumentTypes": null,
-                    "id": 41,
+                    "id": 35,
                     "name": "_corpAddr",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 36,
-                    "src": "731:9:0",
+                    "referencedDeclaration": 30,
+                    "src": "937:9:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "712:28:0"
+                  "src": "918:28:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 47,
+                    "id": 41,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -676,26 +603,26 @@ var GeneralMeeting_build = {
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 43,
+                        "id": 37,
                         "name": "ownedShares",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 18,
-                        "src": "750:11:0",
+                        "referencedDeclaration": 12,
+                        "src": "956:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 45,
+                      "id": 39,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 44,
+                        "id": 38,
                         "name": "corpAddr",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 40,
-                        "src": "762:8:0",
+                        "referencedDeclaration": 34,
+                        "src": "968:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -706,7 +633,7 @@ var GeneralMeeting_build = {
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "750:21:0",
+                      "src": "956:21:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -716,82 +643,87 @@ var GeneralMeeting_build = {
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 46,
-                      "name": "shareOfCompany",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 10,
-                      "src": "774:14:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "750:38:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "id": 48,
-                  "nodeType": "ExpressionStatement",
-                  "src": "750:38:0"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 51,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 49,
-                      "name": "shareOfCompany",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 10,
-                      "src": "798:14:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "hexValue": "30",
-                      "id": 50,
+                      "hexValue": "313030303030",
+                      "id": 40,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "815:1:0",
+                      "src": "980:6:0",
                       "subdenomination": null,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_rational_0_by_1",
-                        "typeString": "int_const 0"
+                        "typeIdentifier": "t_rational_100000_by_1",
+                        "typeString": "int_const 100000"
                       },
-                      "value": "0"
+                      "value": "100000"
                     },
-                    "src": "798:18:0",
+                    "src": "956:30:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 52,
+                  "id": 42,
                   "nodeType": "ExpressionStatement",
-                  "src": "798:18:0"
+                  "src": "956:30:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 45,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 43,
+                      "name": "unissuedShareOfCompany",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4,
+                      "src": "1045:22:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "-=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "313030303030",
+                      "id": 44,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1071:6:0",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_100000_by_1",
+                        "typeString": "int_const 100000"
+                      },
+                      "value": "100000"
+                    },
+                    "src": "1045:32:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 46,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1045:32:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 54,
+            "id": 48,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -799,16 +731,16 @@ var GeneralMeeting_build = {
             "name": "initShares",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 37,
+              "id": 31,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 36,
+                  "id": 30,
                   "name": "_corpAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 54,
-                  "src": "676:17:0",
+                  "scope": 48,
+                  "src": "882:17:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -816,10 +748,10 @@ var GeneralMeeting_build = {
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 35,
+                    "id": 29,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "676:7:0",
+                    "src": "882:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -829,26 +761,95 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "675:19:0"
+              "src": "881:19:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 38,
+              "id": 32,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "702:0:0"
+              "src": "908:0:0"
             },
-            "scope": 193,
-            "src": "656:167:0",
+            "scope": 198,
+            "src": "862:222:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 54,
+            "name": "Sended",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 50,
+                  "indexed": false,
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 54,
+                  "src": "1331:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 49,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1331:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 52,
+                  "indexed": false,
+                  "name": "balance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 54,
+                  "src": "1354:15:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 51,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1354:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1321:54:0"
+            },
+            "src": "1308:68:0"
+          },
+          {
             "body": {
               "id": 63,
               "nodeType": "Block",
-              "src": "877:37:0",
+              "src": "1457:37:0",
               "statements": [
                 {
                   "expression": {
@@ -864,8 +865,8 @@ var GeneralMeeting_build = {
                       "name": "ethTaker",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 12,
-                      "src": "887:8:0",
+                      "referencedDeclaration": 8,
+                      "src": "1467:8:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -880,13 +881,13 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 56,
-                      "src": "898:9:0",
+                      "src": "1478:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "887:20:0",
+                    "src": "1467:20:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -894,7 +895,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 62,
                   "nodeType": "ExpressionStatement",
-                  "src": "887:20:0"
+                  "src": "1467:20:0"
                 }
               ]
             },
@@ -916,7 +917,7 @@ var GeneralMeeting_build = {
                   "name": "_ethTaker",
                   "nodeType": "VariableDeclaration",
                   "scope": 64,
-                  "src": "850:17:0",
+                  "src": "1430:17:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -927,7 +928,7 @@ var GeneralMeeting_build = {
                     "id": 55,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "850:7:0",
+                    "src": "1430:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -937,17 +938,17 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "849:19:0"
+              "src": "1429:19:0"
             },
             "payable": false,
             "returnParameters": {
               "id": 58,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "877:0:0"
+              "src": "1457:0:0"
             },
-            "scope": 193,
-            "src": "829:85:0",
+            "scope": 198,
+            "src": "1409:85:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "private"
@@ -956,7 +957,7 @@ var GeneralMeeting_build = {
             "body": {
               "id": 78,
               "nodeType": "Block",
-              "src": "999:77:0",
+              "src": "1581:77:0",
               "statements": [
                 {
                   "expression": {
@@ -972,8 +973,8 @@ var GeneralMeeting_build = {
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14,
-                      "src": "1009:7:0",
+                      "referencedDeclaration": 6,
+                      "src": "1591:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -989,8 +990,8 @@ var GeneralMeeting_build = {
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 265,
-                        "src": "1019:3:0",
+                        "referencedDeclaration": 270,
+                        "src": "1601:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
@@ -1004,13 +1005,13 @@ var GeneralMeeting_build = {
                       "memberName": "value",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "1019:9:0",
+                      "src": "1601:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1009:19:0",
+                    "src": "1591:19:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1018,7 +1019,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 71,
                   "nodeType": "ExpressionStatement",
-                  "src": "1009:19:0"
+                  "src": "1591:19:0"
                 },
                 {
                   "eventCall": {
@@ -1032,8 +1033,8 @@ var GeneralMeeting_build = {
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1050:3:0",
+                          "referencedDeclaration": 270,
+                          "src": "1632:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
@@ -1047,7 +1048,7 @@ var GeneralMeeting_build = {
                         "memberName": "value",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "1050:9:0",
+                        "src": "1632:9:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1059,8 +1060,8 @@ var GeneralMeeting_build = {
                         "name": "balance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14,
-                        "src": "1061:7:0",
+                        "referencedDeclaration": 6,
+                        "src": "1643:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1082,8 +1083,8 @@ var GeneralMeeting_build = {
                       "name": "Sended",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7,
-                      "src": "1043:6:0",
+                      "referencedDeclaration": 54,
+                      "src": "1625:6:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$returns$__$",
                         "typeString": "function (uint256,uint256)"
@@ -1097,7 +1098,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1043:26:0",
+                    "src": "1625:26:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -1105,7 +1106,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 77,
                   "nodeType": "EmitStatement",
-                  "src": "1038:31:0"
+                  "src": "1620:31:0"
                 }
               ]
             },
@@ -1121,26 +1122,26 @@ var GeneralMeeting_build = {
               "id": 65,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "981:2:0"
+              "src": "1570:2:0"
             },
-            "payable": true,
+            "payable": false,
             "returnParameters": {
               "id": 66,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "999:0:0"
+              "src": "1581:0:0"
             },
-            "scope": 193,
-            "src": "965:111:0",
-            "stateMutability": "payable",
+            "scope": 198,
+            "src": "1554:104:0",
+            "stateMutability": "nonpayable",
             "superFunction": null,
-            "visibility": "public"
+            "visibility": "private"
           },
           {
             "body": {
               "id": 89,
               "nodeType": "Block",
-              "src": "1193:45:0",
+              "src": "1762:45:0",
               "statements": [
                 {
                   "expression": {
@@ -1154,8 +1155,8 @@ var GeneralMeeting_build = {
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1221:3:0",
+                          "referencedDeclaration": 270,
+                          "src": "1790:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
@@ -1169,7 +1170,7 @@ var GeneralMeeting_build = {
                         "memberName": "value",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "1221:9:0",
+                        "src": "1790:9:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1189,8 +1190,8 @@ var GeneralMeeting_build = {
                         "name": "ethTaker",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 12,
-                        "src": "1203:8:0",
+                        "referencedDeclaration": 8,
+                        "src": "1772:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1204,7 +1205,7 @@ var GeneralMeeting_build = {
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "1203:17:0",
+                      "src": "1772:17:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
@@ -1218,7 +1219,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1203:28:0",
+                    "src": "1772:28:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -1226,7 +1227,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 88,
                   "nodeType": "ExpressionStatement",
-                  "src": "1203:28:0"
+                  "src": "1772:28:0"
                 }
               ]
             },
@@ -1242,17 +1243,17 @@ var GeneralMeeting_build = {
               "id": 80,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1175:2:0"
+              "src": "1744:2:0"
             },
             "payable": true,
             "returnParameters": {
               "id": 81,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1193:0:0"
+              "src": "1762:0:0"
             },
-            "scope": 193,
-            "src": "1158:80:0",
+            "scope": 198,
+            "src": "1727:80:0",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
@@ -1261,7 +1262,7 @@ var GeneralMeeting_build = {
             "body": {
               "id": 167,
               "nodeType": "Block",
-              "src": "1393:539:0",
+              "src": "2102:539:0",
               "statements": [
                 {
                   "expression": {
@@ -1297,8 +1298,8 @@ var GeneralMeeting_build = {
                               "name": "ownedShares",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 18,
-                              "src": "1411:11:0",
+                              "referencedDeclaration": 12,
+                              "src": "2120:11:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                                 "typeString": "mapping(address => uint256)"
@@ -1312,7 +1313,7 @@ var GeneralMeeting_build = {
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 92,
-                              "src": "1423:11:0",
+                              "src": "2132:11:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -1323,7 +1324,7 @@ var GeneralMeeting_build = {
                             "isPure": false,
                             "lValueRequested": false,
                             "nodeType": "IndexAccess",
-                            "src": "1411:24:0",
+                            "src": "2120:24:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -1338,13 +1339,13 @@ var GeneralMeeting_build = {
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 94,
-                            "src": "1439:14:0",
+                            "src": "2148:14:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             }
                           },
-                          "src": "1411:42:0",
+                          "src": "2120:42:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -1370,7 +1371,7 @@ var GeneralMeeting_build = {
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 94,
-                            "src": "1457:14:0",
+                            "src": "2166:14:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -1388,7 +1389,7 @@ var GeneralMeeting_build = {
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1475:1:0",
+                            "src": "2184:1:0",
                             "subdenomination": null,
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_0_by_1",
@@ -1396,13 +1397,13 @@ var GeneralMeeting_build = {
                             },
                             "value": "0"
                           },
-                          "src": "1457:19:0",
+                          "src": "2166:19:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
                           }
                         },
-                        "src": "1411:65:0",
+                        "src": "2120:65:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1420,11 +1421,11 @@ var GeneralMeeting_build = {
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        268,
-                        269
+                        273,
+                        274
                       ],
-                      "referencedDeclaration": 268,
-                      "src": "1403:7:0",
+                      "referencedDeclaration": 273,
+                      "src": "2112:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
@@ -1438,7 +1439,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1403:74:0",
+                    "src": "2112:74:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -1446,7 +1447,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 110,
                   "nodeType": "ExpressionStatement",
-                  "src": "1403:74:0"
+                  "src": "2112:74:0"
                 },
                 {
                   "assignments": [
@@ -1459,23 +1460,23 @@ var GeneralMeeting_build = {
                       "name": "newTradingData",
                       "nodeType": "VariableDeclaration",
                       "scope": 168,
-                      "src": "1487:33:0",
+                      "src": "2196:33:0",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_tradingData_$31_memory_ptr",
-                        "typeString": "struct GeneralMeeting.tradingData"
+                        "typeIdentifier": "t_struct$_tradingData_$25_memory_ptr",
+                        "typeString": "struct FitoContract.tradingData"
                       },
                       "typeName": {
                         "contractScope": null,
                         "id": 111,
                         "name": "tradingData",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 31,
-                        "src": "1487:11:0",
+                        "referencedDeclaration": 25,
+                        "src": "2196:11:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_tradingData_$31_storage_ptr",
-                          "typeString": "struct GeneralMeeting.tradingData"
+                          "typeIdentifier": "t_struct$_tradingData_$25_storage_ptr",
+                          "typeString": "struct FitoContract.tradingData"
                         }
                       },
                       "value": null,
@@ -1493,7 +1494,7 @@ var GeneralMeeting_build = {
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 94,
-                        "src": "1535:14:0",
+                        "src": "2244:14:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1501,62 +1502,20 @@ var GeneralMeeting_build = {
                       },
                       {
                         "argumentTypes": null,
-                        "id": 115,
-                        "name": "_sellerAddr",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 92,
-                        "src": "1551:11:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 116,
+                          "id": 115,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1564:3:0",
+                          "referencedDeclaration": 270,
+                          "src": "2260:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 117,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "sender",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": null,
-                        "src": "1564:10:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 118,
-                          "name": "msg",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1576:3:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_magic_message",
-                            "typeString": "msg"
-                          }
-                        },
-                        "id": 119,
+                        "id": 116,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1564,7 +1523,7 @@ var GeneralMeeting_build = {
                         "memberName": "value",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "1576:9:0",
+                        "src": "2260:9:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1572,15 +1531,57 @@ var GeneralMeeting_build = {
                       },
                       {
                         "argumentTypes": null,
-                        "id": 120,
+                        "id": 117,
                         "name": "now",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 267,
-                        "src": "1587:3:0",
+                        "referencedDeclaration": 272,
+                        "src": "2271:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 118,
+                        "name": "_sellerAddr",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 92,
+                        "src": "2276:11:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 119,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 270,
+                          "src": "2289:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 120,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "2289:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
                         }
                       },
                       {
@@ -1593,7 +1594,7 @@ var GeneralMeeting_build = {
                         "kind": "bool",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "1592:5:0",
+                        "src": "2301:5:0",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
@@ -1609,20 +1610,20 @@ var GeneralMeeting_build = {
                           "typeString": "uint256"
                         },
                         {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
                         {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
                         },
                         {
                           "typeIdentifier": "t_bool",
@@ -1633,11 +1634,11 @@ var GeneralMeeting_build = {
                       "name": "tradingData",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 31,
-                      "src": "1523:11:0",
+                      "referencedDeclaration": 25,
+                      "src": "2232:11:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_struct$_tradingData_$31_storage_ptr_$",
-                        "typeString": "type(struct GeneralMeeting.tradingData storage pointer)"
+                        "typeIdentifier": "t_type$_t_struct$_tradingData_$25_storage_ptr_$",
+                        "typeString": "type(struct FitoContract.tradingData storage pointer)"
                       }
                     },
                     "id": 122,
@@ -1648,14 +1649,14 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1523:75:0",
+                    "src": "2232:75:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_tradingData_$31_memory",
-                      "typeString": "struct GeneralMeeting.tradingData memory"
+                      "typeIdentifier": "t_struct$_tradingData_$25_memory",
+                      "typeString": "struct FitoContract.tradingData memory"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1487:111:0"
+                  "src": "2196:111:0"
                 },
                 {
                   "assignments": [
@@ -1668,7 +1669,7 @@ var GeneralMeeting_build = {
                       "name": "tradingIdx",
                       "nodeType": "VariableDeclaration",
                       "scope": 168,
-                      "src": "1608:15:0",
+                      "src": "2317:15:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1679,7 +1680,7 @@ var GeneralMeeting_build = {
                         "id": 124,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1608:4:0",
+                        "src": "2317:4:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1700,18 +1701,18 @@ var GeneralMeeting_build = {
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 112,
-                        "src": "1644:14:0",
+                        "src": "2353:14:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_tradingData_$31_memory_ptr",
-                          "typeString": "struct GeneralMeeting.tradingData memory"
+                          "typeIdentifier": "t_struct$_tradingData_$25_memory_ptr",
+                          "typeString": "struct FitoContract.tradingData memory"
                         }
                       }
                     ],
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_struct$_tradingData_$31_memory_ptr",
-                          "typeString": "struct GeneralMeeting.tradingData memory"
+                          "typeIdentifier": "t_struct$_tradingData_$25_memory_ptr",
+                          "typeString": "struct FitoContract.tradingData memory"
                         }
                       ],
                       "expression": {
@@ -1720,11 +1721,11 @@ var GeneralMeeting_build = {
                         "name": "tradingDatas",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 34,
-                        "src": "1626:12:0",
+                        "referencedDeclaration": 28,
+                        "src": "2335:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_tradingData_$31_storage_$dyn_storage",
-                          "typeString": "struct GeneralMeeting.tradingData storage ref[] storage ref"
+                          "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage",
+                          "typeString": "struct FitoContract.tradingData storage ref[] storage ref"
                         }
                       },
                       "id": 127,
@@ -1735,10 +1736,10 @@ var GeneralMeeting_build = {
                       "memberName": "push",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "1626:17:0",
+                      "src": "2335:17:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_tradingData_$31_storage_$returns$_t_uint256_$",
-                        "typeString": "function (struct GeneralMeeting.tradingData storage ref) returns (uint256)"
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_tradingData_$25_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct FitoContract.tradingData storage ref) returns (uint256)"
                       }
                     },
                     "id": 129,
@@ -1749,14 +1750,14 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1626:33:0",
+                    "src": "2335:33:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1608:51:0"
+                  "src": "2317:51:0"
                 },
                 {
                   "expression": {
@@ -1769,7 +1770,7 @@ var GeneralMeeting_build = {
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 92,
-                        "src": "1681:11:0",
+                        "src": "2390:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1788,7 +1789,7 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 64,
-                      "src": "1669:11:0",
+                      "src": "2378:11:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
@@ -1802,7 +1803,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1669:24:0",
+                    "src": "2378:24:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -1810,7 +1811,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 134,
                   "nodeType": "ExpressionStatement",
-                  "src": "1669:24:0"
+                  "src": "2378:24:0"
                 },
                 {
                   "expression": {
@@ -1823,7 +1824,7 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 79,
-                      "src": "1703:7:0",
+                      "src": "2412:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
                         "typeString": "function ()"
@@ -1837,7 +1838,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1703:9:0",
+                    "src": "2412:9:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -1845,7 +1846,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 137,
                   "nodeType": "ExpressionStatement",
-                  "src": "1703:9:0"
+                  "src": "2412:9:0"
                 },
                 {
                   "expression": {
@@ -1863,8 +1864,8 @@ var GeneralMeeting_build = {
                         "name": "ownedShares",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 18,
-                        "src": "1722:11:0",
+                        "referencedDeclaration": 12,
+                        "src": "2431:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
@@ -1878,7 +1879,7 @@ var GeneralMeeting_build = {
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 92,
-                        "src": "1734:11:0",
+                        "src": "2443:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1889,7 +1890,7 @@ var GeneralMeeting_build = {
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1722:24:0",
+                      "src": "2431:24:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1904,13 +1905,13 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 94,
-                      "src": "1750:14:0",
+                      "src": "2459:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1722:42:0",
+                    "src": "2431:42:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1918,7 +1919,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 143,
                   "nodeType": "ExpressionStatement",
-                  "src": "1722:42:0"
+                  "src": "2431:42:0"
                 },
                 {
                   "expression": {
@@ -1936,8 +1937,8 @@ var GeneralMeeting_build = {
                         "name": "ownedShares",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 18,
-                        "src": "1774:11:0",
+                        "referencedDeclaration": 12,
+                        "src": "2483:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
@@ -1952,8 +1953,8 @@ var GeneralMeeting_build = {
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1786:3:0",
+                          "referencedDeclaration": 270,
+                          "src": "2495:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
@@ -1967,7 +1968,7 @@ var GeneralMeeting_build = {
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "1786:10:0",
+                        "src": "2495:10:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1978,7 +1979,7 @@ var GeneralMeeting_build = {
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1774:23:0",
+                      "src": "2483:23:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1993,13 +1994,13 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 94,
-                      "src": "1801:14:0",
+                      "src": "2510:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1774:41:0",
+                    "src": "2483:41:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2007,7 +2008,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 150,
                   "nodeType": "ExpressionStatement",
-                  "src": "1774:41:0"
+                  "src": "2483:41:0"
                 },
                 {
                   "expression": {
@@ -2020,7 +2021,7 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 90,
-                      "src": "1825:8:0",
+                      "src": "2534:8:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
                         "typeString": "function ()"
@@ -2034,7 +2035,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1825:10:0",
+                    "src": "2534:10:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -2042,7 +2043,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 153,
                   "nodeType": "ExpressionStatement",
-                  "src": "1825:10:0"
+                  "src": "2534:10:0"
                 },
                 {
                   "expression": {
@@ -2062,11 +2063,11 @@ var GeneralMeeting_build = {
                           "name": "tradingDatas",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 34,
-                          "src": "1845:12:0",
+                          "referencedDeclaration": 28,
+                          "src": "2554:12:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_array$_t_struct$_tradingData_$31_storage_$dyn_storage",
-                            "typeString": "struct GeneralMeeting.tradingData storage ref[] storage ref"
+                            "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage",
+                            "typeString": "struct FitoContract.tradingData storage ref[] storage ref"
                           }
                         },
                         "id": 158,
@@ -2088,7 +2089,7 @@ var GeneralMeeting_build = {
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 125,
-                            "src": "1858:10:0",
+                            "src": "2567:10:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -2106,7 +2107,7 @@ var GeneralMeeting_build = {
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1869:1:0",
+                            "src": "2578:1:0",
                             "subdenomination": null,
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_1_by_1",
@@ -2114,7 +2115,7 @@ var GeneralMeeting_build = {
                             },
                             "value": "1"
                           },
-                          "src": "1858:12:0",
+                          "src": "2567:12:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -2125,10 +2126,10 @@ var GeneralMeeting_build = {
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "1845:26:0",
+                        "src": "2554:26:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_tradingData_$31_storage",
-                          "typeString": "struct GeneralMeeting.tradingData storage ref"
+                          "typeIdentifier": "t_struct$_tradingData_$25_storage",
+                          "typeString": "struct FitoContract.tradingData storage ref"
                         }
                       },
                       "id": 159,
@@ -2138,8 +2139,8 @@ var GeneralMeeting_build = {
                       "lValueRequested": true,
                       "memberName": "isTradingComplete",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 30,
-                      "src": "1845:44:0",
+                      "referencedDeclaration": 24,
+                      "src": "2554:44:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -2157,7 +2158,7 @@ var GeneralMeeting_build = {
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1892:4:0",
+                      "src": "2601:4:0",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -2165,7 +2166,7 @@ var GeneralMeeting_build = {
                       },
                       "value": "true"
                     },
-                    "src": "1845:51:0",
+                    "src": "2554:51:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2173,7 +2174,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 162,
                   "nodeType": "ExpressionStatement",
-                  "src": "1845:51:0"
+                  "src": "2554:51:0"
                 },
                 {
                   "expression": {
@@ -2194,7 +2195,7 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 125,
-                      "src": "1913:10:0",
+                      "src": "2622:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -2212,7 +2213,7 @@ var GeneralMeeting_build = {
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1924:1:0",
+                      "src": "2633:1:0",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_1_by_1",
@@ -2220,7 +2221,7 @@ var GeneralMeeting_build = {
                       },
                       "value": "1"
                     },
-                    "src": "1913:12:0",
+                    "src": "2622:12:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2229,7 +2230,7 @@ var GeneralMeeting_build = {
                   "functionReturnParameters": 98,
                   "id": 166,
                   "nodeType": "Return",
-                  "src": "1906:19:0"
+                  "src": "2615:19:0"
                 }
               ]
             },
@@ -2251,7 +2252,7 @@ var GeneralMeeting_build = {
                   "name": "_sellerAddr",
                   "nodeType": "VariableDeclaration",
                   "scope": 168,
-                  "src": "1322:19:0",
+                  "src": "2031:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2262,7 +2263,7 @@ var GeneralMeeting_build = {
                     "id": 91,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1322:7:0",
+                    "src": "2031:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -2277,7 +2278,7 @@ var GeneralMeeting_build = {
                   "name": "_tradingShares",
                   "nodeType": "VariableDeclaration",
                   "scope": 168,
-                  "src": "1343:19:0",
+                  "src": "2052:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2288,7 +2289,7 @@ var GeneralMeeting_build = {
                     "id": 93,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1343:4:0",
+                    "src": "2052:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2298,7 +2299,7 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "1321:42:0"
+              "src": "2030:42:0"
             },
             "payable": true,
             "returnParameters": {
@@ -2311,7 +2312,7 @@ var GeneralMeeting_build = {
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 168,
-                  "src": "1387:4:0",
+                  "src": "2096:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2322,7 +2323,7 @@ var GeneralMeeting_build = {
                     "id": 96,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1387:4:0",
+                    "src": "2096:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2332,45 +2333,142 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "1386:6:0"
+              "src": "2095:6:0"
             },
-            "scope": 193,
-            "src": "1298:634:0",
+            "scope": 198,
+            "src": "2007:634:0",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 179,
+              "id": 176,
               "nodeType": "Block",
-              "src": "2322:47:0",
+              "src": "2745:43:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 173,
+                      "name": "tradingDatas",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 28,
+                      "src": "2762:12:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage",
+                        "typeString": "struct FitoContract.tradingData storage ref[] storage ref"
+                      }
+                    },
+                    "id": 174,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "length",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "2762:19:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 172,
+                  "id": 175,
+                  "nodeType": "Return",
+                  "src": "2755:26:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 177,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getLengthOftradingDatas",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 169,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2715:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 172,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 171,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 177,
+                  "src": "2739:4:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 170,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2739:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2738:6:0"
+            },
+            "scope": 198,
+            "src": "2683:105:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 188,
+              "nodeType": "Block",
+              "src": "3081:47:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 175,
+                      "id": 184,
                       "name": "ownedShares",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 18,
-                      "src": "2339:11:0",
+                      "referencedDeclaration": 12,
+                      "src": "3098:11:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                         "typeString": "mapping(address => uint256)"
                       }
                     },
-                    "id": 177,
+                    "id": 186,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 176,
+                      "id": 185,
                       "name": "_ownerAddr",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 170,
-                      "src": "2351:10:0",
+                      "referencedDeclaration": 179,
+                      "src": "3110:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -2381,21 +2479,21 @@ var GeneralMeeting_build = {
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "2339:23:0",
+                    "src": "3098:23:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 174,
-                  "id": 178,
+                  "functionReturnParameters": 183,
+                  "id": 187,
                   "nodeType": "Return",
-                  "src": "2332:30:0"
+                  "src": "3091:30:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 180,
+            "id": 189,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -2403,16 +2501,16 @@ var GeneralMeeting_build = {
             "name": "getOwnedShares",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 171,
+              "id": 180,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 170,
+                  "id": 179,
                   "name": "_ownerAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 180,
-                  "src": "2276:18:0",
+                  "scope": 189,
+                  "src": "3035:18:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2420,10 +2518,10 @@ var GeneralMeeting_build = {
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 169,
+                    "id": 178,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2276:7:0",
+                    "src": "3035:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -2433,20 +2531,20 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "2275:20:0"
+              "src": "3034:20:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 174,
+              "id": 183,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 173,
+                  "id": 182,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 180,
-                  "src": "2317:4:0",
+                  "scope": 189,
+                  "src": "3076:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2454,10 +2552,10 @@ var GeneralMeeting_build = {
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 172,
+                    "id": 181,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2317:4:0",
+                    "src": "3076:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2467,67 +2565,67 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "2316:6:0"
+              "src": "3075:6:0"
             },
-            "scope": 193,
-            "src": "2252:117:0",
+            "scope": 198,
+            "src": "3011:117:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 187,
+              "id": 196,
               "nodeType": "Block",
-              "src": "2430:38:0",
+              "src": "3230:46:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 185,
-                    "name": "shareOfCompany",
+                    "id": 194,
+                    "name": "unissuedShareOfCompany",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 10,
-                    "src": "2447:14:0",
+                    "referencedDeclaration": 4,
+                    "src": "3247:22:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 184,
-                  "id": 186,
+                  "functionReturnParameters": 193,
+                  "id": 195,
                   "nodeType": "Return",
-                  "src": "2440:21:0"
+                  "src": "3240:29:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 188,
+            "id": 197,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
             "modifiers": [],
-            "name": "getShareOfCompany",
+            "name": "getUnissuedShareOfCompany",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 181,
+              "id": 190,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2401:2:0"
+              "src": "3201:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 184,
+              "id": 193,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 183,
+                  "id": 192,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 188,
-                  "src": "2424:4:0",
+                  "scope": 197,
+                  "src": "3224:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2535,10 +2633,10 @@ var GeneralMeeting_build = {
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 182,
+                    "id": 191,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2424:4:0",
+                    "src": "3224:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2548,63 +2646,29 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "2423:6:0"
+              "src": "3223:6:0"
             },
-            "scope": 193,
-            "src": "2375:93:0",
+            "scope": 198,
+            "src": "3167:109:0",
             "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 191,
-              "nodeType": "Block",
-              "src": "2508:2:0",
-              "statements": []
-            },
-            "documentation": null,
-            "id": 192,
-            "implemented": true,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "sendEth",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 189,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2490:2:0"
-            },
-            "payable": true,
-            "returnParameters": {
-              "id": 190,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2508:0:0"
-            },
-            "scope": 193,
-            "src": "2474:36:0",
-            "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 194,
-        "src": "60:2452:0"
+        "scope": 199,
+        "src": "26:3480:0"
       }
     ],
-    "src": "0:2513:0"
+    "src": "0:3507:0"
   },
   "legacyAST": {
-    "absolutePath": "/Users/hyun/dev/Fito/fito.ga/contracts/GeneralMeeting.sol",
+    "absolutePath": "/Users/hyun/dev/Fito/fito.ga/contracts/FitoContract.sol",
     "exportedSymbols": {
-      "GeneralMeeting": [
-        193
+      "FitoContract": [
+        198
       ]
     },
-    "id": 194,
+    "id": 199,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -2624,89 +2688,20 @@ var GeneralMeeting_build = {
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 193,
+        "id": 198,
         "linearizedBaseContracts": [
-          193
+          198
         ],
-        "name": "GeneralMeeting",
+        "name": "FitoContract",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "anonymous": false,
-            "documentation": null,
-            "id": 7,
-            "name": "Sended",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 6,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 3,
-                  "indexed": false,
-                  "name": "_value",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 7,
-                  "src": "146:14:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "146:7:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 5,
-                  "indexed": false,
-                  "name": "_balance",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 7,
-                  "src": "170:16:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "170:7:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "136:56:0"
-            },
-            "src": "124:69:0"
-          },
-          {
             "constant": false,
-            "id": 10,
-            "name": "shareOfCompany",
+            "id": 4,
+            "name": "unissuedShareOfCompany",
             "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "199:27:0",
+            "scope": 198,
+            "src": "55:37:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2714,10 +2709,10 @@ var GeneralMeeting_build = {
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 8,
+              "id": 2,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "199:4:0",
+              "src": "55:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -2725,31 +2720,57 @@ var GeneralMeeting_build = {
             },
             "value": {
               "argumentTypes": null,
-              "hexValue": "3130303030",
-              "id": 9,
+              "hexValue": "31303030303030",
+              "id": 3,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "221:5:0",
+              "src": "85:7:0",
               "subdenomination": null,
               "typeDescriptions": {
-                "typeIdentifier": "t_rational_10000_by_1",
-                "typeString": "int_const 10000"
+                "typeIdentifier": "t_rational_1000000_by_1",
+                "typeString": "int_const 1000000"
               },
-              "value": "10000"
+              "value": "1000000"
             },
             "visibility": "internal"
           },
           {
             "constant": false,
-            "id": 12,
+            "id": 6,
+            "name": "balance",
+            "nodeType": "VariableDeclaration",
+            "scope": 198,
+            "src": "128:12:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 5,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "128:4:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 8,
             "name": "ethTaker",
             "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "248:16:0",
+            "scope": 198,
+            "src": "234:16:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2757,10 +2778,10 @@ var GeneralMeeting_build = {
               "typeString": "address"
             },
             "typeName": {
-              "id": 11,
+              "id": 7,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "248:7:0",
+              "src": "234:7:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
@@ -2771,37 +2792,11 @@ var GeneralMeeting_build = {
           },
           {
             "constant": false,
-            "id": 14,
-            "name": "balance",
-            "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "270:12:0",
-            "stateVariable": true,
-            "storageLocation": "default",
-            "typeDescriptions": {
-              "typeIdentifier": "t_uint256",
-              "typeString": "uint256"
-            },
-            "typeName": {
-              "id": 13,
-              "name": "uint",
-              "nodeType": "ElementaryTypeName",
-              "src": "270:4:0",
-              "typeDescriptions": {
-                "typeIdentifier": "t_uint256",
-                "typeString": "uint256"
-              }
-            },
-            "value": null,
-            "visibility": "internal"
-          },
-          {
-            "constant": false,
-            "id": 18,
+            "id": 12,
             "name": "ownedShares",
             "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "289:37:0",
+            "scope": 198,
+            "src": "327:37:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2809,28 +2804,28 @@ var GeneralMeeting_build = {
               "typeString": "mapping(address => uint256)"
             },
             "typeName": {
-              "id": 17,
+              "id": 11,
               "keyType": {
-                "id": 15,
+                "id": 9,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "298:7:0",
+                "src": "336:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "289:25:0",
+              "src": "327:25:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                 "typeString": "mapping(address => uint256)"
               },
               "valueType": {
-                "id": 16,
+                "id": 10,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "309:4:0",
+                "src": "347:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -2841,16 +2836,16 @@ var GeneralMeeting_build = {
             "visibility": "internal"
           },
           {
-            "canonicalName": "GeneralMeeting.tradingData",
-            "id": 31,
+            "canonicalName": "FitoContract.tradingData",
+            "id": 25,
             "members": [
               {
                 "constant": false,
-                "id": 20,
+                "id": 14,
                 "name": "tradingShares",
                 "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "362:18:0",
+                "scope": 25,
+                "src": "400:18:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2858,10 +2853,10 @@ var GeneralMeeting_build = {
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 19,
+                  "id": 13,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "362:4:0",
+                  "src": "400:4:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -2872,11 +2867,89 @@ var GeneralMeeting_build = {
               },
               {
                 "constant": false,
-                "id": 22,
+                "id": 16,
+                "name": "tradingPrice",
+                "nodeType": "VariableDeclaration",
+                "scope": 25,
+                "src": "458:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 15,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "458:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 18,
+                "name": "timestamp",
+                "nodeType": "VariableDeclaration",
+                "scope": 25,
+                "src": "518:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 17,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "518:4:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 20,
                 "name": "sellerAddr",
                 "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "437:18:0",
+                "scope": 25,
+                "src": "569:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 19,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "569:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 22,
+                "name": "buyerAddr",
+                "nodeType": "VariableDeclaration",
+                "scope": 25,
+                "src": "624:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2887,7 +2960,7 @@ var GeneralMeeting_build = {
                   "id": 21,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "437:7:0",
+                  "src": "624:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
@@ -2899,88 +2972,10 @@ var GeneralMeeting_build = {
               {
                 "constant": false,
                 "id": 24,
-                "name": "buyerAddr",
-                "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "484:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_address",
-                  "typeString": "address"
-                },
-                "typeName": {
-                  "id": 23,
-                  "name": "address",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "484:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 26,
-                "name": "tradingPrice",
-                "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "530:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 25,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "530:4:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 28,
-                "name": "timestamp",
-                "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "557:14:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 27,
-                  "name": "uint",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "557:4:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 30,
                 "name": "isTradingComplete",
                 "nodeType": "VariableDeclaration",
-                "scope": 31,
-                "src": "581:22:0",
+                "scope": 25,
+                "src": "679:22:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2988,10 +2983,10 @@ var GeneralMeeting_build = {
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 29,
+                  "id": 23,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "581:4:0",
+                  "src": "679:4:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -3003,43 +2998,43 @@ var GeneralMeeting_build = {
             ],
             "name": "tradingData",
             "nodeType": "StructDefinition",
-            "scope": 193,
-            "src": "333:277:0",
+            "scope": 198,
+            "src": "371:372:0",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 34,
+            "id": 28,
             "name": "tradingDatas",
             "nodeType": "VariableDeclaration",
-            "scope": 193,
-            "src": "616:33:0",
+            "scope": 198,
+            "src": "749:33:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_tradingData_$31_storage_$dyn_storage",
-              "typeString": "struct GeneralMeeting.tradingData[]"
+              "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage",
+              "typeString": "struct FitoContract.tradingData[]"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
-                "id": 32,
+                "id": 26,
                 "name": "tradingData",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 31,
-                "src": "616:11:0",
+                "referencedDeclaration": 25,
+                "src": "749:11:0",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_tradingData_$31_storage_ptr",
-                  "typeString": "struct GeneralMeeting.tradingData"
+                  "typeIdentifier": "t_struct$_tradingData_$25_storage_ptr",
+                  "typeString": "struct FitoContract.tradingData"
                 }
               },
-              "id": 33,
+              "id": 27,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "616:13:0",
+              "src": "749:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_tradingData_$31_storage_$dyn_storage_ptr",
-                "typeString": "struct GeneralMeeting.tradingData[]"
+                "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage_ptr",
+                "typeString": "struct FitoContract.tradingData[]"
               }
             },
             "value": null,
@@ -3047,22 +3042,22 @@ var GeneralMeeting_build = {
           },
           {
             "body": {
-              "id": 53,
+              "id": 47,
               "nodeType": "Block",
-              "src": "702:121:0",
+              "src": "908:176:0",
               "statements": [
                 {
                   "assignments": [
-                    40
+                    34
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 40,
+                      "id": 34,
                       "name": "corpAddr",
                       "nodeType": "VariableDeclaration",
-                      "scope": 54,
-                      "src": "712:16:0",
+                      "scope": 48,
+                      "src": "918:16:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -3070,10 +3065,10 @@ var GeneralMeeting_build = {
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 39,
+                        "id": 33,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
-                        "src": "712:7:0",
+                        "src": "918:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -3083,27 +3078,27 @@ var GeneralMeeting_build = {
                       "visibility": "internal"
                     }
                   ],
-                  "id": 42,
+                  "id": 36,
                   "initialValue": {
                     "argumentTypes": null,
-                    "id": 41,
+                    "id": 35,
                     "name": "_corpAddr",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 36,
-                    "src": "731:9:0",
+                    "referencedDeclaration": 30,
+                    "src": "937:9:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "712:28:0"
+                  "src": "918:28:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 47,
+                    "id": 41,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3112,26 +3107,26 @@ var GeneralMeeting_build = {
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 43,
+                        "id": 37,
                         "name": "ownedShares",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 18,
-                        "src": "750:11:0",
+                        "referencedDeclaration": 12,
+                        "src": "956:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 45,
+                      "id": 39,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 44,
+                        "id": 38,
                         "name": "corpAddr",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 40,
-                        "src": "762:8:0",
+                        "referencedDeclaration": 34,
+                        "src": "968:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -3142,7 +3137,7 @@ var GeneralMeeting_build = {
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "750:21:0",
+                      "src": "956:21:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -3152,82 +3147,87 @@ var GeneralMeeting_build = {
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 46,
-                      "name": "shareOfCompany",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 10,
-                      "src": "774:14:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "750:38:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "id": 48,
-                  "nodeType": "ExpressionStatement",
-                  "src": "750:38:0"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 51,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 49,
-                      "name": "shareOfCompany",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 10,
-                      "src": "798:14:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "hexValue": "30",
-                      "id": 50,
+                      "hexValue": "313030303030",
+                      "id": 40,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "815:1:0",
+                      "src": "980:6:0",
                       "subdenomination": null,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_rational_0_by_1",
-                        "typeString": "int_const 0"
+                        "typeIdentifier": "t_rational_100000_by_1",
+                        "typeString": "int_const 100000"
                       },
-                      "value": "0"
+                      "value": "100000"
                     },
-                    "src": "798:18:0",
+                    "src": "956:30:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 52,
+                  "id": 42,
                   "nodeType": "ExpressionStatement",
-                  "src": "798:18:0"
+                  "src": "956:30:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 45,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 43,
+                      "name": "unissuedShareOfCompany",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4,
+                      "src": "1045:22:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "-=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "313030303030",
+                      "id": 44,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1071:6:0",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_100000_by_1",
+                        "typeString": "int_const 100000"
+                      },
+                      "value": "100000"
+                    },
+                    "src": "1045:32:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 46,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1045:32:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 54,
+            "id": 48,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -3235,16 +3235,16 @@ var GeneralMeeting_build = {
             "name": "initShares",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 37,
+              "id": 31,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 36,
+                  "id": 30,
                   "name": "_corpAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 54,
-                  "src": "676:17:0",
+                  "scope": 48,
+                  "src": "882:17:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3252,10 +3252,10 @@ var GeneralMeeting_build = {
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 35,
+                    "id": 29,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "676:7:0",
+                    "src": "882:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -3265,26 +3265,95 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "675:19:0"
+              "src": "881:19:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 38,
+              "id": 32,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "702:0:0"
+              "src": "908:0:0"
             },
-            "scope": 193,
-            "src": "656:167:0",
+            "scope": 198,
+            "src": "862:222:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 54,
+            "name": "Sended",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 53,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 50,
+                  "indexed": false,
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 54,
+                  "src": "1331:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 49,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1331:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 52,
+                  "indexed": false,
+                  "name": "balance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 54,
+                  "src": "1354:15:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 51,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1354:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1321:54:0"
+            },
+            "src": "1308:68:0"
+          },
+          {
             "body": {
               "id": 63,
               "nodeType": "Block",
-              "src": "877:37:0",
+              "src": "1457:37:0",
               "statements": [
                 {
                   "expression": {
@@ -3300,8 +3369,8 @@ var GeneralMeeting_build = {
                       "name": "ethTaker",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 12,
-                      "src": "887:8:0",
+                      "referencedDeclaration": 8,
+                      "src": "1467:8:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -3316,13 +3385,13 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 56,
-                      "src": "898:9:0",
+                      "src": "1478:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "887:20:0",
+                    "src": "1467:20:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -3330,7 +3399,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 62,
                   "nodeType": "ExpressionStatement",
-                  "src": "887:20:0"
+                  "src": "1467:20:0"
                 }
               ]
             },
@@ -3352,7 +3421,7 @@ var GeneralMeeting_build = {
                   "name": "_ethTaker",
                   "nodeType": "VariableDeclaration",
                   "scope": 64,
-                  "src": "850:17:0",
+                  "src": "1430:17:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3363,7 +3432,7 @@ var GeneralMeeting_build = {
                     "id": 55,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "850:7:0",
+                    "src": "1430:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -3373,17 +3442,17 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "849:19:0"
+              "src": "1429:19:0"
             },
             "payable": false,
             "returnParameters": {
               "id": 58,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "877:0:0"
+              "src": "1457:0:0"
             },
-            "scope": 193,
-            "src": "829:85:0",
+            "scope": 198,
+            "src": "1409:85:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "private"
@@ -3392,7 +3461,7 @@ var GeneralMeeting_build = {
             "body": {
               "id": 78,
               "nodeType": "Block",
-              "src": "999:77:0",
+              "src": "1581:77:0",
               "statements": [
                 {
                   "expression": {
@@ -3408,8 +3477,8 @@ var GeneralMeeting_build = {
                       "name": "balance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 14,
-                      "src": "1009:7:0",
+                      "referencedDeclaration": 6,
+                      "src": "1591:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -3425,8 +3494,8 @@ var GeneralMeeting_build = {
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 265,
-                        "src": "1019:3:0",
+                        "referencedDeclaration": 270,
+                        "src": "1601:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
@@ -3440,13 +3509,13 @@ var GeneralMeeting_build = {
                       "memberName": "value",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "1019:9:0",
+                      "src": "1601:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1009:19:0",
+                    "src": "1591:19:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -3454,7 +3523,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 71,
                   "nodeType": "ExpressionStatement",
-                  "src": "1009:19:0"
+                  "src": "1591:19:0"
                 },
                 {
                   "eventCall": {
@@ -3468,8 +3537,8 @@ var GeneralMeeting_build = {
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1050:3:0",
+                          "referencedDeclaration": 270,
+                          "src": "1632:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
@@ -3483,7 +3552,7 @@ var GeneralMeeting_build = {
                         "memberName": "value",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "1050:9:0",
+                        "src": "1632:9:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3495,8 +3564,8 @@ var GeneralMeeting_build = {
                         "name": "balance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 14,
-                        "src": "1061:7:0",
+                        "referencedDeclaration": 6,
+                        "src": "1643:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3518,8 +3587,8 @@ var GeneralMeeting_build = {
                       "name": "Sended",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7,
-                      "src": "1043:6:0",
+                      "referencedDeclaration": 54,
+                      "src": "1625:6:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$returns$__$",
                         "typeString": "function (uint256,uint256)"
@@ -3533,7 +3602,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1043:26:0",
+                    "src": "1625:26:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -3541,7 +3610,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 77,
                   "nodeType": "EmitStatement",
-                  "src": "1038:31:0"
+                  "src": "1620:31:0"
                 }
               ]
             },
@@ -3557,26 +3626,26 @@ var GeneralMeeting_build = {
               "id": 65,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "981:2:0"
+              "src": "1570:2:0"
             },
-            "payable": true,
+            "payable": false,
             "returnParameters": {
               "id": 66,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "999:0:0"
+              "src": "1581:0:0"
             },
-            "scope": 193,
-            "src": "965:111:0",
-            "stateMutability": "payable",
+            "scope": 198,
+            "src": "1554:104:0",
+            "stateMutability": "nonpayable",
             "superFunction": null,
-            "visibility": "public"
+            "visibility": "private"
           },
           {
             "body": {
               "id": 89,
               "nodeType": "Block",
-              "src": "1193:45:0",
+              "src": "1762:45:0",
               "statements": [
                 {
                   "expression": {
@@ -3590,8 +3659,8 @@ var GeneralMeeting_build = {
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1221:3:0",
+                          "referencedDeclaration": 270,
+                          "src": "1790:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
@@ -3605,7 +3674,7 @@ var GeneralMeeting_build = {
                         "memberName": "value",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "1221:9:0",
+                        "src": "1790:9:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3625,8 +3694,8 @@ var GeneralMeeting_build = {
                         "name": "ethTaker",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 12,
-                        "src": "1203:8:0",
+                        "referencedDeclaration": 8,
+                        "src": "1772:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -3640,7 +3709,7 @@ var GeneralMeeting_build = {
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "1203:17:0",
+                      "src": "1772:17:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_transfer_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
@@ -3654,7 +3723,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1203:28:0",
+                    "src": "1772:28:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -3662,7 +3731,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 88,
                   "nodeType": "ExpressionStatement",
-                  "src": "1203:28:0"
+                  "src": "1772:28:0"
                 }
               ]
             },
@@ -3678,17 +3747,17 @@ var GeneralMeeting_build = {
               "id": 80,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1175:2:0"
+              "src": "1744:2:0"
             },
             "payable": true,
             "returnParameters": {
               "id": 81,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1193:0:0"
+              "src": "1762:0:0"
             },
-            "scope": 193,
-            "src": "1158:80:0",
+            "scope": 198,
+            "src": "1727:80:0",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
@@ -3697,7 +3766,7 @@ var GeneralMeeting_build = {
             "body": {
               "id": 167,
               "nodeType": "Block",
-              "src": "1393:539:0",
+              "src": "2102:539:0",
               "statements": [
                 {
                   "expression": {
@@ -3733,8 +3802,8 @@ var GeneralMeeting_build = {
                               "name": "ownedShares",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 18,
-                              "src": "1411:11:0",
+                              "referencedDeclaration": 12,
+                              "src": "2120:11:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                                 "typeString": "mapping(address => uint256)"
@@ -3748,7 +3817,7 @@ var GeneralMeeting_build = {
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 92,
-                              "src": "1423:11:0",
+                              "src": "2132:11:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -3759,7 +3828,7 @@ var GeneralMeeting_build = {
                             "isPure": false,
                             "lValueRequested": false,
                             "nodeType": "IndexAccess",
-                            "src": "1411:24:0",
+                            "src": "2120:24:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -3774,13 +3843,13 @@ var GeneralMeeting_build = {
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 94,
-                            "src": "1439:14:0",
+                            "src": "2148:14:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             }
                           },
-                          "src": "1411:42:0",
+                          "src": "2120:42:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -3806,7 +3875,7 @@ var GeneralMeeting_build = {
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 94,
-                            "src": "1457:14:0",
+                            "src": "2166:14:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -3824,7 +3893,7 @@ var GeneralMeeting_build = {
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1475:1:0",
+                            "src": "2184:1:0",
                             "subdenomination": null,
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_0_by_1",
@@ -3832,13 +3901,13 @@ var GeneralMeeting_build = {
                             },
                             "value": "0"
                           },
-                          "src": "1457:19:0",
+                          "src": "2166:19:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
                           }
                         },
-                        "src": "1411:65:0",
+                        "src": "2120:65:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -3856,11 +3925,11 @@ var GeneralMeeting_build = {
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        268,
-                        269
+                        273,
+                        274
                       ],
-                      "referencedDeclaration": 268,
-                      "src": "1403:7:0",
+                      "referencedDeclaration": 273,
+                      "src": "2112:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
@@ -3874,7 +3943,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1403:74:0",
+                    "src": "2112:74:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -3882,7 +3951,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 110,
                   "nodeType": "ExpressionStatement",
-                  "src": "1403:74:0"
+                  "src": "2112:74:0"
                 },
                 {
                   "assignments": [
@@ -3895,23 +3964,23 @@ var GeneralMeeting_build = {
                       "name": "newTradingData",
                       "nodeType": "VariableDeclaration",
                       "scope": 168,
-                      "src": "1487:33:0",
+                      "src": "2196:33:0",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_tradingData_$31_memory_ptr",
-                        "typeString": "struct GeneralMeeting.tradingData"
+                        "typeIdentifier": "t_struct$_tradingData_$25_memory_ptr",
+                        "typeString": "struct FitoContract.tradingData"
                       },
                       "typeName": {
                         "contractScope": null,
                         "id": 111,
                         "name": "tradingData",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 31,
-                        "src": "1487:11:0",
+                        "referencedDeclaration": 25,
+                        "src": "2196:11:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_tradingData_$31_storage_ptr",
-                          "typeString": "struct GeneralMeeting.tradingData"
+                          "typeIdentifier": "t_struct$_tradingData_$25_storage_ptr",
+                          "typeString": "struct FitoContract.tradingData"
                         }
                       },
                       "value": null,
@@ -3929,7 +3998,7 @@ var GeneralMeeting_build = {
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 94,
-                        "src": "1535:14:0",
+                        "src": "2244:14:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3937,62 +4006,20 @@ var GeneralMeeting_build = {
                       },
                       {
                         "argumentTypes": null,
-                        "id": 115,
-                        "name": "_sellerAddr",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 92,
-                        "src": "1551:11:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 116,
+                          "id": 115,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1564:3:0",
+                          "referencedDeclaration": 270,
+                          "src": "2260:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 117,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "sender",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": null,
-                        "src": "1564:10:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 118,
-                          "name": "msg",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1576:3:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_magic_message",
-                            "typeString": "msg"
-                          }
-                        },
-                        "id": 119,
+                        "id": 116,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4000,7 +4027,7 @@ var GeneralMeeting_build = {
                         "memberName": "value",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "1576:9:0",
+                        "src": "2260:9:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -4008,15 +4035,57 @@ var GeneralMeeting_build = {
                       },
                       {
                         "argumentTypes": null,
-                        "id": 120,
+                        "id": 117,
                         "name": "now",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 267,
-                        "src": "1587:3:0",
+                        "referencedDeclaration": 272,
+                        "src": "2271:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 118,
+                        "name": "_sellerAddr",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 92,
+                        "src": "2276:11:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 119,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 270,
+                          "src": "2289:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 120,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "2289:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
                         }
                       },
                       {
@@ -4029,7 +4098,7 @@ var GeneralMeeting_build = {
                         "kind": "bool",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "1592:5:0",
+                        "src": "2301:5:0",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
@@ -4045,20 +4114,20 @@ var GeneralMeeting_build = {
                           "typeString": "uint256"
                         },
                         {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
                         {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
                         },
                         {
                           "typeIdentifier": "t_bool",
@@ -4069,11 +4138,11 @@ var GeneralMeeting_build = {
                       "name": "tradingData",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 31,
-                      "src": "1523:11:0",
+                      "referencedDeclaration": 25,
+                      "src": "2232:11:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_struct$_tradingData_$31_storage_ptr_$",
-                        "typeString": "type(struct GeneralMeeting.tradingData storage pointer)"
+                        "typeIdentifier": "t_type$_t_struct$_tradingData_$25_storage_ptr_$",
+                        "typeString": "type(struct FitoContract.tradingData storage pointer)"
                       }
                     },
                     "id": 122,
@@ -4084,14 +4153,14 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1523:75:0",
+                    "src": "2232:75:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_tradingData_$31_memory",
-                      "typeString": "struct GeneralMeeting.tradingData memory"
+                      "typeIdentifier": "t_struct$_tradingData_$25_memory",
+                      "typeString": "struct FitoContract.tradingData memory"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1487:111:0"
+                  "src": "2196:111:0"
                 },
                 {
                   "assignments": [
@@ -4104,7 +4173,7 @@ var GeneralMeeting_build = {
                       "name": "tradingIdx",
                       "nodeType": "VariableDeclaration",
                       "scope": 168,
-                      "src": "1608:15:0",
+                      "src": "2317:15:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -4115,7 +4184,7 @@ var GeneralMeeting_build = {
                         "id": 124,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1608:4:0",
+                        "src": "2317:4:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -4136,18 +4205,18 @@ var GeneralMeeting_build = {
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 112,
-                        "src": "1644:14:0",
+                        "src": "2353:14:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_tradingData_$31_memory_ptr",
-                          "typeString": "struct GeneralMeeting.tradingData memory"
+                          "typeIdentifier": "t_struct$_tradingData_$25_memory_ptr",
+                          "typeString": "struct FitoContract.tradingData memory"
                         }
                       }
                     ],
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_struct$_tradingData_$31_memory_ptr",
-                          "typeString": "struct GeneralMeeting.tradingData memory"
+                          "typeIdentifier": "t_struct$_tradingData_$25_memory_ptr",
+                          "typeString": "struct FitoContract.tradingData memory"
                         }
                       ],
                       "expression": {
@@ -4156,11 +4225,11 @@ var GeneralMeeting_build = {
                         "name": "tradingDatas",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 34,
-                        "src": "1626:12:0",
+                        "referencedDeclaration": 28,
+                        "src": "2335:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_tradingData_$31_storage_$dyn_storage",
-                          "typeString": "struct GeneralMeeting.tradingData storage ref[] storage ref"
+                          "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage",
+                          "typeString": "struct FitoContract.tradingData storage ref[] storage ref"
                         }
                       },
                       "id": 127,
@@ -4171,10 +4240,10 @@ var GeneralMeeting_build = {
                       "memberName": "push",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "1626:17:0",
+                      "src": "2335:17:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_tradingData_$31_storage_$returns$_t_uint256_$",
-                        "typeString": "function (struct GeneralMeeting.tradingData storage ref) returns (uint256)"
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_tradingData_$25_storage_$returns$_t_uint256_$",
+                        "typeString": "function (struct FitoContract.tradingData storage ref) returns (uint256)"
                       }
                     },
                     "id": 129,
@@ -4185,14 +4254,14 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1626:33:0",
+                    "src": "2335:33:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1608:51:0"
+                  "src": "2317:51:0"
                 },
                 {
                   "expression": {
@@ -4205,7 +4274,7 @@ var GeneralMeeting_build = {
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 92,
-                        "src": "1681:11:0",
+                        "src": "2390:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -4224,7 +4293,7 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 64,
-                      "src": "1669:11:0",
+                      "src": "2378:11:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
@@ -4238,7 +4307,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1669:24:0",
+                    "src": "2378:24:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -4246,7 +4315,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 134,
                   "nodeType": "ExpressionStatement",
-                  "src": "1669:24:0"
+                  "src": "2378:24:0"
                 },
                 {
                   "expression": {
@@ -4259,7 +4328,7 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 79,
-                      "src": "1703:7:0",
+                      "src": "2412:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
                         "typeString": "function ()"
@@ -4273,7 +4342,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1703:9:0",
+                    "src": "2412:9:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -4281,7 +4350,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 137,
                   "nodeType": "ExpressionStatement",
-                  "src": "1703:9:0"
+                  "src": "2412:9:0"
                 },
                 {
                   "expression": {
@@ -4299,8 +4368,8 @@ var GeneralMeeting_build = {
                         "name": "ownedShares",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 18,
-                        "src": "1722:11:0",
+                        "referencedDeclaration": 12,
+                        "src": "2431:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
@@ -4314,7 +4383,7 @@ var GeneralMeeting_build = {
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 92,
-                        "src": "1734:11:0",
+                        "src": "2443:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -4325,7 +4394,7 @@ var GeneralMeeting_build = {
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1722:24:0",
+                      "src": "2431:24:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -4340,13 +4409,13 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 94,
-                      "src": "1750:14:0",
+                      "src": "2459:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1722:42:0",
+                    "src": "2431:42:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -4354,7 +4423,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 143,
                   "nodeType": "ExpressionStatement",
-                  "src": "1722:42:0"
+                  "src": "2431:42:0"
                 },
                 {
                   "expression": {
@@ -4372,8 +4441,8 @@ var GeneralMeeting_build = {
                         "name": "ownedShares",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 18,
-                        "src": "1774:11:0",
+                        "referencedDeclaration": 12,
+                        "src": "2483:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
@@ -4388,8 +4457,8 @@ var GeneralMeeting_build = {
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 265,
-                          "src": "1786:3:0",
+                          "referencedDeclaration": 270,
+                          "src": "2495:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
@@ -4403,7 +4472,7 @@ var GeneralMeeting_build = {
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "1786:10:0",
+                        "src": "2495:10:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -4414,7 +4483,7 @@ var GeneralMeeting_build = {
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1774:23:0",
+                      "src": "2483:23:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -4429,13 +4498,13 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 94,
-                      "src": "1801:14:0",
+                      "src": "2510:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1774:41:0",
+                    "src": "2483:41:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -4443,7 +4512,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 150,
                   "nodeType": "ExpressionStatement",
-                  "src": "1774:41:0"
+                  "src": "2483:41:0"
                 },
                 {
                   "expression": {
@@ -4456,7 +4525,7 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 90,
-                      "src": "1825:8:0",
+                      "src": "2534:8:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
                         "typeString": "function ()"
@@ -4470,7 +4539,7 @@ var GeneralMeeting_build = {
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1825:10:0",
+                    "src": "2534:10:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -4478,7 +4547,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 153,
                   "nodeType": "ExpressionStatement",
-                  "src": "1825:10:0"
+                  "src": "2534:10:0"
                 },
                 {
                   "expression": {
@@ -4498,11 +4567,11 @@ var GeneralMeeting_build = {
                           "name": "tradingDatas",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 34,
-                          "src": "1845:12:0",
+                          "referencedDeclaration": 28,
+                          "src": "2554:12:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_array$_t_struct$_tradingData_$31_storage_$dyn_storage",
-                            "typeString": "struct GeneralMeeting.tradingData storage ref[] storage ref"
+                            "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage",
+                            "typeString": "struct FitoContract.tradingData storage ref[] storage ref"
                           }
                         },
                         "id": 158,
@@ -4524,7 +4593,7 @@ var GeneralMeeting_build = {
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 125,
-                            "src": "1858:10:0",
+                            "src": "2567:10:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -4542,7 +4611,7 @@ var GeneralMeeting_build = {
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1869:1:0",
+                            "src": "2578:1:0",
                             "subdenomination": null,
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_1_by_1",
@@ -4550,7 +4619,7 @@ var GeneralMeeting_build = {
                             },
                             "value": "1"
                           },
-                          "src": "1858:12:0",
+                          "src": "2567:12:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -4561,10 +4630,10 @@ var GeneralMeeting_build = {
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "1845:26:0",
+                        "src": "2554:26:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_tradingData_$31_storage",
-                          "typeString": "struct GeneralMeeting.tradingData storage ref"
+                          "typeIdentifier": "t_struct$_tradingData_$25_storage",
+                          "typeString": "struct FitoContract.tradingData storage ref"
                         }
                       },
                       "id": 159,
@@ -4574,8 +4643,8 @@ var GeneralMeeting_build = {
                       "lValueRequested": true,
                       "memberName": "isTradingComplete",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 30,
-                      "src": "1845:44:0",
+                      "referencedDeclaration": 24,
+                      "src": "2554:44:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -4593,7 +4662,7 @@ var GeneralMeeting_build = {
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1892:4:0",
+                      "src": "2601:4:0",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -4601,7 +4670,7 @@ var GeneralMeeting_build = {
                       },
                       "value": "true"
                     },
-                    "src": "1845:51:0",
+                    "src": "2554:51:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -4609,7 +4678,7 @@ var GeneralMeeting_build = {
                   },
                   "id": 162,
                   "nodeType": "ExpressionStatement",
-                  "src": "1845:51:0"
+                  "src": "2554:51:0"
                 },
                 {
                   "expression": {
@@ -4630,7 +4699,7 @@ var GeneralMeeting_build = {
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 125,
-                      "src": "1913:10:0",
+                      "src": "2622:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -4648,7 +4717,7 @@ var GeneralMeeting_build = {
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1924:1:0",
+                      "src": "2633:1:0",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_1_by_1",
@@ -4656,7 +4725,7 @@ var GeneralMeeting_build = {
                       },
                       "value": "1"
                     },
-                    "src": "1913:12:0",
+                    "src": "2622:12:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -4665,7 +4734,7 @@ var GeneralMeeting_build = {
                   "functionReturnParameters": 98,
                   "id": 166,
                   "nodeType": "Return",
-                  "src": "1906:19:0"
+                  "src": "2615:19:0"
                 }
               ]
             },
@@ -4687,7 +4756,7 @@ var GeneralMeeting_build = {
                   "name": "_sellerAddr",
                   "nodeType": "VariableDeclaration",
                   "scope": 168,
-                  "src": "1322:19:0",
+                  "src": "2031:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4698,7 +4767,7 @@ var GeneralMeeting_build = {
                     "id": 91,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1322:7:0",
+                    "src": "2031:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -4713,7 +4782,7 @@ var GeneralMeeting_build = {
                   "name": "_tradingShares",
                   "nodeType": "VariableDeclaration",
                   "scope": 168,
-                  "src": "1343:19:0",
+                  "src": "2052:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4724,7 +4793,7 @@ var GeneralMeeting_build = {
                     "id": 93,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1343:4:0",
+                    "src": "2052:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -4734,7 +4803,7 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "1321:42:0"
+              "src": "2030:42:0"
             },
             "payable": true,
             "returnParameters": {
@@ -4747,7 +4816,7 @@ var GeneralMeeting_build = {
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 168,
-                  "src": "1387:4:0",
+                  "src": "2096:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4758,7 +4827,7 @@ var GeneralMeeting_build = {
                     "id": 96,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1387:4:0",
+                    "src": "2096:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -4768,45 +4837,142 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "1386:6:0"
+              "src": "2095:6:0"
             },
-            "scope": 193,
-            "src": "1298:634:0",
+            "scope": 198,
+            "src": "2007:634:0",
             "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 179,
+              "id": 176,
               "nodeType": "Block",
-              "src": "2322:47:0",
+              "src": "2745:43:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 173,
+                      "name": "tradingDatas",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 28,
+                      "src": "2762:12:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_tradingData_$25_storage_$dyn_storage",
+                        "typeString": "struct FitoContract.tradingData storage ref[] storage ref"
+                      }
+                    },
+                    "id": 174,
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "length",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "2762:19:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 172,
+                  "id": 175,
+                  "nodeType": "Return",
+                  "src": "2755:26:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 177,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getLengthOftradingDatas",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 169,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2715:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 172,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 171,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 177,
+                  "src": "2739:4:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 170,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2739:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2738:6:0"
+            },
+            "scope": 198,
+            "src": "2683:105:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 188,
+              "nodeType": "Block",
+              "src": "3081:47:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 175,
+                      "id": 184,
                       "name": "ownedShares",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 18,
-                      "src": "2339:11:0",
+                      "referencedDeclaration": 12,
+                      "src": "3098:11:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                         "typeString": "mapping(address => uint256)"
                       }
                     },
-                    "id": 177,
+                    "id": 186,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 176,
+                      "id": 185,
                       "name": "_ownerAddr",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 170,
-                      "src": "2351:10:0",
+                      "referencedDeclaration": 179,
+                      "src": "3110:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -4817,21 +4983,21 @@ var GeneralMeeting_build = {
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "2339:23:0",
+                    "src": "3098:23:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 174,
-                  "id": 178,
+                  "functionReturnParameters": 183,
+                  "id": 187,
                   "nodeType": "Return",
-                  "src": "2332:30:0"
+                  "src": "3091:30:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 180,
+            "id": 189,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -4839,16 +5005,16 @@ var GeneralMeeting_build = {
             "name": "getOwnedShares",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 171,
+              "id": 180,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 170,
+                  "id": 179,
                   "name": "_ownerAddr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 180,
-                  "src": "2276:18:0",
+                  "scope": 189,
+                  "src": "3035:18:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4856,10 +5022,10 @@ var GeneralMeeting_build = {
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 169,
+                    "id": 178,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2276:7:0",
+                    "src": "3035:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -4869,20 +5035,20 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "2275:20:0"
+              "src": "3034:20:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 174,
+              "id": 183,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 173,
+                  "id": 182,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 180,
-                  "src": "2317:4:0",
+                  "scope": 189,
+                  "src": "3076:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4890,10 +5056,10 @@ var GeneralMeeting_build = {
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 172,
+                    "id": 181,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2317:4:0",
+                    "src": "3076:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -4903,67 +5069,67 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "2316:6:0"
+              "src": "3075:6:0"
             },
-            "scope": 193,
-            "src": "2252:117:0",
+            "scope": 198,
+            "src": "3011:117:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 187,
+              "id": 196,
               "nodeType": "Block",
-              "src": "2430:38:0",
+              "src": "3230:46:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 185,
-                    "name": "shareOfCompany",
+                    "id": 194,
+                    "name": "unissuedShareOfCompany",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 10,
-                    "src": "2447:14:0",
+                    "referencedDeclaration": 4,
+                    "src": "3247:22:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 184,
-                  "id": 186,
+                  "functionReturnParameters": 193,
+                  "id": 195,
                   "nodeType": "Return",
-                  "src": "2440:21:0"
+                  "src": "3240:29:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 188,
+            "id": 197,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
             "modifiers": [],
-            "name": "getShareOfCompany",
+            "name": "getUnissuedShareOfCompany",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 181,
+              "id": 190,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2401:2:0"
+              "src": "3201:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 184,
+              "id": 193,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 183,
+                  "id": 192,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 188,
-                  "src": "2424:4:0",
+                  "scope": 197,
+                  "src": "3224:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4971,10 +5137,10 @@ var GeneralMeeting_build = {
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 182,
+                    "id": 191,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2424:4:0",
+                    "src": "3224:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -4984,54 +5150,20 @@ var GeneralMeeting_build = {
                   "visibility": "internal"
                 }
               ],
-              "src": "2423:6:0"
+              "src": "3223:6:0"
             },
-            "scope": 193,
-            "src": "2375:93:0",
+            "scope": 198,
+            "src": "3167:109:0",
             "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 191,
-              "nodeType": "Block",
-              "src": "2508:2:0",
-              "statements": []
-            },
-            "documentation": null,
-            "id": 192,
-            "implemented": true,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "sendEth",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 189,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2490:2:0"
-            },
-            "payable": true,
-            "returnParameters": {
-              "id": 190,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "2508:0:0"
-            },
-            "scope": 193,
-            "src": "2474:36:0",
-            "stateMutability": "payable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 194,
-        "src": "60:2452:0"
+        "scope": 199,
+        "src": "26:3480:0"
       }
     ],
-    "src": "0:2513:0"
+    "src": "0:3507:0"
   },
   "compiler": {
     "name": "solc",
@@ -5042,9 +5174,9 @@ var GeneralMeeting_build = {
       "events": {},
       "links": {},
       "address": "0xa8a4665904d6909b3ca5d43238d59ef3cba6e17d",
-      "transactionHash": "0x86bcc59beb465e9b80091daa36fc042d67ee2c86c1d638373b66a1113ce2a9f8"
+      "transactionHash": "0xcdf90697b8895209202dfafb5e938c92c4ffd91a49fa573431d4680355281d89"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-13T07:02:23.077Z"
+  "updatedAt": "2018-11-13T15:42:27.099Z"
 }

@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-contract GeneralMeeting {
+contract FitoContract {
 
     uint unissuedShareOfCompany = 1000000;  //총 발행가능 주식수
     uint balance;                   //ETH transfer 전송할 이더 수량 저장을 위한 임시 변수
@@ -22,8 +22,8 @@ contract GeneralMeeting {
     //최초 회사 유통발행주식의 매개자 설정 및 초기화
     function initShares(address _corpAddr) public {
         address corpAddr = _corpAddr;
-        ownedShares[corpAddr] = 10000;
-        unissuedShareOfCompany -= 10000;
+        ownedShares[corpAddr] = 100000;  //총 발행가능 주식수 100% 발행 가정
+        unissuedShareOfCompany -= 100000;
     }
 
     // -----------------------------------------------------------
@@ -31,7 +31,7 @@ contract GeneralMeeting {
     // -----------------------------------------------------------
 
     //로깅을 위한 이벤트
-    event Sended(
+    event Sended (
         uint256 value,
         uint256 balance
     );
@@ -41,8 +41,8 @@ contract GeneralMeeting {
         ethTaker = _ethTaker;
     }
 
-    //호출자가 CA에게 이더를 전송
-    function sending() payable public {
+    //호출자가 보낼 Eth 수량을 임시 저장
+    function sending() private {
         balance = msg.value;
         emit Sended(msg.value, balance);
     }
@@ -90,9 +90,9 @@ contract GeneralMeeting {
     }
 
     //회사 유통 주식수
-    function getIssuedShares() public view returns(uint) {
-        // 작성중
-    }
+    // function getIssuedShares() public view returns(uint) {
+    //     // 작성중
+    // }
 
     //CA에 Eth를 transfer하기 위한 함수(백업) 
     // function sendEth() public payable {}

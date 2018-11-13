@@ -1,5 +1,5 @@
-var GeneralMeeting = artifacts.require("GeneralMeeting");
+var FitoContract = artifacts.require("FitoContract.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(GeneralMeeting);
+  deployer.deploy(FitoContract);
 };
