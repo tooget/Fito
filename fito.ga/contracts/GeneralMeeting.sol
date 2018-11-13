@@ -3,44 +3,55 @@ pragma solidity ^0.4.24;
 //token 초기값 이슈 아직X
 
 contract GeneralMeeting {
-    uint companyToken = 10000; //회사-주주
-    address companyAddr = 0;
-    //address contractCaller; //거래호출;
-    address[] stockDataIndex;
+    uint shareOfCompany = 10000; //회사-주주
+    address ethTaker;
 
-    mapping (address => uint) addressTotalToken;
+    mapping (address => uint) ownedShares;
 
-    struct stockData{
-        uint token; //from 주주 개개인의 거래한 주식수
-        address walletAddrFrom; //주주
-        address walletAddrTo; //주주
+    struct tradingData {
+        uint tradingShares; //from 주주 개개인의 거래한 주식수
+        address sellerAddr; //주식 양도자
+        address buyerAddr; //주식 양수자
         uint tradingPrice;
         uint timestamp;
+        bool isTradingComplete;
     }
 
-    stockData[] public stockDatas;
+    tradingData[] public tradingDatas;
 
-    //stockData 추가 ==> 거래 =
-    function addStocks(address _walletAddrTo, uint _numTk) payable public { //token 연동
-        if(addressTotalToken[msg.sender] != 0){
-            stockDatas.push(stockData(_numTk, msg.sender, _walletAddrTo, msg.value, now));
-            addressTotalToken[msg.sender] -= _numTk;
-            addressTotalToken[_walletAddrTo] += _numTk;
-
-            uint balance;
-            balance = msg.value;
-            msg.sender.transfer(balance);//양도자 즉 주식을 파는 사람의 eth가 늘어야 함. 즉 msg.sender
-        }
+    function initShares(address _corpAddr) public {
+        ownedShares[_corpAddr] = shareOfCompany;
+        shareOfCompany = 0;
     }
+
+    function setEthTaker(address _ethTaker) private {
+        ethTaker = _ethTaker;
+    }
+
+    //stockData 추가 ==> 양수자가 거래 요청
+    function addTradingData(address _sellerAddr, uint _tradingShares) payable public returns(uint) {
+        require(ownedShares[_sellerAddr] >= _tradingShares && _tradingShares != 0);
+        tradingData memory newTradingData = tradingData(_tradingShares, msg.sender, _sellerAddr, msg.value, now, false);
+        uint tradingIdx = tradingDatas.push(newTradingData);
+        setEthTaker(_sellerAddr);
+        ownedShares[msg.sender] -= _tradingShares;
+        ownedShares[_sellerAddr] += _tradingShares;
+        _sellerAddr.transfer(msg.value);
+        tradingDatas[tradingIdx].isTradingComplete = true;
+        return tradingIdx;
+    }
+
+    //총 거래 내역 수 리턴
+    // function getLengthOftradingDatas() public view returns (uint) {
+    //     return tradingDatas.length();
+    // }
 
     //거래 내역 리턴
-    function getProductStruct(uint _idx, address _walletAddr) public view returns (address, uint){
-        if(stockDatas[_idx].walletAddrFrom == _walletAddr){
-            return(stockDatas[_idx].walletAddrFrom, stockDatas[_idx].timestamp);
-        }
-    }
+    // function getProductStruct(uint _idx) public view returns (tradingData[]) {
+    //     return tradingDatas[_idx];
+    // }
 
-    function getTotalStuck(address _walletAddr) public view returns (uint){
-        return addressTotalToken[_walletAddr];
+    function getTotalStuck(address _ownerAddr) public view returns (uint){
+        return ownedShares[_ownerAddr];
     }
 }
