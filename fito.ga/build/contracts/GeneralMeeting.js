@@ -1,4 +1,4 @@
-{
+var GeneralMeeting_build = {
   "contractName": "GeneralMeeting",
   "abi": [
     {

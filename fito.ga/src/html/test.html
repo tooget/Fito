@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="../js/web3.min.js"></script>
-<script src="../../build/contracts/TestContract.js"></script>
+<script src="../../build/contracts/GeneralMeeting.js"></script>
 <script type="text/javascript">
 
     console.log('starting...');
@@ -21,9 +21,12 @@
         console.log("not connected")
     }
 
-    var abi = TestContract_build.abi;
+    // var abi = TestContract_build.abi;
+    // var contractAddress = "0xa8a4665904d6909b3ca5d43238d59ef3cba6e17d";
+    var abi = GeneralMeeting_build.abi;
+    var contractAddress = "<배포한 CA 주소>";
+
     console.log('abi', abi);
-    var contractAddress = "0xa8a4665904d6909b3ca5d43238d59ef3cba6e17d";
     var vc = web3.eth.contract(abi).at(contractAddress);
     console.log('vc', vc);
 
@@ -41,53 +44,58 @@
                 document.getElementById("getBalance").innerHTML = err;
             }
       }
+
+    function getTotalStuck() {
+        try {
+            console.log("임의의 주소", "<임의의 주소>");
+            var addressTotalToken = vc.getTotalStuck("<임의의 주소>");
+            console.log('addressTotalToken', addressTotalToken);
+            document.getElementById("addressTotalToken").innerText = '보유 주식 수 :' + addressTotalToken;
+        } catch (err) {
+            document.getElementById("addressTotalToken").innerText = err;
+        }
+    }
+
+    function addStocks() {
+        try {
+            console.log("from", "<임의의 주소>");
+            console.log("to", "<임의의 주소>");
+            var stock = vc.addStocks("<임의의 주소>", 10, {value: web3.toWei(5, "ether"), from:"<임의의 주소>"});
+            document.getElementById("addStocks").innerText = '결과 :' + stock;
+        } catch (err) {
+            document.getElementById("addStocks").innerText = err;
+        }
+    }
+
+    function getCABalance() {
+        try {
+            console.log("CA", "<임의의 주소>");
+            var stock = web3.eth.getBalance("<임의의 주소>");
+            var stock = web3.toWei(stock, "ether");
+            document.getElementById("getCABalance").innerText = '결과 :' + stock;
+        } catch (err) {
+            document.getElementById("getCABalance").innerText = err;
+        }
+    }
     
-    function getTotalNumberOfIssues() {
-        try {
-            var totalNumberOfIssues = vc.getTotalNumberOfIssues();
-            console.log('getTotalNumberOfIssues', totalNumberOfIssues);
-            document.getElementById("getTotalNumberOfIssues").innerText = '총 발행 주식수 :' + totalNumberOfIssues;
-        } catch (err) {
-            document.getElementById("getTotalNumberOfIssues").innerText = err;
-        }
-    }
-
-    function getEntireAccounts() {
-        try {
-            var addressesOfAccounts = web3.eth.accounts;
-            console.log("addressesOfAccounts", addressesOfAccounts);
-            console.log("typeof(addressesOfAccounts)", typeof(addressesOfAccounts));
-            console.log("length(addressesOfAccounts)", addressesOfAccounts.length);
-
-            var table = document.getElementById("entireAccounts");
-            var length = addressesOfAccounts.length;
-            for (var i = 0; i < length; i ++) {
-                var row = table.insertRow();
-                var cell = row.insertCell(i);
-				cell.innerHTML = addressesOfAccounts[i];
-            }
-            
-        } catch (err) {
-            document.getElementById("entireAccounts").innerText = err;
-        }
-    }
-
 </script>
 
 </head>
 
-<body onload="getTotalNumberOfIssues()">
+<body>
     <h1>KISA Corp.</h1>
     <p>
         <span id="getTotalNumberOfIssues">Loading...</span>
     </p>
 
     <p>
-        <button type="button" onClick="getBalance();">Get Balance :</button><div id="getBalance"></div><br />
+        <button type="button" onClick="getTotalStuck();">getTotalStuck :</button><div id="addressTotalToken"></div><br />
     </p>
-
     <p>
-        <button type="button" onClick="getEntireAccounts();">Get Entire Accounts :</button><table id="entireAccounts"></table><br />
+        <button type="button" onClick="addStocks();">addStocks :</button><div id="addStocks"></div><br />
+    </p>
+    <p>
+        <button type="button" onClick="getCABalance();">getCABalance :</button><div id="getCABalance"></div><br />
     </p>
 </body>
 </html>

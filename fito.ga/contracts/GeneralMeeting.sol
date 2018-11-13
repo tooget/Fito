@@ -14,7 +14,6 @@ contract GeneralMeeting {
         uint token; //from 주주 개개인의 거래한 주식수
         address walletAddrFrom; //주주
         address walletAddrTo; //주주
-        // uint transactionHash;   //tx.hash
         uint tradingPrice;
         uint timestamp;
     }
@@ -30,8 +29,7 @@ contract GeneralMeeting {
 
             uint balance;
             balance = msg.value;
-            _walletAddrTo.transfer(balance);//양도자 즉 주식을 파는 사람의 eth가 늘어야 함. 즉 msg.sender
-            // _walletAddrTo.balance -= msg.value;
+            msg.sender.transfer(balance);//양도자 즉 주식을 파는 사람의 eth가 늘어야 함. 즉 msg.sender
         }
     }
 
