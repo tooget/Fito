@@ -22,8 +22,8 @@ You should have KALEIDO App Credentials to preceed.
     - _**Add the web3 modules**_, https://console.kaleido.io/docs/docs/truffle/
  9. CMD : `truffle compile`
  10. CMD : `truffle migrate --network dapp_fito_ga`
-    - _**Deploy the smart contract**_, https://console.kaleido.io/docs/docs/truffle/
-    - (Optional) create `truffle_migrate.sh`
+     - _**Deploy the smart contract**_, https://console.kaleido.io/docs/docs/truffle/
+     - (Optional) create `truffle_migrate.sh`
  11. CMD : `npm run dev`
 
 ## Access to KALEIDO private network via Metamask
