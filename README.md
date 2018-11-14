@@ -16,7 +16,7 @@
     - 구현형태 : 웹 서비스(브라우저 접근)
     - 주요 리소스 및 아키텍쳐
       ![](https://github.com/ZHyoKim/Fito/blob/master/docs/20181113_prototype_architecture.png)
-      - FE : Web3.js, AWS
+      - FE : AWS S3(Static hosting), Web3.js
       - BE : [KALEIDO](https://kaleido.io)
     - 블록체인 네트워크 구성
       - Network type : Private Network in Cloud Server(KALEIDO)
@@ -25,6 +25,9 @@
  
 ## Team Meeting
 
+#### 2018-11-14, 8th
+  - Prototype truffle~KALEIDO 배포 테스트 완료
+  - 브라우저 유저 인터페이스 연결(Web3) 및 필요 SmartContract 함수 작성
 #### 2018-11-13, 7th
   - Prototype 기능 SmartContract 구현
   - Ganache 테스트 환경에서 주요 기능 테스트 성공
@@ -33,7 +36,7 @@
   - Web3-SmartContract 상호작용 테스트
 #### 2018-11-09, 5th
   - [중간발표](https://github.com/ZHyoKim/Fito/blob/master/docs/20181109_FITO%20%ED%8C%80%20%EC%A0%9C%EC%95%88%EC%84%9C%20demo%ED%8C%8C%EC%9D%BC.pdf) & 피드백
-  - KALEIDO-Truffle 연동 완료, Ganache-Truffle 환경 공유
+  - Truffle `pet-shop-tutorial`과 KALEIDO 연동 및 SmartContract 배포/함수 실행 테스트 완료, Ganache-Truffle 환경 공유
   - Solidity 스터디(계속)
   - Idea development/issue : 생태계 내에서의 Token의 정의와 ICO에 대한 오인 가능성
 #### 2018-11-08, 4th
