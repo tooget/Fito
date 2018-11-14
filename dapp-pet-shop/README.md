@@ -6,18 +6,17 @@
 ## Sequences
 ```
 You should have KALEIDO App Credentials to preceed.
-
 ```
  1. CMD : `truffle unbox pet-shop`
  2. Create `contracts/Adoption.sol`
- 3. Create migrations/2_deploy_contracts.js
+ 3. Create `migrations/2_deploy_contracts.js`
     - _**Populate the directories**_, https://console.kaleido.io/docs/docs/truffle/
  4. Create `test/TestAdoption.sol`
  5. Modify `truffle.js` with App Credentials from KALEIDO
     - _**Configure for your network**_, https://console.kaleido.io/docs/docs/truffle/
  6. Modify `App.js` Web3.providers with App credentials
     - Same as _**Configure for your network**_, https://console.kaleido.io/docs/docs/truffle/
- 7. Add 6 npm libraries in package.json
+ 7. Add 6 npm libraries in `package.json`
     - _**Add the web3 modules**_, https://console.kaleido.io/docs/docs/truffle/
  8. CMD : `npm install`
     - _**Add the web3 modules**_, https://console.kaleido.io/docs/docs/truffle/
@@ -59,18 +58,34 @@ You should use KALEIDO API via curl/jq command cm to control geth or environment
 ```
 Reference : https://console.kaleido.io/docs/docs/api/
  - Check Region
-   > `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/regions" | jq`
+   ```sh
+   curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/regions" | jq
+   ```
  - Check Consortia
-   > `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia" | jq`
+   ```sh
+   curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia" | jq
+   ```
  - Check All Environments(# of nodes, concensus algorithm etc.,) of a Consortia
-   > `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments" | jq`
+   ```sh
+   curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments" | jq
+   ```
  - Check a network environment of a Consortia
-   > `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}" | jq`
+   ```sh
+   curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}" | jq
+   ```
  - Check App credentials
-   > `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}/appcreds" | jq`
+   ```sh
+   curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}/appcreds" | jq
+   ```
  - Check all deployed Smart Contracts of a Consortia/network
-   > `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/ledger/{consortia_id}/{environment_id}/contracts" | jq`
+   ```sh
+   curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/ledger/{consortia_id}/{environment_id}/contracts" | jq
+   ```
  - Check all EOA of a Consortia/network
-   > `curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/ledger/{consortia_id}/{environment_id}/addresses/{account_address}" | jq`
+   ```sh
+   curl -X GET -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/ledger/{consortia_id}/{environment_id}/addresses/{account_address}" | jq
+   ```
  - Add pre-fund ETH to a EOA of a Consortia/network
-   > `curl -X POST -d '{"account":"0x51D91D3128252728a37131713c8d98724BDF744E", "amount":"1000000"}' -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}/eth/fundaccount" | jq`
+   ```sh
+   curl -X POST -d '{"account":"0x51D91D3128252728a37131713c8d98724BDF744E", "amount":"1000000"}' -H "$HDR_AUTH" -H "$HDR_CT" "$APIURL/consortia/{consortia_id}/environments/{environment_id}/eth/fundaccount" | jq
+   ```
