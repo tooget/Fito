@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <script src="../js/web3.min.js"></script>
-<script src="../../build/contracts/FitoContract.js"></script>
+<!-- <script src="../js/web3.FitoContract.js"></script> -->
+<!-- <script src="../../build/contracts/FitoContract.js"></script> -->
 <script type="text/javascript">
 
     console.log('starting...');
@@ -12,41 +13,44 @@
         web3 = new Web3(web3.currentProvider);
     } else {
         // set the provider you want from Web3.providers
-        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+        web3 = new Web3(new Web3.providers.HttpProvider('https://k0k0j8s4h0:0UhNW5Fl82OSkrx-S2-nmgqg8kdSMVhgOuRrZu-pCX0@k0idprbzja-k0dsk7yusm-rpc.ap-northeast-2.kaleido.io'));
     }
 
     if (web3.isConnected()) {
         console.log("connected");
     } else {
-        console.log("not connected")
+        console.log("not connected");
     }
 
-    // In case : Static Frontend, on webserver ----------------------
-    // Use "../js/web3.FitoContracts.js" when Dynamic Frontend on npm/nodejs
-    // <script src="../js/web3.FitoContract.js">
-    // ----------------------------------------------------------------    
-    // function loadJSON() {   
-    //     var xobj = new XMLHttpRequest();
-    //     xobj.overrideMimeType("application/json");
-    //     xobj.open('GET', '../../build/contracts/FitoContract.json', false);
-    //     xobj.send(null);
-    //     var rtn = xobj;
-    //     var rtn = JSON.parse(rtn.responseText);
-    //     return rtn;
-    // }
-    // var jsonFile = loadJSON();
-    // var contractAbi = jsonFile.abi;
-    // var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
+    // // In case : Dynamic Frontend, on nodejs
+    // // Use "../js/web3.FitoContracts.js" when Dynamic Frontend on npm/nodejs
+    // // <script src="../js/web3.FitoContract.js">
     // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
-    // -----------------------------------------------------------------
-    
-    // In case : Static Frontend, local ganache without webserver
-    // Need to create and load "../../build/contracts/FitoContract.js"
+
+    // In case : Static Frontend, on webserver
     // ----------------------------------------------------------------    
-    var contractAbi = FitoContract_build.abi;
-    var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+    function loadJSON() {   
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', '../../build/contracts/FitoContract.json', false);
+        xobj.send(null);
+        var rtn = xobj;
+        var rtn = JSON.parse(rtn.responseText);
+        return rtn;
+    }
+    var jsonFile = loadJSON();
+    var contractAbi = jsonFile.abi;
+    var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
     var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
     // -----------------------------------------------------------------
+    
+    // // In case : Static Frontend, local ganache without webserver
+    // // Need to create and load "../../build/contracts/FitoContract.js"
+    // // ----------------------------------------------------------------    
+    // var contractAbi = FitoContract_build.abi;
+    // var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+    // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+    // // -----------------------------------------------------------------
 
     // Default account 설정
     // 추후 지갑과 연동

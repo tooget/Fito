@@ -1,11 +1,14 @@
+var Web3 = require('web3');
+
 module.exports = {
-  networks: {
-    development: {              // Ganache
-      host: "localhost",
-      port: 7545,
+networks: {
+    dapp_fito_ga: {
+      provider: () => {
+        return new Web3.providers.HttpProvider('https://k0k0j8s4h0:0UhNW5Fl82OSkrx-S2-nmgqg8kdSMVhgOuRrZu-pCX0@k0idprbzja-k0dsk7yusm-rpc.ap-northeast-2.kaleido.io');
+      },
       network_id: "*",
-      // gas: 0,               // gas limit. https://truffleframework.com/docs/truffle/reference/configuration
-      gasPrice : 0,            // gas price when transactions occured. https://truffleframework.com/docs/truffle/reference/configuration
+      gasPrice: 0,
+      gas: 4500000
     }
   }
 };
