@@ -13,7 +13,7 @@
     } else {
         // set the provider you want from Web3.providers
         // Not working.. https://github.com/ZHyoKim/Fito/issues/11
-        var web3 = new Web3(new Web3.providers.HttpProvider('<kaleido-credential-endpoint>'));
+        // var web3 = new Web3(new Web3.providers.HttpProvider('<kaleido-credential-endpoint>'));
     }
 
     if (web3.isConnected()) {
@@ -51,6 +51,9 @@
     // // 추후 지갑과 연동?
     // // web3.eth.defaultAccount = web3.eth.accounts[0];
     // web3.eth.defaultAccount = contractAddress;
+    // Default account 설정
+    // 추후 지갑과 연동?
+    web3.eth.defaultAccount = web3.eth.accounts[0];
     
     // function initShares() {
     //     try {
