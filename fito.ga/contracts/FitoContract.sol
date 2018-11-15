@@ -148,24 +148,54 @@ contract FitoContract {
     // -----------------------------------------------------------
     // 각종 조회용 함수
     // -----------------------------------------------------------
-    //총 거래 내역 수 리턴
-    function getLengthOftradingDatas() public view returns (uint) {
-        return tradingDatas.length;
-    }
-
-    //총 등록 주주 수 리턴
+    // [Protyotype1 : 주주명부 조회용] 총 등록 주주 수 리턴
     function getLengthOfshareOwnerLists() public view returns (uint) {
         return shareOwnerLists.length;
     }
 
-    // // 거래 내역 리턴
-    // function getProductStruct(uint _idx) public view returns (tradingData) {
-    //     return tradingDatas[_idx];
-    // }
+    // [Protyotype1 : 주주명부 조회용] 주주 인덱스와 매칭된 주주 주소 리턴
+    function getAddrOfshareOwner(uint _ownerIndex) public view returns (address) {
+        return shareOwnerLists[_ownerIndex].ownerAddr;
+    }
 
-    //주주가 가진 주식수 리턴
+    // [Protyotype1 : 주주명부 조회용] 주주가 가진 주식수 리턴
     function getOwnedShares(uint _ownerIndex) public view returns (uint){
         return ownedShares[_ownerIndex];
+    }
+
+    // [Protyotype3 : 주주의 주식거래내용 조회용] 총 거래 내역 수 리턴
+    function getLengthOftradingDatas() public view returns (uint) {
+        return tradingDatas.length;
+    }
+
+    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 양수자 리턴
+    function getBuyerAddrOfaSpecificTrading(uint _tradingIdx) public view returns (address) {
+        return tradingDatas[_tradingIdx].buyerAddr;
+    }
+
+    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 양도자 리턴
+    function getSellerAddrOfaSpecificTrading(uint _tradingIdx) public view returns (address) {
+        return tradingDatas[_tradingIdx].sellerAddr;
+    }
+
+    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 주식수 리턴
+    function getTradingSharesOfaSpecificTrading(uint _tradingIdx) public view returns (uint) {
+        return tradingDatas[_tradingIdx].tradingShares;
+    }
+
+    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 시간 리턴
+    function getTimestampOfaSpecificTrading(uint _tradingIdx) public view returns (uint) {
+        return tradingDatas[_tradingIdx].timestamp;
+    }
+
+    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 가격(ETH) 리턴
+    function getTradingPriceOfaSpecificTrading(uint _tradingIdx) public view returns (uint) {
+        return tradingDatas[_tradingIdx].tradingPrice;
+    }
+
+    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 트랜잭션 완료 여부 리턴
+    function getIsTradingCompleteOfaSpecificTrading(uint _tradingIdx) public view returns (bool) {
+        return tradingDatas[_tradingIdx].isTradingComplete;
     }
 
     //회사 미발행 주식수
