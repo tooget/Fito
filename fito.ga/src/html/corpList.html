@@ -8,25 +8,53 @@
 
     <!-- Custom styles for this template -->
     <link href="src/css/scrolling-nav.css" rel="stylesheet">
-<script type="text/javascript">
-    if (typeof web3 !== 'undefined') {
-        web3 = new Web3(web3.currentProvider);
-    } else {
-        // set the provider you want from Web3.providers
-        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-    }
-    if (web3.isConnected()) {
-        console.log("connected");
-    } else {
-        console.log("not connected")
-    }
-    //abi는 수정될것 address도 수정될 것이다.
-    var abi = GeneralMeeting_build.abi;
-    // var contractAddress = "0xa8a4665904d6909b3ca5d43238d59ef3cba6e17d";
-    var contractAddress = "0x9a8466ef05f424b31e5f00c0541817565aa984f7";
-    console.log('abi', abi);
-    var Fito = web3.eth.contract(abi).at(contractAddress);
-    document.getElementId("num").innerText=Fito.getIssuedShares();
+
+    <script type="text/javascript">
+
+      console.log('starting...');
+      //check if web3 Metamask/Mist auto-created Provider or not
+      if (typeof web3 !== 'undefined') {
+          web3 = new Web3(web3.currentProvider);
+      } else {
+          // set the provider you want from Web3.providers
+          // Not working.. https://github.com/ZHyoKim/Fito/issues/11
+          // var web3 = new Web3(new Web3.providers.HttpProvider('<kaleido-credential-endpoint>'));
+      }
+  
+      if (web3.isConnected()) {
+          console.log("connected");
+      } else {
+          console.log("not connected");
+      }
+  
+      // In case : Static Frontend, on webserver
+      // ----------------------------------------------------------------    
+      function loadJSON() {   
+          var xobj = new XMLHttpRequest();
+          xobj.overrideMimeType("application/json");
+          xobj.open('GET', '../../build/contracts/FitoContract.json', false);
+          xobj.send(null);
+          var rtn = xobj;
+          var rtn = JSON.parse(rtn.responseText);
+          return rtn;
+      }
+      var jsonFile = loadJSON();
+      var contractAbi = jsonFile.abi;
+      var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
+      var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+      // -----------------------------------------------------------------
+      
+      // // // In case : Static Frontend, local ganache without webserver
+      // // // Need to create and load "../../build/contracts/FitoContract.js"
+      // // // ----------------------------------------------------------------    
+      // // var contractAbi = FitoContract_build.abi;
+      // // var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+      // // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+      // // // -----------------------------------------------------------------
+      
+      web3.eth.defaultAccount = web3.eth.accounts[0];
+
+      document.getElementId("num").innerText=Fito.getIssuedShares();
   </script>
   </head>
 

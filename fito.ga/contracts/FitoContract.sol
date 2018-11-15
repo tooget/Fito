@@ -31,16 +31,18 @@ contract FitoContract {
     // -----------------------------------------------------------
     //회사 발행주식 초기화를 위해 회사 대표 corporateAddr 설정
     function setCorporateAddr(address _corporateAddr) public {
-        require( corporateAddrIsSet == false );
-        initShareholderAddr(_corporateAddr);
-        corporateAddr = _corporateAddr;
-        corporateAddrIsSet = true;
+        if( corporateAddrIsSet == false ) {
+            initShareholderAddr(_corporateAddr);
+            corporateAddr = _corporateAddr;
+            corporateAddrIsSet = true;
+        }
     }
 
     //corporateAddr 검증 modifier
     modifier onlyCorporateAddr() {
-        require(msg.sender != corporateAddr);
-        _;
+        if(msg.sender != corporateAddr) {
+            _;
+        }
     }
 
     //최초 거래 전 회사 발행주식 값을 초기화(=주식발행)
@@ -82,11 +84,13 @@ contract FitoContract {
 
 
     //메타마스크 최초 접속시 shareOwnerLists에 명시적 저장 후 주주 순번 리턴
-    function initShareholderAddr(address _shareholderAddr) public returns(uint _newOwnerIdx) {
+    function initShareholderAddr(address _shareholderAddr) public returns(uint _ownerIdx) {
         bool ownerChecker = false;
         uint ownerExistIdx;
         uint ownerIdx = getLengthOfshareOwnerLists();
-
+        if( ownerIdx == 0) {
+            ownerIdx = 1;
+        }
         for(uint i = 0; i < ownerIdx; i++) {
             if(shareOwnerLists[i].ownerAddr == _shareholderAddr) {
                 ownerChecker = true;
