@@ -22,85 +22,84 @@
         console.log("not connected");
     }
 
-    // In case : Static Frontend, on webserver
-    // ----------------------------------------------------------------    
-    function loadJSON() {   
-        var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-        xobj.open('GET', '../../build/contracts/FitoContract.json', false);
-        xobj.send(null);
-        var rtn = xobj;
-        var rtn = JSON.parse(rtn.responseText);
-        return rtn;
-    }
-    var jsonFile = loadJSON();
-    var contractAbi = jsonFile.abi;
-    var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
-    var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
-    // -----------------------------------------------------------------
-    
-    // // In case : Static Frontend, local ganache without webserver
-    // // Need to create and load "../../build/contracts/FitoContract.js"
+    // // In case : Static Frontend, on webserver
     // // ----------------------------------------------------------------    
-    // var contractAbi = FitoContract_build.abi;
-    // var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+    // function loadJSON() {   
+    //     var xobj = new XMLHttpRequest();
+    //     xobj.overrideMimeType("application/json");
+    //     xobj.open('GET', '../../build/contracts/FitoContract.json', false);
+    //     xobj.send(null);
+    //     var rtn = xobj;
+    //     var rtn = JSON.parse(rtn.responseText);
+    //     return rtn;
+    // }
+    // var jsonFile = loadJSON();
+    // var contractAbi = jsonFile.abi;
+    // var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
     // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
     // // -----------------------------------------------------------------
-
-    // Default account 설정
-    // 추후 지갑과 연동?
-    // web3.eth.defaultAccount = web3.eth.accounts[0];
-    web3.eth.defaultAccount = contractAddress;
     
-    function initShares() {
-        try {
-            var rtn = FitoContract.initShares(contractAddress);
-            document.getElementById("initShares").innerText = 'contractAddress :' + rtn;
-        } catch (err) {
-            document.getElementById("initShares").innerText = err;
-        }
-    }
+    // // // In case : Static Frontend, local ganache without webserver
+    // // // Need to create and load "../../build/contracts/FitoContract.js"
+    // // // ----------------------------------------------------------------    
+    // // var contractAbi = FitoContract_build.abi;
+    // // var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+    // // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+    // // // -----------------------------------------------------------------
 
-    function addTradingData() {
-        try {
-            console.log("buyer web3.eth.accounts[0]", web3.eth.accounts[0]);
-            console.log("seller web3.eth.accounts[9]", web3.eth.accounts[9]);
+    // // Default account 설정
+    // // 추후 지갑과 연동?
+    // // web3.eth.defaultAccount = web3.eth.accounts[0];
+    // web3.eth.defaultAccount = contractAddress;
+    
+    // function initShares() {
+    //     try {
+    //         var rtn = FitoContract.initShares(contractAddress);
+    //         document.getElementById("initShares").innerText = 'contractAddress :' + rtn;
+    //     } catch (err) {
+    //         document.getElementById("initShares").innerText = err;
+    //     }
+    // }
 
-            var idx = FitoContract.addTradingData(web3.eth.accounts[9], 100, {value: web3.toWei(7, "ether"), from:web3.eth.accounts[0], to:web3.eth.accounts[9], gas:300000});
-            document.getElementById("addTradingData").innerText = idx;
-        } catch (err) {
-            document.getElementById("addTradingData").innerText = err;
-        }
-    }
+    // function addTradingData() {
+    //     try {
+    //         console.log("buyer web3.eth.accounts[0]", web3.eth.accounts[0]);
+    //         console.log("seller web3.eth.accounts[9]", web3.eth.accounts[9]);
 
-    function getOwnedShares() {
-        try {
-            console.log("buyer web3.eth.accounts[9]", web3.eth.accounts[9]);
-            console.log("seller web3.eth.accounts[1]", web3.eth.accounts[0]);
-            var stock9 = FitoContract.getOwnedShares(web3.eth.accounts[9]);
-            var stock0 = FitoContract.getOwnedShares(web3.eth.accounts[0]);
-            document.getElementById("getOwnedShares").innerText = "9 :" + stock9 + " / " + "0 :" + stock0;
-        } catch (err) {
-            document.getElementById("getOwnedShares").innerText = err;
-        }
-    }
+    //         var idx = FitoContract.addTradingData(web3.eth.accounts[9], 100, {value: web3.toWei(7, "ether"), from:web3.eth.accounts[0], to:web3.eth.accounts[9], gas:300000});
+    //         document.getElementById("addTradingData").innerText = idx;
+    //     } catch (err) {
+    //         document.getElementById("addTradingData").innerText = err;
+    //     }
+    // }
+
+    // function getOwnedShares() {
+    //     try {
+    //         console.log("buyer web3.eth.accounts[9]", web3.eth.accounts[9]);
+    //         console.log("seller web3.eth.accounts[1]", web3.eth.accounts[0]);
+    //         var stock9 = FitoContract.getOwnedShares(web3.eth.accounts[9]);
+    //         var stock0 = FitoContract.getOwnedShares(web3.eth.accounts[0]);
+    //         document.getElementById("getOwnedShares").innerText = "9 :" + stock9 + " / " + "0 :" + stock0;
+    //     } catch (err) {
+    //         document.getElementById("getOwnedShares").innerText = err;
+    //     }
+    // }
 
 
 </script>
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+      $(document).ready(function(){
+         $("#header").load("transfer.html")
+        /* id 지정을 통해서도 가능합니다. 
+         $("#header").load("header.html #navbar")
+         */       
+      });
+</script>  
 </head>
-
+  
 <body>
-    <div id="top">
-        <h1>KISA Corp.</h1>
-    </div>
-    <div id="middle">
-        <span id="getTotalNumberOfIssues">Loading...</span>
-    </div>
-    <div id="bottom">
-        <p><button type="button" onClick="initShares();">initShares :</button><div id="initShares"></div></p><br />
-        <p><button type="button" onClick="addTradingData();">addTradingData :</button><div id="addTradingData"></div></p><br />
-        <p><button type="button" onClick="getOwnedShares();">getOwnedShares :</button><div id="getOwnedShares"></div></p><br />
-    </div>
+    <div id="header"></div>
 </body>
+
 </html>
