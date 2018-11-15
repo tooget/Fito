@@ -2,68 +2,67 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.2.3/milligram.min.css">
+   
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="src/css/scrolling-nav.css" rel="stylesheet">
+<script type="text/javascript">
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        // set the provider you want from Web3.providers
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+    }
+    if (web3.isConnected()) {
+        console.log("connected");
+    } else {
+        console.log("not connected")
+    }
+    //abi는 수정될것 address도 수정될 것이다.
+    var abi = GeneralMeeting_build.abi;
+    // var contractAddress = "0xa8a4665904d6909b3ca5d43238d59ef3cba6e17d";
+    var contractAddress = "0x9a8466ef05f424b31e5f00c0541817565aa984f7";
+    console.log('abi', abi);
+    var vc = web3.eth.contract(abi).at(contractAddress);
+    function list(){
+      var row=vc.getLengthOfshareOwnerLists();
+      var col = 3;
+      for (i =0;i<row;++i){
+        var name=vc.주주명받기(i);
+        var num_TK=vc.getOwnedShares(i);
+        document.write("<tr>");
+        document.write("<td>"+name+"</td>");
+        document.write("<td>"+num_TK+"</td>");
+        document.write("</tr>");
+      }
+    }
+  </script>
   </head>
 
-<body class="container" style="padding-top: 3%;" onload="getListInfo();">
-  <h2> 주주 명부 </h2>
-  <h4>(주) TK</h4>
-
+<!-- <body class="container" style="padding-top: 3%;" onload="getListInfo();">
+ -->  
+ <body class="container" style="padding-top: 3%;" >
+<div class="container">
+    <div class="col-lg-8 mx-auto">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          유통 주식 수: 
+        <span class="input-group-text" id ="num"></span>
+        </div>
+      </div>
+      <br>
+      <button id="searchBlock" class="btn btn-outline-success"onClick="list();">     조회     </button>
+      <br>
+  </div>
+</div>
+<script type="text/javascript">
   
-  <hr />
+    var num =vc.getIssuedShares();
+    document.getElementId("num").innerText(num);
 
-  <div class="row">
-    <div class="column">
-      <label>총 토큰 수</label>
-      <p id="total_TK">300</p><!-- 우선은 상수로 설정했지만 불러서 넣어야합니다. -->
-    </div>
-    <div class="column">
-      <br />
-      <button id="searchList" onClick="getList();">조회</button>
-      <!-- <button type="button" onClick="getTransaction();">Get Transaction Info</button> -->
-    </div>
-  </div>
-
-  <hr />
-   
-
-
-  <br />
- <div class="row">
-    <div class="column">
-      <label>조회 날짜/시간</label>
-    </div>
-    <div class="column">
-      <span id="">2018.3.2.12:29</span><!-- 이 부분도 후에는 조회를 누르면 나오는 시간으로 하겠습니다.  -->
-      <!-- <button type="button" onClick="getTransaction();">Get Transaction Info</button> -->
-    </div>
-  </div>
-
-  <hr />
-
-  <div id="listSearch" >
-<!-- 우선은 상수로 설정했지만 불러서 넣어야합니다. -->
-  <div class="row">
-    <div class="column">
-      <label>주주</label>
-      <span id="shareholder">0x365b070c8cbac9</span>
-    </div>
-    <div class="column">
-      <label>주식 수</label>
-      <span id="num_TK">100</span>
-    </div>
-  </div>
-   <div class="row">
-    <div class="column">
-      <span id="shareholder">0x847b070c8cbac9</span>
-    </div>
-    <div class="column">
-      <span id="num_TK">200</span>
-    </div>
-  </div>
- 
-  <hr />
-  </div>
+</script>
 <!--   <div id="response" style="padding: 20px; border: 1px solid #F1F1F1;"></div> 이부분이 뭔지 몰라서 완전히 지우지는 않음.
  --></body>
 
