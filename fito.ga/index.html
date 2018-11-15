@@ -14,41 +14,6 @@
         <link href="src/css/scrolling-nav.css" rel="stylesheet">
         <!-- jQuery core load -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
-        <!-- Click event to load dApp Html files -->
-        <script>
-            $(document).ready( function() {
-                $("#transfer").on("click", function() {
-                    $("#content").load("./src/html/transfer.html");
-                });
-                $("#corpList").on("click", function() {
-                    $("#content").load("./src/html/corpList.html");
-                });
-                $("#List").on("click", function() {
-                    $("#content").load("./src/html/personalList.html");
-                });
-            });
-        </script>
-        <script type="text/javascript">
-            console.log('starting...');
-
-            //check if web3 Metamask/Mist auto-created Provider or not
-            if (typeof web3 !== 'undefined') {
-                web3 = new Web3(web3.currentProvider);
-                document.getElementById("content").style.display = 'block';
-                alert("축하한다.");
-            } else {
-            // set the provider you want from Web3.providers
-            // Not working.. https://github.com/ZHyoKim/Fito/issues/11
-            alert("메타마스크 설치와 로그인을 해주세요.");
-            }
-
-            if (web3.isConnected()) {
-            console.log("connected");
-            } else {
-            console.log("not connected");
-            }
-        </script>
     </head>
 
     <body id="page-top">
@@ -130,4 +95,44 @@
         </footer>
 
     </body>
+
+        <!-- DOM 생성 후에 조회해야 오류 없음 -->
+        <!-- Click event to load dApp Html files -->
+        <script>
+            $(document).ready( function() {
+                $("#transfer").on("click", function() {
+                    $("#content").load("./src/html/transfer.html");
+                });
+                $("#corpList").on("click", function() {
+                    $("#content").load("./src/html/corpList.html");
+                });
+                $("#List").on("click", function() {
+                    $("#content").load("./src/html/personalList.html");
+                });
+            });
+        </script>
+
+        <!-- DOM 생성 후에 조회해야 오류 없음 -->
+        <!-- Metamask working check -->
+        <script type="text/javascript">
+            console.log('starting...');
+
+            //check if web3 Metamask/Mist auto-created Provider or not
+            if (typeof web3 !== 'undefined') {
+                web3 = new Web3(web3.currentProvider);
+                document.getElementById("content").style.display = 'block';
+                alert("축하한다.");
+            } else {
+            // set the provider you want from Web3.providers
+            // Not working.. https://github.com/ZHyoKim/Fito/issues/11
+            alert("메타마스크 설치와 로그인을 해주세요.");
+            }
+
+            if (web3.isConnected()) {
+            console.log("connected");
+            } else {
+            console.log("not connected");
+            }
+        </script>
+
 </html>
