@@ -2,62 +2,60 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../js/web3.min.js"></script>
-<script src="../../build/contracts/FitoContract.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<!-- <script src="../../build/contracts/FitoContract.js"></script> -->
 <script type="text/javascript">
 
     console.log('starting...');
-    //connect web3 and check if web3 is connected correctly
+    //check if web3 Metamask/Mist auto-created Provider or not
     if (typeof web3 !== 'undefined') {
         web3 = new Web3(web3.currentProvider);
     } else {
         // set the provider you want from Web3.providers
-        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+        // Not working.. https://github.com/ZHyoKim/Fito/issues/11
+        var web3 = new Web3(new Web3.providers.HttpProvider('<kaleido-credential-endpoint>'));
     }
 
     if (web3.isConnected()) {
         console.log("connected");
     } else {
-        console.log("not connected")
+        console.log("not connected");
     }
 
-    // In case : Static Frontend, on webserver ----------------------
-    // Use "../js/web3.FitoContracts.js" when Dynamic Frontend on npm/nodejs
-    // <script src="../js/web3.FitoContract.js">
+    // In case : Static Frontend, on webserver
     // ----------------------------------------------------------------    
-    // function loadJSON() {   
-    //     var xobj = new XMLHttpRequest();
-    //     xobj.overrideMimeType("application/json");
-    //     xobj.open('GET', '../../build/contracts/FitoContract.json', false);
-    //     xobj.send(null);
-    //     var rtn = xobj;
-    //     var rtn = JSON.parse(rtn.responseText);
-    //     return rtn;
-    // }
-    // var jsonFile = loadJSON();
-    // var contractAbi = jsonFile.abi;
-    // var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
-    // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
-    // -----------------------------------------------------------------
-    
-    // In case : Static Frontend, local ganache without webserver
-    // Need to create and load "../../build/contracts/FitoContract.js"
-    // ----------------------------------------------------------------    
-    var contractAbi = FitoContract_build.abi;
-    var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+    function loadJSON() {   
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', '../../build/contracts/FitoContract.json', false);
+        xobj.send(null);
+        var rtn = xobj;
+        var rtn = JSON.parse(rtn.responseText);
+        return rtn;
+    }
+    var jsonFile = loadJSON();
+    var contractAbi = jsonFile.abi;
+    var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
     var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
     // -----------------------------------------------------------------
+    
+    // // In case : Static Frontend, local ganache without webserver
+    // // Need to create and load "../../build/contracts/FitoContract.js"
+    // // ----------------------------------------------------------------    
+    // var contractAbi = FitoContract_build.abi;
+    // var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+    // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+    // // -----------------------------------------------------------------
 
     // Default account 설정
-    // 추후 지갑과 연동
-    web3.eth.defaultAccount = web3.eth.accounts[0];
+    // 추후 지갑과 연동?
+    // web3.eth.defaultAccount = web3.eth.accounts[0];
+    web3.eth.defaultAccount = contractAddress;
     
     function initShares() {
         try {
-            console.log("to web3.eth.accounts[9]", web3.eth.accounts[9]);
-            console.log(typeof(web3.eth.accounts[9]));
-            var rtn = FitoContract.initShares(web3.eth.accounts[9])
-            document.getElementById("initShares").innerText = 'web3.eth.accounts[0] :' + rtn;
+            var rtn = FitoContract.initShares(contractAddress);
+            document.getElementById("initShares").innerText = 'contractAddress :' + rtn;
         } catch (err) {
             document.getElementById("initShares").innerText = err;
         }
@@ -93,15 +91,16 @@
 </head>
 
 <body>
-    <h1>KISA Corp.</h1>
-    <p>
+    <div id="top">
+        <h1>KISA Corp.</h1>
+    </div>
+    <div id="middle">
         <span id="getTotalNumberOfIssues">Loading...</span>
-    </p>
-    <p><button type="button" onClick="initShares();">initShares :</button><div id="initShares"></div></p><br />
-    <p><button type="button" onClick="addTradingData();">addTradingData :</button><div id="addTradingData"></div></p><br />
-    <p><button type="button" onClick="getOwnedShares();">getOwnedShares :</button><div id="getOwnedShares"></div></p><br />
-    <p><div id="contractAbi"></div></p>
-    <p>--------------------------------------</p>
-    <p><div id="contractAbi2"></div></p>
+    </div>
+    <div id="bottom">
+        <p><button type="button" onClick="initShares();">initShares :</button><div id="initShares"></div></p><br />
+        <p><button type="button" onClick="addTradingData();">addTradingData :</button><div id="addTradingData"></div></p><br />
+        <p><button type="button" onClick="getOwnedShares();">getOwnedShares :</button><div id="getOwnedShares"></div></p><br />
+    </div>
 </body>
 </html>
