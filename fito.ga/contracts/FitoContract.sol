@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 contract FitoContract {
 
-    bool corporateAddrIsSet = false;
+    bool corporateAddrIsSet = false;        //회사 계정 및 유통주식소 초기화 여부
     uint unissuedShareOfCompany = 1000000;  //총 발행가능 주식수
     uint issuedShareOfCompany;      //유통 발행 주식수
     uint balance;                   //ETH transfer 전송할 이더 수량 저장을 위한 임시 변수
