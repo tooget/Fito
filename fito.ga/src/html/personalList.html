@@ -37,7 +37,7 @@
     <div class="col-lg-8 mx-auto">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          내 거래 내역
+          내 거래 내역 
         </div>
       </div>
       <br>
@@ -48,8 +48,12 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">주소</th>
-              <th scope="col">현재 보유하고 있는 주식 수</th>
+              <th scope="col">양수자</th>
+              <th scope="col">양도자</th>
+              <th scope="col">거래 주식 수</th>
+              <th scope="col">거래 가격</th>
+              <th scope="col">거래 시간</th>
+              <th scope="col">완료 여부</th>
             </tr>
           </thead>
           <tbody id="Tbody">
@@ -60,28 +64,51 @@
 </div>
 <script type="text/javascript">
   function Add() {
-
         var my_tbody = document.getElementById('Tbody');
-        // var row = my_tbody.insertRow(0); // 상단에 추가
-        var len =FitoContract.getLengthOftradingDatas();
-        for (i =0;i<len;++i){
-          var name=FitoContract.getAddrOfshareOwner();
-          var num_TK=FitoContract.getOwnedShares();
-          var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
-          var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          var cell3 = row.insertCell(2);
-          cell1.innerHTML = i;
-          cell2.innerHTML = name;
-          cell3.innerHTML = num_TK;
-
+        var total_len =FitoContract.getLengthOfshareOwnerLists();
+        var num;
+        for(i=0;i<total_len;++i){
+          if( web3.eth.account[0]==FitoContract.getBuyerAddrOfaSpecificTrading(i)){//내 계정과 같은지확인 양수자의 경우
+            var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+            var cell0 = row.insertCell(0);
+            var cell1 = row.insertCell(1);
+            var cell2 = row.insertCell(2);
+            var cell3 = row.insertCell(3);
+            var cell4 = row.insertCell(4);
+            var cell5 = row.insertCell(5);
+            var cell6 = row.insertCell(6);
+            cell0.innerHTML = i+1;
+            cell1.innerHTML = web3.eth.account[0];
+            cell2.innerHTML = FitoContract.getSellerAddrOfaSpecificTrading(i);
+            cell3.innerHTML = FitoContract.getTradingSharesOfaSpecificTrading(i);
+            cell4.innerHTML = FitoContract.getTradingPriceOfaSpecificTrading(i);
+            cell5.innerHTML = FitoContract.getTimestampOfaSpecificTrading(i);
+            cell6.innerHTML = FitoContract.getIsTradingCompleteOfaSpecificTrading(i);
+            num=i;
+          }
         }
+
+        for(i=0;i<total_len;++i){
+          if( web3.eth.account[0]==FitoContract.getSellerAddrOfaSpecificTrading(i)){//내 계정과 같은지확인 양도자의 경우
+            var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+            var cell0 = row.insertCell(0);
+            var cell1 = row.insertCell(1);
+            var cell2 = row.insertCell(2);
+            var cell3 = row.insertCell(3);
+            var cell4 = row.insertCell(4);
+            var cell5 = row.insertCell(5);
+            var cell6 = row.insertCell(6);
+            cell0.innerHTML = num+i+1;
+            cell1.innerHTML = FitoContract.getBuyerAddrOfaSpecificTrading(i);
+            cell2.innerHTML = web3.eth.account[0];
+            cell3.innerHTML = FitoContract.getTradingSharesOfaSpecificTrading(i);
+            cell4.innerHTML = FitoContract.getTradingPriceOfaSpecificTrading(i);
+            cell5.innerHTML = FitoContract.getTimestampOfaSpecificTrading(i);
+            cell6.innerHTML = FitoContract.getIsTradingCompleteOfaSpecificTrading(i);
+          }
+        }
+
     }
-
-
-    var num =vc.getIssuedShares();
-    document.getElementId("num").innerText(num);
-
 </script>
 <!--   <div id="response" style="padding: 20px; border: 1px solid #F1F1F1;"></div> 이부분이 뭔지 몰라서 완전히 지우지는 않음.
  --></body>

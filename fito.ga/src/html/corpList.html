@@ -66,8 +66,8 @@
         // var row = my_tbody.insertRow(0); // 상단에 추가
         var len =FitoContract.getLengthOfshareOwnerLists();
         for (i =0;i<len;++i){
-          var name=FitoContract.getAddrOfshareOwner();
-          var num_TK=FitoContract.getOwnedShares();
+          var name=FitoContract.getAddrOfshareOwner(i);
+          var num_TK=FitoContract.getOwnedShares(i);
           var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
