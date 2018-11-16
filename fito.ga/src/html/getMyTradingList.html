@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <!-- Custom styles for this template -->
         <link href="/src/css/scrolling-nav.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/af.js"></script>
     </head>
 
     <body>
@@ -24,7 +25,7 @@
                         <th scope="col">거래주식수</th>
                         <th scope="col">거래가격(ETH)</th>
                         <th scope="col">거래시간</th>
-                        <th scope="col">비고</th>
+                        <th scope="col">거래체결</th>
                     </tr>
                 </thead>
                 <tbody id="Tbody"></tbody>
@@ -73,10 +74,6 @@
                 // // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
                 // // // -----------------------------------------------------------------
     
-                web3.eth.defaultAccount = web3.eth.accounts[1];
-            </script>
-
-            <script type="text/javascript">
                 function addMyTradingListToTable() {
 
                     var my_tbody = document.getElementById('Tbody');
@@ -107,8 +104,8 @@
                             cell1.innerHTML = web3.eth.defaultAccount;
                             cell2.innerHTML = tradingData[3];       //주식 양도자
                             cell3.innerHTML = tradingData[0];       //거래할 주식수
-                            cell4.innerHTML = tradingData[1];       //거래할 총액(ETH)
-                            cell5.innerHTML = tradingData[2];       //거래시간
+                            cell4.innerHTML = tradingData[1] / 1000000000000000000;       //거래할 총액(ETH)
+                            cell5.innerHTML = new Date(tradingData[2]*1000);       //거래시간
                             cell6.innerHTML = tradingData[5];       //거래 및 ETH 송금 완료
                         }
                         if( tradingData[3] == web3.eth.defaultAccount ) {  //내 계정과 같은지 확인, 양도자의 경우
@@ -125,8 +122,8 @@
                             cell1.innerHTML = tradingData[4];       //주식 양수자
                             cell2.innerHTML = web3.eth.defaultAccount;
                             cell3.innerHTML = tradingData[0];       //거래할 주식수
-                            cell4.innerHTML = tradingData[1];       //거래할 총액(ETH)
-                            cell5.innerHTML = tradingData[2];       //거래시간
+                            cell4.innerHTML = tradingData[1] / 1000000000000000000;       //거래할 총액(ETH)
+                            cell5.innerHTML = new Date(tradingData[2]*1000);       //거래시간
                             cell6.innerHTML = tradingData[5];       //거래 및 ETH 송금 완료
                         }
                     }

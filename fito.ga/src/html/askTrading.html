@@ -70,14 +70,12 @@
                 // // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
                 // // // -----------------------------------------------------------------
 
-                web3.eth.defaultAccount = web3.eth.accounts[1];
-
                 function watchEventOfTradingDataAdded() {
                     var event = FitoContract.eventTradingDataAdded();
                     event.watch(function(error, result){
                         if (!error) {
                             console.log(result);
-                            document.getElementById("resultOfAddTradingData").innerHTML = "트랜잭션 처리 결과 : <br />" + result;
+                            document.getElementById("resultOfAddTradingData").innerHTML = "매수 완료되었습니다.<br />" + "TxHash : " + result["transactionHash"];
                         } else {
                             console.log(error);
                         }

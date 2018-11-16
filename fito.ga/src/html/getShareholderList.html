@@ -72,10 +72,6 @@
                 // // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
                 // // // -----------------------------------------------------------------
     
-                web3.eth.defaultAccount = web3.eth.accounts[1];
-            </script>
-
-            <script type="text/javascript">
                 function addShareholderListToTable() {
                     var my_tbody = document.getElementById('Tbody');
                     // console.log("my_tbody.childElementCount", my_tbody.childElementCount);
@@ -106,7 +102,7 @@
                     }
                     let corporateInfo = FitoContract.getCorporateInfo()
                     console.log("corporateInfo", corporateInfo);
-                    document.getElementById("issuedShares").innerHTML = "발행유통주식수 :  " + corporateInfo[2];
+                    document.getElementById("issuedShares").innerHTML = "발행주식수 :  " + corporateInfo[2];
                     document.getElementById("unissuedShares").innerHTML = "미발행주식수 :  " + corporateInfo[1];
                 }
             </script>

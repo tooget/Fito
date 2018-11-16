@@ -43,9 +43,18 @@
                 <p class="lead">on Ethereum Private Blockchain Network</p>
                 <p class="lead">as a part of KISA Fintech X Blockchain Academy Curriculum in Nov 2018.</p>
                 <div id ="buttons" style="display: none;">
-                    <button type="button" class="btn btn-outline-warning" id="askTrading">매수요청</button>
-                    <button type="button" class="btn btn-outline-warning" id="getShareholderList">주주명부</button>     
-                    <button type="button" class="btn btn-outline-warning" id="getMyTradingList">거래기록</button>   
+                    <p>
+                        <button type="button" class="btn btn-outline-warning" id="askTrading">매수요청</button>
+                        <button type="button" class="btn btn-outline-warning" id="getShareholderList">주주명부</button>     
+                        <button type="button" class="btn btn-outline-warning" id="getMyTradingList">거래기록</button>   
+                    </p>
+                    <p>
+                        <!-- <button type="button" class="btn btn-outline-light" id="changeToUser0">User0</button> -->
+                        <button type="button" class="btn btn-outline-light" id="changeToUser1">User1</button>
+                        <button type="button" class="btn btn-outline-light" id="changeToUser2">User2</button>     
+                        <button type="button" class="btn btn-outline-light" id="changeToUser3">User3</button>
+                        <button type="button" class="btn btn-outline-light" id="changeToUser4">User4</button>   
+                    </p>
                 </div>
             </div>
         </header>
@@ -113,6 +122,26 @@
                 $("#getMyTradingList").on("click", function() {
                     $("#content").load("./src/html/getMyTradingList.html");
                 });
+                // $("#changeToUser0").on("click", function() {
+                //     web3.eth.defaultAccount = web3.eth.accounts[0];
+                //     console.log(web3.eth.defaultAccount);
+                // });
+                $("#changeToUser1").on("click", function() {
+                    web3.eth.defaultAccount = web3.eth.accounts[1];
+                    console.log("User1", web3.eth.defaultAccount);
+                });
+                $("#changeToUser2").on("click", function() {
+                    web3.eth.defaultAccount = web3.eth.accounts[2];
+                    console.log("User2", web3.eth.defaultAccount);
+                });
+                $("#changeToUser3").on("click", function() {
+                    web3.eth.defaultAccount = web3.eth.accounts[3];
+                    console.log("User3", web3.eth.defaultAccount);
+                });
+                $("#changeToUser4").on("click", function() {
+                    web3.eth.defaultAccount = web3.eth.accounts[4];
+                    console.log("User4", web3.eth.defaultAccount);
+                });
             });
         </script>
 
@@ -120,7 +149,6 @@
         <!-- Metamask working check -->
         <script type="text/javascript">
             console.log('starting...');
-
             var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
             //check if web3 Metamask/Mist auto-created Provider or not
             if (typeof web3 !== 'undefined') {
@@ -134,7 +162,6 @@
             // Not working.. https://github.com/ZHyoKim/Fito/issues/11
                 alert("메타마스크 설치와 로그인을 해주세요.");
             }
-
             if (web3.isConnected()) {
             console.log("connected");
             } else {
