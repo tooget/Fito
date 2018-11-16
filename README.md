@@ -9,9 +9,9 @@
       - ~~_토큰(=주식) 발행_~~ 비상장 주식 발행관리, 거래 및 정보교환 플랫폼/Ecosystem
       - 정보 생산 및 접근에 따른 Token Economy
       - 비상장 주식회사-주주간 장외주식거래(=유상증자)
-      - 온라인 정기/임시 주주총회
+      - 온라인 정기/임시 주주총회 및 투표
       - [Prototype] 비상장 주식회사 주주명부 조회
-      - [Prototype] 비상장 주식회사 투자자간 주식거래
+      - [Prototype] 비상장 주식회사 투자자간 주식거래(양수자)
       - [Prototype] 비상장 주식회사 투자자별 주식거래내역 조회
  3. Prototype 구현
     - 구현일정 : 2018-11-05~2018-11-16
@@ -26,7 +26,13 @@
       - Core : [go-ethereum](https://github.com/ethereum/go-ethereum)
  
 ## Team Meeting
-
+#### 2018-11-16, 10th
+  - 오전 프로젝트 마무리
+  - 오후 프로젝트 최종 발표
+#### 2018-11-15, 9th
+  - 브라우저 템플릿 조정
+  - Prototype 동작을 위한 SmartContract 함수 완성
+  - Ganache 로컬테스트 완료, KALEIDO web3.js 비동기 문제 해결 중
 #### 2018-11-14, 8th
   - Prototype truffle~KALEIDO 배포 테스트 완료
   - 브라우저 유저 인터페이스 연결(Web3) 및 필요 SmartContract 함수 작성
