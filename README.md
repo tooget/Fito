@@ -1,7 +1,6 @@
-# Fito
- 비상장 주식회사의 장외주식거래/주식회사 거버넌스 관리 dApp Prototype
- > https://fito.ga
- > [![Fito dApp Demo](https://img.youtube.com/vi/1K3tfZqhmAQ/0.jpg)](https://www.youtube.com/watch?v=1K3tfZqhmAQ&feature=youtu.be "Fito dApp Demo")
+# Fito 
+비상장 주식회사의 장외주식거래/주식회사 거버넌스 관리 dApp Prototype https://fito.ga
+> [![Fito dApp Demo](https://img.youtube.com/vi/1K3tfZqhmAQ/0.jpg)](https://www.youtube.com/watch?v=1K3tfZqhmAQ&feature=youtu.be "Fito dApp Demo")
 
 ## 개요
  1. 팀명 : Fito / 한국인터넷진흥원 핀테크X블록체인 아카데미 3기 팀 프로젝트
