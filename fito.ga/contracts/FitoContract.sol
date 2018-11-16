@@ -3,8 +3,9 @@ pragma solidity ^0.4.24;
 contract FitoContract {
 
     bool corporateAddrIsSet = false;        //회사 계정 및 유통주식소 초기화 여부
-    uint unissuedShareOfCompany = 1000000;  //총 발행가능 주식수
-    uint issuedShareOfCompany;      //유통 발행 주식수
+    uint[] tester;
+    uint unissuedSharesOfCompany = 1000000;  //총 발행가능 주식수
+    uint issuedSharesOfCompany;      //유통 발행 주식수
     uint balance;                   //ETH transfer 전송할 이더 수량 저장을 위한 임시 변수
     address corporateAddr;          //최초 발행시 거래 없이 주식을 갖게 되는 회사의 대표 주소
     address ethTaker;               //Eth transfer 수령자 저장을 위한 임시 변수
@@ -30,28 +31,29 @@ contract FitoContract {
     //회사 주식 최초 발행시 필요한 functions
     // -----------------------------------------------------------
     //회사 발행주식 초기화를 위해 회사 대표 corporateAddr 설정
-    function setCorporateAddr(address _corporateAddr) public {
+    function setCorporateAddr(address _userAddr) public {
         if( corporateAddrIsSet == false ) {
-            initShareholderAddr(_corporateAddr);
-            corporateAddr = _corporateAddr;
+            initShareholderAddr(_userAddr);
+            corporateAddr = _userAddr;
             corporateAddrIsSet = true;
         }
     }
 
     //corporateAddr 검증 modifier
-    modifier onlyCorporateAddr() {
-        if(msg.sender != corporateAddr) {
+    modifier onlyCorporateAddr(address _userAddr) {
+        if(_userAddr == corporateAddr) {
             _;
         }
     }
 
     //최초 거래 전 회사 발행주식 값을 초기화(=주식발행)
-    function initSharesOfCorporate(uint _issuingShares) public onlyCorporateAddr() {
-        require( _issuingShares <= unissuedShareOfCompany);
-        uint ownerIdx = initShareholderAddr(msg.sender);
-        ownedShares[ownerIdx] = _issuingShares;
-        unissuedShareOfCompany -= _issuingShares;
-        issuedShareOfCompany = _issuingShares;
+    function initSharesOfCorporate(uint _issuingShares, address _userAddr) public onlyCorporateAddr(_userAddr) {
+        if(_issuingShares <= unissuedSharesOfCompany) {
+            uint ownerIdx = initShareholderAddr(_userAddr);
+            ownedShares[ownerIdx] = _issuingShares;
+            unissuedSharesOfCompany -= _issuingShares;
+            issuedSharesOfCompany = _issuingShares;
+        }
     }
     // -----------------------------------------------------------
 
@@ -71,40 +73,33 @@ contract FitoContract {
     }
 
     //호출자가 보낼 Eth 수량을 임시 저장
-    function sending() private {
+    function sending() public payable {
         balance = msg.value;
         emit Sended(msg.value, balance);
     }
 
     //set함수를 통해 저장한 주소에 이더를 전송
-    function transfer() payable public {
+    function transfer() public payable {
         ethTaker.transfer(msg.value);
     }
     // -----------------------------------------------------------
 
 
-    //메타마스크 최초 접속시 shareOwnerLists에 명시적 저장 후 주주 순번 리턴
+    //메타마스크 최초 접속시 shareOwnerLists에 명시적 저장 후 주주 순번 리턴, 있다면 그 인덱스 리턴
     function initShareholderAddr(address _shareholderAddr) public returns(uint _ownerIdx) {
-        bool ownerChecker = false;
-        uint ownerExistIdx;
-        uint ownerIdx = getLengthOfshareOwnerLists();
-        if( ownerIdx == 0) {
-            ownerIdx = 1;
-        }
-        for(uint i = 0; i < ownerIdx; i++) {
-            if(shareOwnerLists[i].ownerAddr == _shareholderAddr) {
-                ownerChecker = true;
-                ownerExistIdx = i;
+        uint ownerIdx;
+        uint lengthOfOwnerLists = getLengthOfshareOwnerLists();
+        for(uint i = 0; i < lengthOfOwnerLists; i++) {
+            if( _shareholderAddr == shareOwnerLists[i].ownerAddr ) {
+                ownerIdx = i;
+                return ownerIdx;
             }
         }
-        if( ownerChecker == false ) {
-            shareOwnerList memory newshareOwnerList = shareOwnerList(msg.sender);
-            uint newOwnerIdx = shareOwnerLists.push(newshareOwnerList);
-            ownedShares[newOwnerIdx] = 0;
-            return newOwnerIdx;
-        } else {
-            return ownerExistIdx;
-        }
+        shareOwnerList memory newshareOwnerList = shareOwnerList(_shareholderAddr);
+        ownerIdx = shareOwnerLists.push(newshareOwnerList);
+        ownerIdx -= 1;
+        ownedShares[ownerIdx] = 0;
+        return ownerIdx;
     }
 
     // -----------------------------------------------------------
@@ -120,34 +115,29 @@ contract FitoContract {
         bool isTradingComplete      //거래 및 ETH 송금 완료
     );
 
-    // 주식 보유한 주주인지 체크하는 modifier
-    modifier onlyShareOwner(address _Addr) {
-        require( ownedShares[initShareholderAddr(_Addr)] > 0 );
-        _;
-    }
-
     //양수자가 거래를 요청하고 이더를 전송하는 함수
     //차후 요청-승인 구조로 분화해야 함.
-    function addTradingData(address _sellerAddr, uint _tradingShares) public payable onlyShareOwner(_sellerAddr) {
+    function addTradingData(address _sellerAddr, uint _tradingShares) public payable {
         uint sellerIdx = initShareholderAddr(_sellerAddr);
         uint buyerIdx = initShareholderAddr(msg.sender);
-        require(ownedShares[sellerIdx] >= _tradingShares && _tradingShares != 0);
-        tradingData memory newTradingData = tradingData(_tradingShares, msg.value, now, _sellerAddr, msg.sender, false);
-        uint tradingIdx = tradingDatas.push(newTradingData);
-        setEthTaker(_sellerAddr);
-        sending();
-        ownedShares[sellerIdx] -= _tradingShares;
-        ownedShares[buyerIdx] += _tradingShares;
-        transfer();
-        tradingDatas[tradingIdx-1].isTradingComplete = true;
-        emit eventTradingDataAdded(
-            tradingDatas[tradingIdx-1].tradingShares,
-            tradingDatas[tradingIdx-1].tradingPrice,
-            tradingDatas[tradingIdx-1].timestamp,
-            tradingDatas[tradingIdx-1].sellerAddr,
-            tradingDatas[tradingIdx-1].buyerAddr,
-            tradingDatas[tradingIdx-1].isTradingComplete
-        );
+        if(ownedShares[sellerIdx] >= _tradingShares && _tradingShares != 0){
+            tradingData memory newTradingData = tradingData(_tradingShares, msg.value, now, _sellerAddr, msg.sender, false);
+            uint tradingIdx = tradingDatas.push(newTradingData);
+            setEthTaker(_sellerAddr);
+            sending();
+            ownedShares[sellerIdx] -= _tradingShares;
+            ownedShares[buyerIdx] += _tradingShares;
+            transfer();
+            tradingDatas[tradingIdx-1].isTradingComplete = true;
+            emit eventTradingDataAdded(
+                tradingDatas[tradingIdx-1].tradingShares,
+                tradingDatas[tradingIdx-1].tradingPrice,
+                tradingDatas[tradingIdx-1].timestamp,
+                tradingDatas[tradingIdx-1].sellerAddr,
+                tradingDatas[tradingIdx-1].buyerAddr,
+                tradingDatas[tradingIdx-1].isTradingComplete
+            );
+        }
     }
     // -----------------------------------------------------------
     // 각종 조회용 함수
@@ -172,47 +162,30 @@ contract FitoContract {
         return tradingDatas.length;
     }
 
-    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 양수자 리턴
-    function getBuyerAddrOfaSpecificTrading(uint _tradingIdx) public view returns (address) {
-        return tradingDatas[_tradingIdx].buyerAddr;
+    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 struct 리턴
+    function getAspecificTradingData(uint _tradingIdx) public view returns (uint, uint, uint, address, address, bool) {
+        return (
+            tradingDatas[_tradingIdx].tradingShares,        //거래할 주식수
+            tradingDatas[_tradingIdx].tradingPrice,         //거래할 총액(ETH)
+            tradingDatas[_tradingIdx].timestamp,            //거래시간
+            tradingDatas[_tradingIdx].sellerAddr,           //주식 양도자
+            tradingDatas[_tradingIdx].buyerAddr,            //주식 양수자
+            tradingDatas[_tradingIdx].isTradingComplete     //거래 및 ETH 송금 완료
+        );
+    }
+    
+    function getCorporateInfo() public view returns(bool, uint, uint, address) {
+        return (
+            corporateAddrIsSet,         //회사 주식발행 초기화 여부
+            unissuedSharesOfCompany,    //회사 미발행 주식수
+            issuedSharesOfCompany,      //회사 유통 주식수
+            corporateAddr               //회사로 초기화한 계정
+        );
     }
 
-    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 양도자 리턴
-    function getSellerAddrOfaSpecificTrading(uint _tradingIdx) public view returns (address) {
-        return tradingDatas[_tradingIdx].sellerAddr;
-    }
-
-    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 주식수 리턴
-    function getTradingSharesOfaSpecificTrading(uint _tradingIdx) public view returns (uint) {
-        return tradingDatas[_tradingIdx].tradingShares;
-    }
-
-    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 시간 리턴
-    function getTimestampOfaSpecificTrading(uint _tradingIdx) public view returns (uint) {
-        return tradingDatas[_tradingIdx].timestamp;
-    }
-
-    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 가격(ETH) 리턴
-    function getTradingPriceOfaSpecificTrading(uint _tradingIdx) public view returns (uint) {
-        return tradingDatas[_tradingIdx].tradingPrice;
-    }
-
-    // [Protyotype3 : 주주의 주식거래내용 조회용] 거래 번호에 따른 거래 트랜잭션 완료 여부 리턴
-    function getIsTradingCompleteOfaSpecificTrading(uint _tradingIdx) public view returns (bool) {
-        return tradingDatas[_tradingIdx].isTradingComplete;
-    }
-
-    //회사 미발행 주식수
-    function getUnissuedShareOfCompany() public view returns(uint) {
-        return unissuedShareOfCompany;
-    }
-
-    //회사 유통 주식수
-    function getIssuedShares() public view returns(uint) {
-        return issuedShareOfCompany;
+    function getTester() public view returns(uint[]) {
+        return tester;
     }
     // -----------------------------------------------------------
 
-    //CA에 Eth를 transfer하기 위한 함수(백업) 
-    // function sendEth() public payable {}
 }

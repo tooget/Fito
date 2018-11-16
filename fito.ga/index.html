@@ -11,9 +11,11 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <!-- Custom styles for this template -->
-        <link href="src/css/scrolling-nav.css" rel="stylesheet">
+        <link href="/src/css/scrolling-nav.css" rel="stylesheet">
         <!-- jQuery core load -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <!-- web3.js load -->
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     </head>
 
     <body id="page-top">
@@ -27,8 +29,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#prototype">Prototype</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#resources">Resources</a></li>
                     </ul>
                 </div>
@@ -40,15 +42,28 @@
                 <p class="lead"><h1>OTC/Shareholder Management dApp Project</h1></p>
                 <p class="lead">on Ethereum Private Blockchain Network</p>
                 <p class="lead">as a part of KISA Fintech X Blockchain Academy Curriculum in Nov 2018.</p>
-                <button type="button" class="btn btn-outline-warning" id="transfer">transfer</button>
-                <button type="button" class="btn btn-outline-warning" id="corpList">corpList</button>     
-                <button type="button" class="btn btn-outline-warning" id="List">List</button>   
+                <div id ="buttons" style="display: none;">
+                    <button type="button" class="btn btn-outline-warning" id="askTrading">매수요청</button>
+                    <button type="button" class="btn btn-outline-warning" id="getShareholderList">주주명부</button>     
+                    <button type="button" class="btn btn-outline-warning" id="getMyTradingList">거래기록</button>   
+                </div>
             </div>
         </header>
 
         <div id ="content" style="display: none;"></div>
 
-        <section id="about">
+        <section id="prototype">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <p class="lead"><h2>Prototype</h2></p>
+                            <p class="lead">Working on it.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        <section id="about" class="bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
@@ -60,17 +75,6 @@
                             <li>Free of Double-spending problem in OTC equity trade market</li>
                             <li>Make OTC equity trading much faster, No more paperwork.</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="prototype" class="bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <p class="lead"><h2>Prototype</h2></p>
-                        <p class="lead">Working on it.</p>
                     </div>
                 </div>
             </div>
@@ -100,14 +104,14 @@
         <!-- Click event to load dApp Html files -->
         <script>
             $(document).ready( function() {
-                $("#transfer").on("click", function() {
-                    $("#content").load("./src/html/transfer.html");
+                $("#askTrading").on("click", function() {
+                    $("#content").load("./src/html/askTrading.html");
                 });
-                $("#corpList").on("click", function() {
-                    $("#content").load("./src/html/corpList.html");
+                $("#getShareholderList").on("click", function() {
+                    $("#content").load("./src/html/getShareholderList.html");
                 });
-                $("#List").on("click", function() {
-                    $("#content").load("./src/html/personalList.html");
+                $("#getMyTradingList").on("click", function() {
+                    $("#content").load("./src/html/getMyTradingList.html");
                 });
             });
         </script>
@@ -117,15 +121,18 @@
         <script type="text/javascript">
             console.log('starting...');
 
+            var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
             //check if web3 Metamask/Mist auto-created Provider or not
             if (typeof web3 !== 'undefined') {
-                web3 = new Web3(web3.currentProvider);
+                // web3 = new Web3(web3.currentProvider);
                 document.getElementById("content").style.display = 'block';
-                alert("축하한다.");
+                document.getElementById("prototype").style.display = 'none';
+                document.getElementById("buttons").style.display = 'block';
+                // alert("축하한다.");
             } else {
             // set the provider you want from Web3.providers
             // Not working.. https://github.com/ZHyoKim/Fito/issues/11
-            alert("메타마스크 설치와 로그인을 해주세요.");
+                alert("메타마스크 설치와 로그인을 해주세요.");
             }
 
             if (web3.isConnected()) {
