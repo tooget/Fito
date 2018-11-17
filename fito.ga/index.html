@@ -1,109 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="OTC/Shareholder Management Blockchain Project">
+        <meta name="author" content="Team Fito">
 
-  <head>
+        <title>OTC/Shareholder Management dApp Project</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="OTC/Shareholder Management Blockchain Project">
-    <meta name="author" content="Team Fito">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- Custom styles for this template -->
+        <link href="/src/css/scrolling-nav.css" rel="stylesheet">
+        <!-- jQuery core load -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <!-- web3.js load -->
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    </head>
 
-    <title>OTC/Shareholder Management dApp Project</title>
+    <body id="page-top">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="/">Team Fito</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#prototype">Prototype</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#resources">Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-    <!-- Custom styles for this template -->
-    <link href="css/scrolling-nav.css" rel="stylesheet">
+        <header style="background-color: #9b4dca; color: white;">
+            <div class="container text-center">
+                <p class="lead"><h1>OTC/Shareholder Management dApp Project</h1></p>
+                <p class="lead">on Ethereum Private Blockchain Network</p>
+                <p class="lead">as a part of KISA Fintech X Blockchain Academy Curriculum in Nov 2018.</p>
+                <div id ="buttons" style="display: none;">
+                    <p>
+                        <button type="button" class="btn btn-outline-warning" id="askTrading">매수요청</button>
+                        <button type="button" class="btn btn-outline-warning" id="getShareholderList">주주명부</button>     
+                        <button type="button" class="btn btn-outline-warning" id="getMyTradingList">거래기록</button>   
+                    </p>
+                    <p>
+                        <!-- <button type="button" class="btn btn-outline-light" id="changeToUser0">User0</button> -->
+                        <button type="button" class="btn btn-outline-light" id="changeToUser1">User1</button>
+                        <button type="button" class="btn btn-outline-light" id="changeToUser2">User2</button>     
+                        <button type="button" class="btn btn-outline-light" id="changeToUser3">User3</button>
+                        <button type="button" class="btn btn-outline-light" id="changeToUser4">User4</button>   
+                    </p>
+                </div>
+            </div>
+        </header>
 
-  </head>
+        <div id ="content" style="display: none;"></div>
 
-  <body id="page-top">
+        <section id="prototype">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <p class="lead"><h2>Prototype</h2></p>
+                            <p class="lead"><iframe width="700" height="395" src="https://www.youtube.com/embed/1K3tfZqhmAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Team Fito</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#prototype">Prototype</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#resources">Resources</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+        <section id="about" class="bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <p class="lead"><h2>Features</h2></p>
+                        <p class="lead">A prototype of OTC/Shareholder Management dApp.</p>
+                        <ul>
+                            <li>Free of Corporates' shareholder management problems</li>
+                            <li>Free of Proof of Share Ownership</li>
+                            <li>Free of Double-spending problem in OTC equity trade market</li>
+                            <li>Make OTC equity trading much faster, No more paperwork.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <header style="background-color: #9b4dca; color: white;">
-      <div class="container text-center">
-        <h1>OTC/Shareholder Management dApp Project</h1>
-        <p class="lead">on Ethereum Private Blockchain Network</p>
-        <p class="lead">as a part of KISA Fintech X Blockchain Academy Curriculum in Nov 2018.</p>
-        <br>        
-        <button type="button" class="btn btn-outline-warning" onclick="location.href='./html/corpList.html' ">주주 명부</button>
-        <button type="button" class="btn btn-outline-warning" onclick="location.href='./html/transfer.html' ">주식 거래</button>
-        <button type="button" class="btn btn-outline-warning" onclick="location.href='./html/personalList.html' ">주주 거래 내역</button>
-      </div>
-    </header>
+        <section id="resources">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <p><h2>Resources</h2></p>
+                        <p><a href="https://github.com/ZHyoKim/Fito" class="lead">https://github.com/ZHyoKim/Fito</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Features</h2>
-            <p class="lead">A prototype of OTC/Shareholder Management dApp.</p>
-            <ul>
-              <li>Free of Corporates' shareholder management problems</li>
-              <li>Free of Proof of Share Ownership</li>
-              <li>Free of Double-spending problem in OTC equity trade market</li>
-              <li>Make OTC equity trading much faster, No more paperwork.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Team Fito</p>
+            </div>
+        </footer>
 
-    <section id="prototype" class="bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Prototype</h2>
-            <p></p>
-            <p class="lead">Working on it.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    </body>
 
-    <section id="resources">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Resources</h2>
-            <p></p>
-            <p><a href="https://github.com/ZHyoKim/Fito" class="lead">https://github.com/ZHyoKim/Fito</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- DOM 생성 후에 조회해야 오류 없음 -->
+        <!-- Click event to load dApp Html files -->
+        <script>
+            $(document).ready( function() {
+                $("#askTrading").on("click", function() {
+                    $("#content").load("./src/html/askTrading.html");
+                });
+                $("#getShareholderList").on("click", function() {
+                    $("#content").load("./src/html/getShareholderList.html");
+                });
+                $("#getMyTradingList").on("click", function() {
+                    $("#content").load("./src/html/getMyTradingList.html");
+                });
+                // $("#changeToUser0").on("click", function() {
+                //     web3.eth.defaultAccount = web3.eth.accounts[0];
+                //     console.log(web3.eth.defaultAccount);
+                // });
+                $("#changeToUser1").on("click", function() {
+                    web3.eth.defaultAccount = web3.eth.accounts[1];
+                    console.log("User1", web3.eth.defaultAccount);
+                });
+                $("#changeToUser2").on("click", function() {
+                    web3.eth.defaultAccount = web3.eth.accounts[2];
+                    console.log("User2", web3.eth.defaultAccount);
+                });
+                $("#changeToUser3").on("click", function() {
+                    web3.eth.defaultAccount = web3.eth.accounts[3];
+                    console.log("User3", web3.eth.defaultAccount);
+                });
+                $("#changeToUser4").on("click", function() {
+                    web3.eth.defaultAccount = web3.eth.accounts[4];
+                    console.log("User4", web3.eth.defaultAccount);
+                });
+            });
+        </script>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Team Fito</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-  </body>
+        <!-- DOM 생성 후에 조회해야 오류 없음 -->
+        <!-- Metamask working check -->
+        <script type="text/javascript">
+            console.log('starting...');
+            var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+            //check if web3 Metamask/Mist auto-created Provider or not
+            if (typeof web3 !== 'undefined') {
+                // web3 = new Web3(web3.currentProvider);
+                document.getElementById("content").style.display = 'block';
+                document.getElementById("buttons").style.display = 'block';
+                // alert("축하한다.");
+            } else {
+            // set the provider you want from Web3.providers
+            // Not working.. https://github.com/ZHyoKim/Fito/issues/11
+                alert("메타마스크 설치와 로그인을 해주세요.");
+            }
+            if (web3.isConnected()) {
+            console.log("connected");
+            } else {
+            console.log("not connected");
+            }
+        </script>
 
 </html>

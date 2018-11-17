@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- Custom styles for this template -->
+        <link href="/src/css/scrolling-nav.css" rel="stylesheet">
+    </head>
+
+    <body class="container" style="padding-top: 3%;" >
+        <div class="col-lg-8 mx-auto" style="padding-top: 5%;padding-bottom: 20%;">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">양도예정주주&nbsp;&nbsp;&nbsp;</span></div>
+                <input type="text" class="form-control" aria-label="sellerAddr" id="sellerAddr">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">거래요청주식수</span></div>
+                <input type="text" class="form-control" aria-label="tradingShares" id="tradingShares">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">거래희망가격&nbsp;&nbsp;&nbsp;</span></div>
+                <input type="text" class="form-control" aria-label="tradingPrice" id="tradingPrice">
+                <div class="input-group-append"><span class="input-group-text">ETH</span></div>
+            </div>
+            <button id="searchBlock" class="btn btn-outline-success"onClick="addTradingData();">거래요청</button>
+            <p>
+                <div id="resultOfAddTradingData"></div>
+            </p>
+            <script type="text/javascript">
+
+                console.log('starting...');
+                //check if web3 Metamask/Mist auto-created Provider or not
+                if (typeof web3 !== 'undefined') {
+                    web3 = new Web3(web3.currentProvider);
+                } else {
+                    // set the provider you want from Web3.providers
+                    // Not working.. https://github.com/ZHyoKim/Fito/issues/11
+                    // var web3 = new Web3(new Web3.providers.HttpProvider('<kaleido-credential-endpoint>'));
+                }
+
+                if (web3.isConnected()) {
+                    console.log("connected");
+                } else {
+                    console.log("not connected");
+                }
+
+                // In case : Static Frontend, on webserver
+                // ----------------------------------------------------------------    
+                function loadJSON() {   
+                    var xobj = new XMLHttpRequest();
+                    xobj.overrideMimeType("application/json");
+                    xobj.open('GET', '../../build/contracts/FitoContract.json', false);
+                    xobj.send(null);
+                    var rtn = xobj;
+                    var rtn = JSON.parse(rtn.responseText);
+                    return rtn;
+                }
+                var jsonFile = loadJSON();
+                var contractAbi = jsonFile.abi;
+                var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
+                var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+                // -----------------------------------------------------------------
+
+                // // // In case : Static Frontend, local ganache without webserver
+                // // // Need to create and load "../../build/contracts/FitoContract.js"
+                // // // ----------------------------------------------------------------    
+                // // var contractAbi = FitoContract_build.abi;
+                // // var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+                // // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+                // // // -----------------------------------------------------------------
+
+                function watchEventOfTradingDataAdded() {
+                    var event = FitoContract.eventTradingDataAdded();
+                    event.watch(function(error, result){
+                        if (!error) {
+                            console.log(result);
+                            document.getElementById("resultOfAddTradingData").innerHTML = "매수 완료되었습니다.<br />" + "TxHash : " + result["transactionHash"];
+                        } else {
+                            console.log(error);
+                        }
+                    });
+                }
+
+                function addTradingData(){
+                    var sellerAddr = document.getElementById("sellerAddr").value;
+                    var tradingShares = document.getElementById("tradingShares").value;
+                    var tradingPrice = document.getElementById("tradingPrice").value;
+                    tradingShares *= 1;
+                    tradingPrice *= 1; 
+
+                    console.log( "sellerAddr", sellerAddr, typeof(sellerAddr) );
+                    console.log( "tradingShares", tradingShares, typeof(tradingShares) );
+                    console.log( "tradingPrice", tradingPrice, typeof(tradingPrice) );
+                    FitoContract.addTradingData(
+                        sellerAddr,
+                        tradingShares,
+                        { value: web3.toWei(tradingPrice, "ether"), from: web3.eth.defaultAccount, gas: 300000 }
+                    );
+                    watchEventOfTradingDataAdded();
+                }
+            </script>
+        </div>
+    </body>
+</html>

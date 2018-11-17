@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- Custom styles for this template -->
+        <link href="/src/css/scrolling-nav.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="col-lg-8 mx-auto" style="padding-top: 5%;padding-bottom: 20%;">
+            <br />
+            <p>
+                <button id="searchBlock" class="btn btn-outline-success"onClick="addMyTradingListToTable();">조 회</button>
+                <div id="myaddress"></div>
+            </p>
+            <table class="table" id="insertTable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">양수자</th>
+                        <th scope="col">양도자</th>
+                        <th scope="col">거래주식수</th>
+                        <th scope="col">거래가격(ETH)</th>
+                        <th scope="col">거래시간</th>
+                        <th scope="col">거래체결</th>
+                    </tr>
+                </thead>
+                <tbody id="Tbody"></tbody>
+            </table>
+
+            <script type="text/javascript">
+
+                console.log('starting...');
+                //check if web3 Metamask/Mist auto-created Provider or not
+                if (typeof web3 !== 'undefined') {
+                    web3 = new Web3(web3.currentProvider);
+                } else {
+                    // set the provider you want from Web3.providers
+                    // Not working.. https://github.com/ZHyoKim/Fito/issues/11
+                    // var web3 = new Web3(new Web3.providers.HttpProvider('<kaleido-credential-endpoint>'));
+                }
+    
+                if (web3.isConnected()) {
+                    console.log("connected");
+                } else {
+                    console.log("not connected");
+                }
+    
+                // In case : Static Frontend, on webserver
+                // ----------------------------------------------------------------    
+                function loadJSON() {   
+                var xobj = new XMLHttpRequest();
+                xobj.overrideMimeType("application/json");
+                xobj.open('GET', '../../build/contracts/FitoContract.json', false);
+                xobj.send(null);
+                var rtn = xobj;
+                var rtn = JSON.parse(rtn.responseText);
+                return rtn;
+                }
+                var jsonFile = loadJSON();
+                var contractAbi = jsonFile.abi;
+                var contractAddress = jsonFile.networks[ Object.keys(jsonFile.networks)[0] ].address;
+                var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+                // -----------------------------------------------------------------
+    
+                // // // In case : Static Frontend, local ganache without webserver
+                // // // Need to create and load "../../build/contracts/FitoContract.js"
+                // // // ----------------------------------------------------------------    
+                // // var contractAbi = FitoContract_build.abi;
+                // // var contractAddress = FitoContract_build.networks[ Object.keys(FitoContract_build.networks)[0] ].address;
+                // // var FitoContract = web3.eth.contract(contractAbi).at(contractAddress);
+                // // // -----------------------------------------------------------------
+    
+                function addMyTradingListToTable() {
+
+                    var my_tbody = document.getElementById('Tbody');
+                    // console.log("my_tbody.childElementCount", my_tbody.childElementCount);
+                    // console.log("my_tbody.children", my_tbody.children);
+                    if (my_tbody.childElementCount != 0) {
+                        while (my_tbody.firstChild) {
+                            my_tbody.removeChild(my_tbody.firstChild);
+                        }
+                    }
+
+                    var len = FitoContract.getLengthOftradingDatas();
+                    var i;
+                    var num = 0;
+                    for(i = 0; i < len; i ++) {
+                        let tradingData = FitoContract.getAspecificTradingData(i);
+                        if( tradingData[4] == web3.eth.defaultAccount ) {  //내 계정과 같은지 확인, 양수자의 경우
+                            var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+                            var cell0 = row.insertCell(0);
+                            var cell1 = row.insertCell(1);
+                            var cell2 = row.insertCell(2);
+                            var cell3 = row.insertCell(3);
+                            var cell4 = row.insertCell(4);
+                            var cell5 = row.insertCell(5);
+                            var cell6 = row.insertCell(6);
+                            num ++
+                            cell0.innerHTML = num;
+                            cell1.innerHTML = web3.eth.defaultAccount;
+                            cell2.innerHTML = tradingData[3];       //주식 양도자
+                            cell3.innerHTML = tradingData[0];       //거래할 주식수
+                            cell4.innerHTML = tradingData[1] / 1000000000000000000;       //거래할 총액(ETH)
+                            cell5.innerHTML = new Date(tradingData[2]*1000);       //거래시간
+                            cell6.innerHTML = tradingData[5];       //거래 및 ETH 송금 완료
+                        }
+                        if( tradingData[3] == web3.eth.defaultAccount ) {  //내 계정과 같은지 확인, 양도자의 경우
+                            var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+                            var cell0 = row.insertCell(0);
+                            var cell1 = row.insertCell(1);
+                            var cell2 = row.insertCell(2);
+                            var cell3 = row.insertCell(3);
+                            var cell4 = row.insertCell(4);
+                            var cell5 = row.insertCell(5);
+                            var cell6 = row.insertCell(6);
+                            num ++
+                            cell0.innerHTML = num;
+                            cell1.innerHTML = tradingData[4];       //주식 양수자
+                            cell2.innerHTML = web3.eth.defaultAccount;
+                            cell3.innerHTML = tradingData[0];       //거래할 주식수
+                            cell4.innerHTML = tradingData[1] / 1000000000000000000;       //거래할 총액(ETH)
+                            cell5.innerHTML = new Date(tradingData[2]*1000);       //거래시간
+                            cell6.innerHTML = tradingData[5];       //거래 및 ETH 송금 완료
+                        }
+                    }
+
+                    var myaddress = document.getElementById('myaddress');
+                    myaddress.innerHTML = "내 지갑주소 : " + web3.eth.defaultAccount + "<br />" + "내 거래건수 : " + num + " 건";
+                }
+            </script>            
+
+        </div>
+    </body>
+</html>
