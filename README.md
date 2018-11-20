@@ -29,7 +29,8 @@
 ## Team Meeting
 #### 2018-11-16, 10th
   - 오전 프로젝트 마무리(localhost 구동)
-  - [오후 프로젝트 최종 발표](https://www.slideshare.net/SunghyunKim4/fito-dapp-prototype)
+  - 오후 팀 프로젝트 최종 발표 
+  - [![](https://image.slidesharecdn.com/fito-181118063714/95/fito-dapp-prototype-1-638.jpg?cb=1542523122)](https://www.slideshare.net/SunghyunKim4/fito-dapp-prototype)
 #### 2018-11-15, 9th
   - 브라우저 템플릿 조정
   - Prototype 동작을 위한 SmartContract 함수 완성
