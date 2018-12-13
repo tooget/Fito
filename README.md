@@ -19,5 +19,6 @@
 [![Fito dApp Demo](https://github.com/tooget/Fito/blob/master/docs/20181116_Screenshot_prototype.png)](https://youtu.be/1K3tfZqhmAQ)
 
 ## Developement History
+  - Dec, 2018 : KISA FinTech X Academy DApp Project
   - Nov. 2018 : [Prototype as a KISA FinTech X Academy Team Project](https://github.com/tooget/Fito/blob/master/docs/20181116_KISA_Team_Project.md)
   [![](https://github.com/tooget/Fito/blob/master/docs/20181116_Screenshot_abstract.png)](https://www.slideshare.net/SunghyunKim4/fito-dapp-prototype)
